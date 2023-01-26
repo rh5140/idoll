@@ -4,7 +4,6 @@ Prefab for camera implementation. Can be switched between a player-follow camera
 
 ```PlayerCamera``` must be initialized with a target GameObject to follow under the ```Follow``` SerializeField.
 
-Note: the position of the CameraSystem in the scene is irrelevant.
 
 ## CameraManager.cs
 
@@ -31,7 +30,7 @@ move(Vector2 position, float milliseconds) -> bool
 
 Moves the cutscene camera to the specified Vector2 in the specified amount of time in milliseconds.
 
--> **active_camera** must be set to **cutscene**.
+Note: **active_camera** must be set to **cutscene**.
 
 
 ```
