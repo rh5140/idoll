@@ -6,7 +6,7 @@ On Scene initialization, the default camera state is ```PlayerCamera```.
 
 ```PlayerCamera``` must be initialized with a target GameObject to follow under the ```Follow``` SerializeField. 
 
-→ To follow the player, ```PlayerSprite``` must be used, NOT ```Player```
+→ To follow the player, ```PlayerSprite``` must be used, NOT the parent object ```Player``` itself.
 
 
 ## CameraManager.cs
@@ -44,21 +44,20 @@ Camera 1: ```Cutscene```
 bool move(Vector2 destination, float seconds)
 ```
 
-Moves the cutscene camera to the specified Vector2 position in the specified amount of time in seconds.
+Moves the cutscene camera to the specified Vector2 position in the specified amount of time (seconds).
 
-Note: **active_camera** must be set to **cutscene**.
 
 ```
 bool reset_position()
 ```
 
-Moves the ```cutscene``` camera to the ```player``` camera position.
+Moves the ```cutscene``` camera's position to the ```player``` camera position.
 
 
 
 ```
-bool shake(float intensity)
+bool shake()
 ```
-Generates camera shake with specified intensity (must be between 0-100).
+Generates camera shake. Will add more customizability.
 
 

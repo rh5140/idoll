@@ -7,12 +7,14 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera PlayerCamera;
     [SerializeField] CinemachineVirtualCamera CutsceneCamera;
+    private CinemachineImpulseSource impulse_source;
 
     private CinemachineVirtualCamera active_camera = null;
 
     private void Start()
     {
         active_camera = PlayerCamera;
+        impulse_source = transform.GetChild(0).GetComponent<CinemachineImpulseSource>();
     }
 
     private IEnumerator move_helper(Vector3 destination, float seconds)
@@ -36,21 +38,22 @@ public class CameraManager : MonoBehaviour
         StartCoroutine(move_helper(destination3D, seconds));
         return true;
     }
-    public void reset_position()
+    public bool reset_position()
     {
-
+        CutsceneCamera.transform.position = PlayerCamera.transform.position;
+        return true;
     }
 
     public int get_active_camera()
     {
         if (active_camera == PlayerCamera)
         {
-            Debug.Log("Active Camera: 0");
+            //Debug.Log("Active Camera: 0");
             return 0;
         }
         else
         {
-            Debug.Log("Active Camera: 1");
+            //Debug.Log("Active Camera: 1");
             return 1;
         }
     }
@@ -74,29 +77,38 @@ public class CameraManager : MonoBehaviour
         }
         return true;
     }
-    public void shake()
+    public bool shake()
     {
-
+        impulse_source.GenerateImpulse(1f);
+        return true;
     }
     private void Update()
     {
         if (Input.GetKeyDown("0"))
         {
             set_active_camera(0);
-            Debug.Log("Active Camera: Player");
-            get_active_camera();
+            //Debug.Log("Active Camera: Player");
+            //get_active_camera();
         }
         else if (Input.GetKeyDown("1"))
         {
             set_active_camera(1);
-            Debug.Log("Active Camera: Cutscene");
-            get_active_camera();
+            //Debug.Log("Active Camera: Cutscene");
+            //get_active_camera();
         }
         else if (Input.GetKeyDown("m"))
         {
             Vector2 destination = new Vector2();
             destination.Set((float)-3.21, (float)(3.34));
-            move(destination, 10);
+            move(destination, 5);
+        }
+        else if (Input.GetKeyDown("r"))
+        {
+            reset_position();
+        }
+        else if (Input.GetKeyDown("i"))
+        {
+            shake();
         }
     }
 }
