@@ -41,10 +41,10 @@ Camera 0: ```Player```
 Camera 1: ```Cutscene```
 
 ```
-bool move(Vector2 position, float milliseconds)
+bool move(Vector2 destination, float seconds)
 ```
 
-Moves the cutscene camera to the specified Vector2 in the specified amount of time in milliseconds.
+Moves the cutscene camera to the specified Vector2 position in the specified amount of time in seconds.
 
 Note: **active_camera** must be set to **cutscene**.
 
