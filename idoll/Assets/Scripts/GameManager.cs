@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Referencing this: https://medium.com/nerd-for-tech/implementing-a-game-manager-using-the-singleton-pattern-unity-eb614b9b1a74
+// References: 
+// https://medium.com/nerd-for-tech/implementing-a-game-manager-using-the-singleton-pattern-unity-eb614b9b1a74
+// https://bergstrand-niklas.medium.com/setting-up-a-simple-game-manager-in-unity-24b080e9516c
 public class GameManager : MonoBehaviour
 {
+    #region Singleton
     private static GameManager _instance;
-    private int gameMode;
 
     public static GameManager Instance
     {
@@ -22,9 +24,20 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this;
+        // Make sure only one Game Manager exists
+        if (_instance)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+        
+        // Persist across scenes
+        DontDestroyOnLoad(this);
     }
-
+    #endregion
 
     // Call and change GameMode using Yarn Spinner functions
     public int GameMode { get; set; }
