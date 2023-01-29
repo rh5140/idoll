@@ -41,3 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3769214043
+    locked: 0
+  - name: ObjectsB
+    uniqueID: 3160789397
+    locked: 0
+  - name: Actors
+    uniqueID: 3262543127
+    locked: 0
+  - name: ObjectsA
+    uniqueID: 4155428481
+    locked: 0
+  - name: Foreground
+    uniqueID: 3835805331
+    locked: 0
+  - name: Screen Effects
+    uniqueID: 4206542107
+    locked: 0
+  - name: UI
+    uniqueID: 2764106147
+    locked: 0
