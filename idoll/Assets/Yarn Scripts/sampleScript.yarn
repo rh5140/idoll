@@ -1,0 +1,11 @@
+﻿title: Start
+---
+npc: Hi, how are you?
+-> I'm great!
+    npc: That's good to hear!
+-> I'm alright
+    npc: ok
+-> I'm doing terrible
+    npc: Oof
+npc: Bye!
+===
