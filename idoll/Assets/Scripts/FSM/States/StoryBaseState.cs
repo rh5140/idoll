@@ -4,7 +4,7 @@ using UnityEngine;
 // https://www.youtube.com/watch?v=Vt8aZDPzRjI
 public abstract class StoryBaseState
 {
-    public abstract void EnterState(StateMachine stateMachine);
-    public abstract void UpdateState(StateMachine stateMachine);
-    public abstract void ExitState(StateMachine stateMachine);
+    public abstract void EnterState(StoryStateMachine stateMachine);
+    public abstract void UpdateState(StoryStateMachine stateMachine);
+    public abstract void ExitState(StoryStateMachine stateMachine);
 }

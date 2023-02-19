@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class StoryStartState : StoryBaseState
 {
-    public override void EnterState(StateMachine stateMachine) {}
+    public override void EnterState(StoryStateMachine stateMachine) {}
 
-    public override void UpdateState(StateMachine stateMachine) 
+    public override void UpdateState(StoryStateMachine stateMachine) 
     {
         Debug.Log("Story Start State");
 
@@ -12,5 +12,5 @@ public class StoryStartState : StoryBaseState
         stateMachine.SwitchState(stateMachine.Act1State);
     }
 
-    public override void ExitState(StateMachine stateMachine) {}
+    public override void ExitState(StoryStateMachine stateMachine) {}
 }
