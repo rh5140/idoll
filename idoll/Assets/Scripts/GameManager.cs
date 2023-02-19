@@ -40,5 +40,17 @@ public class GameManager : MonoBehaviour
     #endregion
 
     // Call and change GameMode using Yarn Spinner functions
-    public int GameMode { get; set; }
+    // GameMode is a variable of enum type, defined in enums.cs
+    public GameMode GameMode { get; set; }
+
+    // Get story FSM..?
+    public StoryBaseState StoryState { get; set; }
+
+    // List all GameObjects
+
+    // MAYBE Player + Inventory
+
+    // MAYBE Background Music
+
+    // Settings (volume, sfx, text speed)
 }
