@@ -4,37 +4,39 @@ using UnityEngine;
 
 public class Eyeballs : MonoBehaviour
 {
-    public const int SHOW = 1;
-    public const int HIDE = 0;
+    public const int NUM_EYES = 2;
+    
     private SpriteRenderer sprite;
-    private Component defaultEyes;
-    private Component redEyes;
+    private Color thisColor;
+    private Color transparent;
+
+    [SerializeField] private List<bool> eyes = new List<bool>(NUM_EYES);
 
     // Start is called before the first frame update
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        defaultEyes = GetComponent<DefaultEyes>();
-        redEyes = GetComponent<RedEyes>();
+        thisColor = sprite.material.GetColor("_Color");
+        transparent = new Color (1f, 1f, 1f, 0f);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown("1")) {
-            if (defaultEyes) {
-                sprite.sortingOrder = SHOW;
+            if (eyes[0]) {
+                sprite.material.SetColor("_Color", thisColor);
             }
             else {
-                sprite.sortingOrder = HIDE;
+                sprite.material.SetColor("_Color", transparent);
             }
         }
         else if (Input.GetKeyDown("2")) {
-            if (redEyes) {
-                sprite.sortingOrder = SHOW;
+            if (eyes[1]) {
+                sprite.material.SetColor("_Color", thisColor);
             }
             else {
-                sprite.sortingOrder = HIDE;
+                sprite.material.SetColor("_Color", transparent);
             }
         }
     }
