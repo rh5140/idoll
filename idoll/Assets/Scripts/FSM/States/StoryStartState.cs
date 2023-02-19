@@ -9,7 +9,7 @@ public class StoryStartState : StoryBaseState
         Debug.Log("Story Start State");
 
         // Put condition for switching states
-        stateMachine.SwitchState(StoryAct1State);
+        stateMachine.SwitchState(stateMachine.Act1State);
     }
 
     public override void ExitState(StateMachine stateMachine) {}

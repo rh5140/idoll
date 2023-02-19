@@ -7,8 +7,8 @@ public class StateMachine : MonoBehaviour
     GameManager gameManager;
 
     StoryBaseState currentState;
-    StoryStartState StartState = new StoryStartState();
-    StoryAct1State Act1State = new StoryAct1State();
+    public StoryStartState StartState = new StoryStartState();
+    public StoryAct1State Act1State = new StoryAct1State();
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class StateMachine : MonoBehaviour
         currentState.UpdateState(this);
     }
 
-    void SwitchState(StoryBaseState state)
+    public void SwitchState(StoryBaseState state)
     {
         currentState = state;
         state.EnterState(this);
