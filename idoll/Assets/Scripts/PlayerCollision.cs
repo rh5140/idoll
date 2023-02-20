@@ -15,7 +15,7 @@ public class PlayerCollision : MonoBehaviour
     {
         collisionDetected = false;
     }
-
+    
     public bool GetCollision()
     {
         return collisionDetected;
