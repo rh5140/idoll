@@ -9,7 +9,8 @@ public class Inventory : MonoBehaviour
 
     private const int MaxCount = 64;
 
-    private Dictionary<GameObject, int> inventory = new Dictionary<GameObject, int>();
+    private Dictionary<Item, int> singleUseInventory = new Dictionary<Item, int>();
+    private List<DurabilityItem> durabilityInventory = new List<DurabilityItem>();
 
     // Start is called before the first frame update
     void Start()
@@ -30,50 +31,95 @@ public class Inventory : MonoBehaviour
         
     }
 
-    // Returns the count added to the inventory up to MAX_COUNT.
-    int Count(GameObject o)
+    public int Count(Item o)
     {
-        return inventory[o];
-    }
-
-    int AddItem(GameObject o, int count = 1) 
-    {
-        int c = Math.Min(count, MaxCount);
-
-        if (!inventory.ContainsKey(o)) 
+        if (o.hasDurability)
         {
-            inventory.Add(o, c);
+            return durabilityInventory.IndexOf((DurabilityItem) o) == -1 ? 0 : 1;
         }
-        else if (inventory[o] + count > MaxCount) 
-        {
-            int diff = inventory[o] + count - MaxCount;
-            inventory[o] = MaxCount;
-            return diff;
-        }
+
         else
         {
-            inventory[o] += c;
+            if (singleUseInventory.ContainsKey(o))
+            {
+                return singleUseInventory[o];
+            }
+
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
+    // Returns the count added to the inventory up to MAX_COUNT.
+    public int AddItem(Item o, int count = 1) 
+    {
+        if (o.hasDurability) {
+            for (int i = 0; i < count; i++)
+            {
+                durabilityInventory.Add(((DurabilityItem) o).Clone());
+            }
+
+            return count;
         }
 
-        return c;
+        else {
+            int c = Math.Min(count, MaxCount);
+
+            if (!singleUseInventory.ContainsKey(o)) 
+            {
+                singleUseInventory.Add(o, c);
+            }
+            else if (singleUseInventory[o] + count > MaxCount) 
+            {
+                int diff = singleUseInventory[o] + count - MaxCount;
+                singleUseInventory[o] = MaxCount;
+                return diff;
+            }
+            else
+            {
+                singleUseInventory[o] += c;
+            }
+
+            return c;
+        }
     }
 
     // Returns true if items removed successfully. Otherwise, return false.
-    bool RemoveItem(GameObject o, int count = 1) 
+    public bool RemoveItem(Item o, int count = 1) 
     {
-        if (!inventory.ContainsKey(o) || inventory[o] < count) 
+        if (o.hasDurability)
         {
-            return false;
-        }
-        else if (inventory[o] == count)
-        {
-            inventory.Remove(o);
-        }
-        else
-        {
-            inventory[o] -= count;
+            DurabilityItem oDur = (DurabilityItem) o;
+
+            if (durabilityInventory.IndexOf(oDur) == -1) 
+            {
+                return false;
+            }
+
+            else 
+            {
+                durabilityInventory.Remove(oDur);
+                return true;
+            }
         }
 
-        return true;
+        else {
+            if (!singleUseInventory.ContainsKey(o) || singleUseInventory[o] < count) 
+            {
+                return false;
+            }
+            else if (singleUseInventory[o] == count)
+            {
+                singleUseInventory.Remove(o);
+            }
+            else
+            {
+                singleUseInventory[o] -= count;
+            }
+
+            return true;
+        }
     }
 }
