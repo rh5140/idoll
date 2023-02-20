@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     public GameMode GameMode { get; set; }
 
     // Get story FSM..?
-    public StoryBaseState StoryState { get; set; }
+    public StoryState StoryState { get; set; }
 
     // List all GameObjects
 
