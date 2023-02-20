@@ -1,5 +1,6 @@
 ﻿title: Start
 ---
+<<ToggleMovement>>
 Manager: You're late!
 -> Sorry!
     Manager: Just hurry and get ready.
@@ -7,4 +8,5 @@ Manager: You're late!
     Manager: Watch what you say.
 -> I don't care!
     Manager: Who do you think you're talking to?
+<<ToggleMovement>>
 ===
