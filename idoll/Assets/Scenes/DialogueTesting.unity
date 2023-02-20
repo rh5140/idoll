@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Character
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6a6ab55bf3e83340a6cb78f2a3409da, type: 2}
   m_sharedMaterial: {fileID: 4995571651352157758, guid: e6a6ab55bf3e83340a6cb78f2a3409da, type: 2}
@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 'sample text sample text sample text sample text sample text sample text '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e6a6ab55bf3e83340a6cb78f2a3409da, type: 2}
   m_sharedMaterial: {fileID: 4995571651352157758, guid: e6a6ab55bf3e83340a6cb78f2a3409da, type: 2}
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 100
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1308,6 +1308,7 @@ GameObject:
   - component: {fileID: 1468431615}
   - component: {fileID: 1468431616}
   - component: {fileID: 1468431617}
+  - component: {fileID: 1468431618}
   m_Layer: 5
   m_Name: CustomLineView
   m_TagString: Untagged
@@ -1358,11 +1359,11 @@ MonoBehaviour:
   lineText: {fileID: 1405997649}
   showCharacterNameInLineView: 1
   characterNameText: {fileID: 278621353}
-  useTypewriterEffect: 0
+  useTypewriterEffect: 1
   onCharacterTyped:
     m_PersistentCalls:
       m_Calls: []
-  typewriterEffectSpeed: 0
+  typewriterEffectSpeed: 120
   continueButton: {fileID: 0}
   holdTime: 1
   autoAdvance: 0
@@ -1391,6 +1392,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineview: {fileID: 1468431615}
+--- !u!114 &1468431618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468431613}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097b95c9f69f04f2d8c08a817e7786af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueView: {fileID: 1468431615}
+  continueActionType: 1
+  continueActionKeyCode: 122
 --- !u!4 &1511988714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3269669414165222327, guid: 54cb90587df862445b80067b367fe740, type: 3}
