@@ -8,60 +8,60 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private bool playerAnchored = false;
-    private float speed = 5.0f;
+    private float DEFAULT_SPEED = 5.0f;
+    private float speed;
 
-    private Grid myGrid;
 
     private UnityEngine.Vector2 target = new UnityEngine.Vector2(0, 0);
     private UnityEngine.Vector2 curPos;
 
     private bool currentlyMoving = false;
+    private int faceDirection = 0; // 0 - Down, 1 - Up, 2 - Left, 3 - Right
+    private GameObject PlayerTarget;
+    private PlayerCollision CollisionHandler;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        myGrid = (GameObject.Find("Grid")).GetComponent<Grid>();
-        curPos = transform.Find("PlayerSprite").position;
+        curPos = transform.position;
+        transform.Find("PlayerTarget").parent = null;
+        PlayerTarget = GameObject.Find("PlayerTarget");
+        CollisionHandler = PlayerTarget.GetComponent<PlayerCollision>();
+        speed = DEFAULT_SPEED;
+        PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y - 1);
     }
 
-    public void AnchorPlayer(bool anchorState)
+    public void AnchorPlayer(bool anchorState) // If anchorState == true then player will be locked in place
     {
         playerAnchored = anchorState;
     }
 
-    private void UpdateLocation()
+    public int GetFaceDirection() // Get direction player is facing.  0 - Down, 1 - Up, 2 - Left, 3 - Right
+    {
+        return faceDirection;
+    }
+
+    public bool IsMoving() // return whether player is moving or not
+    {
+        return currentlyMoving;
+    }
+
+    private void UpdateLocation() // In charge of setting our new target location based on input
     {
         float yAxis = Input.GetAxisRaw("Vertical");
         float xAxis = Input.GetAxisRaw("Horizontal");
-
-
-        if (xAxis != 0 && yAxis != 0) // Diagonal Movement
+        
+        if (xAxis != 0 && !currentlyMoving ) // X Axis Movement
         {
             currentlyMoving = true;
+            PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
 
-            transform.Find("PlayerTarget").GetComponent<Rigidbody2D>().MovePosition(new UnityEngine.Vector2(curPos.x + xAxis, curPos.y + yAxis));
-
-            if (!transform.Find("PlayerTarget").GetComponent<PlayerCollision>().GetCollision() && !transform.Find("PlayerTarget").GetComponent<PlayerCollision>().CheckCollision(new UnityEngine.Vector2(xAxis, yAxis), 0.85f))
-            {
-                target = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y + yAxis);
-                currentlyMoving = true;
-                curPos = target;
-            }
-        }
-
-        if (xAxis != 0 && !currentlyMoving ) // X Axis Movement
-        { 
-            currentlyMoving = true;
-            transform.Find("PlayerTarget").GetComponent<Rigidbody2D>().MovePosition(new UnityEngine.Vector2(curPos.x + xAxis, curPos.y));
-            bool[] collisionDirs = transform.Find("PlayerTarget").GetComponent<PlayerCollision>().GetCollisionDirections(); // left, right, up, down
-
-
-            if ((!transform.Find("PlayerTarget").GetComponent<PlayerCollision>().GetCollision() || !((xAxis == 1 && collisionDirs[1]) || (xAxis == -1 && collisionDirs[0]))) && !transform.Find("PlayerTarget").GetComponent<PlayerCollision>().CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.75f))
+            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 1f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.45f)) // Check if we can move in the specified direction
             {
                 target = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
                 currentlyMoving = true;
                 curPos = target;
+                faceDirection = xAxis == 1 ? 3 : 2;
+                PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
             }
 
         }
@@ -69,25 +69,25 @@ public class PlayerMovement : MonoBehaviour
         if (yAxis != 0 && !currentlyMoving) // Y Axis Movement
         {
             currentlyMoving = true;
-            transform.Find("PlayerTarget").GetComponent<Rigidbody2D>().MovePosition(new UnityEngine.Vector2(curPos.x, curPos.y + yAxis));
-            bool[] collisionDirs = transform.Find("PlayerTarget").GetComponent<PlayerCollision>().GetCollisionDirections(); // left, right, up, down
+            PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
 
-
-            if ((!transform.Find("PlayerTarget").GetComponent<PlayerCollision>().GetCollision() || !((yAxis == 1 && collisionDirs[2]) || (yAxis == -1 && collisionDirs[3]))) && !transform.Find("PlayerTarget").GetComponent<PlayerCollision>().CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.75f))
+            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 1f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.45f)) // Check if we can move in the specified direction
             {
                 target = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
                 currentlyMoving = true;
                 curPos = target;
+                faceDirection = yAxis == 1 ? 1 : 0;
+                PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
             }
         }
 
     }
     
-    private void MoveSprite()
+    private void MoveSprite() // move the Player towards the target location 
     {
-        transform.Find("PlayerSprite").position = UnityEngine.Vector3.MoveTowards(transform.Find("PlayerSprite").position, target, speed * Time.deltaTime);
+        transform.position = UnityEngine.Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-        if ((transform.Find("PlayerSprite").position.x == target.x) && (transform.Find("PlayerSprite").position.y == target.y))
+        if ((transform.position.x == target.x) && (transform.position.y == target.y))
         {
             currentlyMoving = false;
         }
@@ -101,7 +101,5 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentlyMoving)
             MoveSprite();
-
-        transform.Find("PlayerTarget").position = transform.Find("PlayerSprite").position;
     }
 }
