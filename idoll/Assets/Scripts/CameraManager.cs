@@ -11,7 +11,7 @@ public class CameraManager : MonoBehaviour
 
     private CinemachineVirtualCamera active_camera = null;
 
-    public enum cameras
+    public enum Cameras
     {
         PlayerCamera,
         CutsceneCamera,
@@ -19,7 +19,7 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        SetActiveCamera(cameras.PlayerCamera);
+        SetActiveCamera(Cameras.PlayerCamera);
         impulse_source = transform.GetChild(0).GetComponent<CinemachineImpulseSource>();
     }
 
@@ -50,22 +50,22 @@ public class CameraManager : MonoBehaviour
         return true;
     }
 
-    public cameras GetActiveCamera()
+    public Cameras GetActiveCamera()
     {
         if (active_camera == PlayerCamera)
         {
             //Debug.Log("Active Camera: 0");
-            return cameras.PlayerCamera;
+            return Cameras.PlayerCamera;
         }
         else
         {
             //Debug.Log("Active Camera: 1");
-            return cameras.CutsceneCamera;
+            return Cameras.CutsceneCamera;
         }
     }
-    public bool SetActiveCamera(cameras camera)
+    public bool SetActiveCamera(Cameras camera)
     {
-        if (camera == cameras.PlayerCamera)
+        if (camera == Cameras.PlayerCamera)
         {
             try // Attempt to automatically link to the player when switching to the Player Camera
             {
@@ -94,13 +94,13 @@ public class CameraManager : MonoBehaviour
     {
         if (Input.GetKeyDown("0"))
         {
-            SetActiveCamera(cameras.PlayerCamera);
+            SetActiveCamera(Cameras.PlayerCamera);
             // Debug.Log("Active Camera: Player");
             // GetActiveCamera();
         }
         else if (Input.GetKeyDown("1"))
         {
-            SetActiveCamera(cameras.CutsceneCamera);
+            SetActiveCamera(Cameras.CutsceneCamera);
             // Debug.Log("Active Camera: Cutscene");
             // GetActiveCamera();
         }
