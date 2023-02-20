@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:idoll/Assets/Scripts/CameraManager.cs.meta
+guid: 09808e8be971c7841b7e95e709ac6ff5
+========
 guid: 65d592ad65c134205a7ecd60c25364fe
+>>>>>>>> vchinn_plrmvmnt:idoll/Assets/Scripts/PlayerCollision.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
