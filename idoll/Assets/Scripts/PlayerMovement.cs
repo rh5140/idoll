@@ -8,23 +8,24 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private bool playerAnchored = false;
-    private float DEFAULT_SPEED = 5.0f;
+    private float DEFAULT_SPEED = 5.0f; // TODO: Move to separate settings class
     private float speed;
-
 
     private UnityEngine.Vector2 target = new UnityEngine.Vector2(0, 0);
     private UnityEngine.Vector2 curPos;
 
     private bool currentlyMoving = false;
     private int faceDirection = 0; // 0 - Down, 1 - Up, 2 - Left, 3 - Right
+        // TODO: Move faceDirection to enums.cs
     private GameObject PlayerTarget;
     private PlayerCollision CollisionHandler;
 
     void Start()
     {
         curPos = transform.position;
-        transform.Find("PlayerTarget").parent = null;
+        //transform.Find("PlayerTarget").parent = null;
         PlayerTarget = GameObject.Find("PlayerTarget");
+        PlayerTarget.transform.parent = null;
         CollisionHandler = PlayerTarget.GetComponent<PlayerCollision>();
         speed = DEFAULT_SPEED;
         PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y - 1);

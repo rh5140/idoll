@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-
     private bool collisionDetected = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     private void OnTriggerEnter2D(Collider2D collision) // Oh no we collided!
     {
@@ -31,9 +25,5 @@ public class PlayerCollision : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dirVect, dist);
         return (hit.collider != null);
-    }
-
-    void Update()
-    {
     }
 }
