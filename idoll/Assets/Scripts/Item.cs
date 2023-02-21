@@ -17,6 +17,16 @@ public abstract class Item
         inventory = Inventory.instance;
     }
 
+    public Item(Item item)
+    {
+        name = item.name;
+        hasDurability = item.hasDurability;
+        sprite = item.sprite;
+        inventory = item.inventory;
+    }
+
+    public abstract Item Copy();
+
     // Remove one instance/damage item in inventory, then perform Effect.
     public abstract bool Use(int i = 1);
 

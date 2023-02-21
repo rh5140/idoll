@@ -16,13 +16,11 @@ public abstract class DurabilityItem : Item
 
     // All descendant Classes must have a similar constructor to copy itself.
     protected DurabilityItem(DurabilityItem item)
-        : base(item.name, true, item.sprite)
+        : base(item)
     {
         durability = item.durability;
         maxDurability = item.maxDurability;
     }
-
-    public abstract DurabilityItem Clone();
 
     public override bool Use(int i = 1)
     {

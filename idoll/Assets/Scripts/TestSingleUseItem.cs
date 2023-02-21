@@ -9,4 +9,15 @@ public class TestSingleUseItem : SingleUseItem
     {
         
     }
+
+    public TestSingleUseItem(TestSingleUseItem item)
+        : base(item)
+    {
+
+    }
+
+    public override Item Copy()
+    {
+        return new TestSingleUseItem(this);
+    }
 }

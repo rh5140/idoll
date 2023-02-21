@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
         if (o.hasDurability) {
             for (int i = 0; i < count; i++)
             {
-                durabilityInventory.Add(((DurabilityItem) o).Clone());
+                durabilityInventory.Add((DurabilityItem) (o.Copy()));
             }
 
             return count;

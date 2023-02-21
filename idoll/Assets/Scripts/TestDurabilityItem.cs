@@ -10,8 +10,14 @@ public class TestDurabilityItem : DurabilityItem
 
     }
 
-    public override DurabilityItem Clone()
+    public TestDurabilityItem(TestDurabilityItem item)
+        : base(item)
     {
-        return new TestDurabilityItem();
+
+    }
+
+    public override Item Copy()
+    {
+        return new TestDurabilityItem(this);
     }
 }

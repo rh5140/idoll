@@ -10,6 +10,12 @@ public abstract class SingleUseItem : Item
         
     }
 
+    public SingleUseItem(SingleUseItem item)
+        : base(item)
+    {
+        
+    }
+
     public override bool Use(int i = 1)
     {
         if (inventory.Count(this) != 0)
