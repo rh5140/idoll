@@ -28,7 +28,7 @@ public abstract class Item
     public abstract Item Copy();
 
     // Remove one instance/damage item in inventory, then perform Effect.
-    public abstract bool Use(int i = 1);
+    public abstract void Use(int i = 1);
 
     // Do whatever this item should do
     protected abstract void Effect();

@@ -16,21 +16,9 @@ public abstract class SingleUseItem : Item
         
     }
 
-    public override bool Use(int i = 1)
+    public override void Use(int i = 1)
     {
-        if (inventory.Count(this) != 0)
-        {
-            inventory.RemoveItem(this, i);
-
-            Effect();
-
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
+        Effect();
     }
 
     protected override void Effect() 

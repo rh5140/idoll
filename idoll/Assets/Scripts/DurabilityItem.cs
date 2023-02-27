@@ -11,7 +11,7 @@ public abstract class DurabilityItem : Item
         : base(name, true, sprite)
     {    
         durability = dur;
-        maxDurability = maxDur;
+        maxDurability = maxDurability;
     }
 
     // All descendant Classes must have a similar constructor to copy itself.
@@ -22,30 +22,11 @@ public abstract class DurabilityItem : Item
         maxDurability = item.maxDurability;
     }
 
-    public override bool Use(int i = 1)
+    public override void Use(int i = 1)
     {
-        if (inventory.Count(this) != 0)
-        {
-            if (durability < i)
-            {
-                return false;
-            }
-            durability -= i;
+        durability -= i;
 
-            Effect();
-
-            if(durability == 0)
-            {
-                inventory.RemoveItem(this);
-            }
-
-            return true;
-        }
-
-        else
-        {
-            return false;
-        }
+        Effect();
     }
 
     protected override void Effect()

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class TestDurabilityItem : DurabilityItem
 {
+    public static Sprite s;
     public TestDurabilityItem()
-        : base("test_dur_item", null, 100, 100)
+        : base("test_dur_item", s, 100, 100)
     {
 
     }

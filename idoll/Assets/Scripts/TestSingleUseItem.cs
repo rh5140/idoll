@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class TestSingleUseItem : SingleUseItem
 {
+    public static Sprite s;
     public TestSingleUseItem()
-        : base("test_single_item", null)
+        : base("test_single_use_item", s)
     {
         
     }

@@ -3,15 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance {get; private set;} = null;
 
+    public Transform itemsParent;
+
+    private ItemSlot[] itemSlots;
+
     private const int MaxCount = 64;
+    private const int MaxInvSize = 24;
 
     private Dictionary<Item, int> singleUseInventory = new Dictionary<Item, int>();
     private List<DurabilityItem> durabilityInventory = new List<DurabilityItem>();
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +28,37 @@ public class Inventory : MonoBehaviour
         {
             instance = this;
         }
+
+        itemSlots = itemsParent.GetComponentsInChildren<ItemSlot>();
+
+        Debug.Log("Successfully setup Inventory with " + itemSlots.Length + " ItemSlots");
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void UpdateUI()
+    {
+        int n = 0;
+        foreach(Item i in durabilityInventory)
+        {
+            itemSlots[n].AddItem(i, 1);
+            n++;
+        }
+
+        foreach(Item i in singleUseInventory.Keys)
+        {
+            itemSlots[n].AddItem(i, singleUseInventory[i]);
+            n++;
+        }
+
+        for (int i = n; i < MaxInvSize; i++)
+        {
+            itemSlots[i].ClearSlot();
+        }
     }
 
     public int Count(Item o)
@@ -61,6 +91,10 @@ public class Inventory : MonoBehaviour
                 durabilityInventory.Add((DurabilityItem) (o.Copy()));
             }
 
+            Debug.Log("Added item " + o.name);
+
+            UpdateUI();
+
             return count;
         }
 
@@ -75,6 +109,9 @@ public class Inventory : MonoBehaviour
             {
                 int diff = singleUseInventory[o] + count - MaxCount;
                 singleUseInventory[o] = MaxCount;
+
+                UpdateUI();
+
                 return diff;
             }
             else
@@ -82,12 +119,75 @@ public class Inventory : MonoBehaviour
                 singleUseInventory[o] += c;
             }
 
+            UpdateUI();
+
             return c;
         }
     }
 
-    // Returns true if items removed successfully. Otherwise, return false.
-    public bool RemoveItem(Item o, int count = 1) 
+    // Returns true if items used successfully. Otherwise, return false.
+    public bool UseItem(Item o, int count = 1) 
+    {
+        if (o.hasDurability)
+        {
+            DurabilityItem oDur = (DurabilityItem) o;
+
+            if (durabilityInventory.IndexOf(oDur) == -1) 
+            {
+                return false;
+            }
+
+            else 
+            {
+                if (oDur.durability >= count)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        oDur.Use();
+                    }
+                }
+                else 
+                {
+                    return false;
+                }
+
+                if (oDur.durability == 0)
+                {
+                    RemoveItem(oDur);
+                }
+
+                UpdateUI();
+
+                return true;
+            }
+        }
+
+        else {
+            if (!singleUseInventory.ContainsKey(o) || singleUseInventory[o] < count) 
+            {
+                return false;
+            }
+            else if (singleUseInventory[o] == count)
+            {
+                RemoveItem(o);
+            }
+            else
+            {
+                singleUseInventory[o] -= count;
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                o.Use();
+            }
+
+            UpdateUI();
+
+            return true;
+        }
+    }
+
+    public bool RemoveItem(Item o) 
     {
         if (o.hasDurability)
         {
@@ -101,25 +201,36 @@ public class Inventory : MonoBehaviour
             else 
             {
                 durabilityInventory.Remove(oDur);
+
+                UpdateUI();
+
                 return true;
             }
         }
 
         else {
-            if (!singleUseInventory.ContainsKey(o) || singleUseInventory[o] < count) 
+            if (!singleUseInventory.ContainsKey(o)) 
             {
                 return false;
             }
-            else if (singleUseInventory[o] == count)
+            else
             {
                 singleUseInventory.Remove(o);
             }
-            else
-            {
-                singleUseInventory[o] -= count;
-            }
+
+            UpdateUI();
 
             return true;
         }
+    }
+
+    public void AddTestDurabilityItem()
+    {
+        AddItem(new TestDurabilityItem());
+    }
+
+    public void AddTestSingleUseItem()
+    {
+        AddItem(new TestSingleUseItem());
     }
 }
