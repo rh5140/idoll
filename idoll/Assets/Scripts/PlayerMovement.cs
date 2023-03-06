@@ -73,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
                 curPos = target;
                 PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
             }
-
         }
 
         if (yAxis != 0 && !currentlyMoving) // Y Axis Movement
@@ -103,13 +102,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void MoveInteractor()
+    {
+        UnityEngine.Vector3 dir = directionOffset;
+        transform.Find("PlayerInteractor").position = transform.Find("PlayerSprite").position + dir;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (!playerAnchored && !currentlyMoving)
             UpdateLocation();
 
-        if (currentlyMoving)
+        if (currentlyMoving) {
             MoveSprite();
+            MoveInteractor();
+        }
     }
 }
