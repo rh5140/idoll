@@ -1,0 +1,14 @@
+﻿title: Start
+---
+<<ToggleMovement>>
+Manager: It might be a beautiful day for you, but for me, it's just another day of dealing with your endless energy and enthusiasm. 
+Manager: We can't just rush into things without a plan. We need to make sure we're releasing quality content that will resonate with your audience. 
+Manager: We can't let your fame and success go to your head. We need to stay focused on the music and the business side of things.
+-> Sorry!
+    Manager: Just hurry and get ready.
+-> So what?
+    Manager: Watch what you say.
+-> I don't care!
+    Manager: Who do you think you're talking to?
+<<ToggleMovement>>
+===
