@@ -11,7 +11,7 @@ public class CameraManager : MonoBehaviour
 
     private CinemachineVirtualCamera active_camera = null;
 
-    public enum cameras
+    public enum Cameras
     {
         PlayerCamera,
         CutsceneCamera,
@@ -19,11 +19,11 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        active_camera = PlayerCamera;
+        SetActiveCamera(Cameras.PlayerCamera);
         impulse_source = transform.GetChild(0).GetComponent<CinemachineImpulseSource>();
     }
 
-    private IEnumerator move_helper(Vector3 destination, float seconds)
+    private IEnumerator MoveHelper(Vector3 destination, float seconds)
     {
         float elapsedTime = 0;
         Vector3 startingPos = CutsceneCamera.transform.position;
@@ -36,37 +36,43 @@ public class CameraManager : MonoBehaviour
         CutsceneCamera.transform.position = destination;
     }
 
-    public bool move(Vector2 destination, float seconds)
+    public bool Move(Vector2 destination, float seconds)
     {
         float start_z = CutsceneCamera.transform.position.z;
         Vector3 destination3D = new Vector3();
         destination3D.Set(destination.x, destination.y, start_z);
-        StartCoroutine(move_helper(destination3D, seconds));
+        StartCoroutine(MoveHelper(destination3D, seconds));
         return true;
     }
-    public bool reset_position()
+    public bool ResetPosition()
     {
         CutsceneCamera.transform.position = PlayerCamera.transform.position;
         return true;
     }
 
-    public cameras get_active_camera()
+    public Cameras GetActiveCamera()
     {
         if (active_camera == PlayerCamera)
         {
             //Debug.Log("Active Camera: 0");
-            return cameras.PlayerCamera;
+            return Cameras.PlayerCamera;
         }
         else
         {
             //Debug.Log("Active Camera: 1");
-            return cameras.CutsceneCamera;
+            return Cameras.CutsceneCamera;
         }
     }
-    public bool set_active_camera(cameras camera)
+    public bool SetActiveCamera(Cameras camera)
     {
-        if (camera == cameras.PlayerCamera)
+        if (camera == Cameras.PlayerCamera)
         {
+            try // Attempt to automatically link to the player when switching to the Player Camera
+            {
+                PlayerCamera.Follow = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+            catch { Debug.Log("PlayerCamera could not find a gameObject with the Player Tag"); }
+
             CutsceneCamera.Priority = 0;
             PlayerCamera.Priority = 10;
             active_camera = PlayerCamera;
@@ -79,7 +85,7 @@ public class CameraManager : MonoBehaviour
         }
         return true;
     }
-    public bool shake()
+    public bool Shake()
     {
         impulse_source.GenerateImpulse(1f);
         return true;
@@ -88,29 +94,29 @@ public class CameraManager : MonoBehaviour
     {
         if (Input.GetKeyDown("0"))
         {
-            set_active_camera(cameras.PlayerCamera);
+            SetActiveCamera(Cameras.PlayerCamera);
             // Debug.Log("Active Camera: Player");
-            // get_active_camera();
+            // GetActiveCamera();
         }
         else if (Input.GetKeyDown("1"))
         {
-            set_active_camera(cameras.CutsceneCamera);
+            SetActiveCamera(Cameras.CutsceneCamera);
             // Debug.Log("Active Camera: Cutscene");
-            // get_active_camera();
+            // GetActiveCamera();
         }
         else if (Input.GetKeyDown("m"))
         {
             Vector2 destination = new Vector2();
             destination.Set((float)-3.21, (float)(3.34));
-            move(destination, 5);
+            Move(destination, 5);
         }
         else if (Input.GetKeyDown("r"))
         {
-            reset_position();
+            ResetPosition();
         }
         else if (Input.GetKeyDown("i"))
         {
-            shake();
+            Shake();
         }
     }
 }
