@@ -91,7 +91,6 @@ public class PlayerMovement : MonoBehaviour
                 PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
             }
         }
-
     }
     
     private void MoveSprite() // move the Player towards the target location 
