@@ -102,12 +102,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MoveInteractor()
-    {
-        UnityEngine.Vector3 dir = directionOffset;
-        transform.Find("PlayerInteractor").position = transform.Find("PlayerSprite").position + dir;
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -116,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentlyMoving) {
             MoveSprite();
-            MoveInteractor();
         }
     }
 }
