@@ -50,9 +50,13 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    // Public function to change scenem can be called from anywhere w/ access to GameManager
-    public void ChangeToScene(string sceneName)
+    // Stores the x/y position and the facing direction of the player when switching scenes
+    public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
+
+    // Public function to change scene can be called from anywhere w/ access to GameManager
+    public void ChangeToScene(string sceneName, Vector2Int playerPos)
     {
+        playerSpawnLocation = new Vector3Int(playerPos.x, playerPos.y, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetFaceDirection());
         SceneManager.LoadScene(sceneName);
     }
 

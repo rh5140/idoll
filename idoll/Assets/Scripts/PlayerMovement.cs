@@ -30,13 +30,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        this.transform.position = new Vector3Int(GameManager.Instance.playerSpawnLocation.x, GameManager.Instance.playerSpawnLocation.y);
         curPos = transform.position;
+        target = transform.position;
+        faceDirection = GameManager.Instance.playerSpawnLocation.z;
         //transform.Find("PlayerTarget").parent = null;
         PlayerTarget = GameObject.Find("PlayerTarget");
         PlayerTarget.transform.parent = null;
         CollisionHandler = PlayerTarget.GetComponent<PlayerCollision>();
         speed = DEFAULT_SPEED;
-        PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y - 1);
+        PlayerTarget.transform.position = curPos;
     }
 
     public void AnchorPlayer(bool anchorState) // If anchorState == true then player will be locked in place

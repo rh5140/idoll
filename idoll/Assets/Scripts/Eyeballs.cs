@@ -9,6 +9,7 @@ public class Eyeballs : MonoBehaviour
     
     private SpriteRenderer sprite;
     private Tilemap tilemap;
+    private TilemapRenderer tilemapRenderer;
     private Color spriteColor;
     private Color mapColor;
     private Color transparent;
@@ -23,7 +24,8 @@ public class Eyeballs : MonoBehaviour
             isSprite = true;
             spriteColor = sprite.material.GetColor("_Color");
         }
-        else if (tilemap = GetComponent<Tilemap>()) {
+        //else if (tilemap = GetComponent<Tilemap>()) {
+        else if (tilemapRenderer = GetComponent<TilemapRenderer>()) {
             isSprite = false;
             mapColor = tilemap.color;
         }
@@ -36,36 +38,44 @@ public class Eyeballs : MonoBehaviour
         if (Input.GetKeyDown("1")) {
             if (eyes[0]) {
                 if (isSprite) {
-                    sprite.material.SetColor("_Color", spriteColor);
+                    //sprite.material.SetColor("_Color", spriteColor);
+                    sprite.enabled = true;
                 }
                 else {
-                    tilemap.color = mapColor;
+                    //tilemap.color = mapColor;
+                    tilemapRenderer.enabled = true;
                 }
             }
             else {
                 if (isSprite) {
-                    sprite.material.SetColor("_Color", transparent);
+                    //sprite.material.SetColor("_Color", transparent);
+                    sprite.enabled = false;
                 }
                 else {
-                    tilemap.color = transparent;
+                    //tilemap.color = transparent;
+                    tilemapRenderer.enabled = false;
                 }
             }
         }
         else if (Input.GetKeyDown("2")) {
             if (eyes[1]) {
                 if (isSprite) {
-                    sprite.material.SetColor("_Color", spriteColor);
+                    //sprite.material.SetColor("_Color", spriteColor);
+                    sprite.enabled = true;
                 }
                 else {
-                    tilemap.color = mapColor;
+                    //tilemap.color = mapColor;
+                    tilemapRenderer.enabled = true;
                 }
             }
             else {
                 if (isSprite) {
-                    sprite.material.SetColor("_Color", transparent);
+                    //sprite.material.SetColor("_Color", transparent);
+                    sprite.enabled = false;
                 }
                 else {
-                    tilemap.color = transparent;
+                    //tilemap.color = transparent;
+                    tilemapRenderer.enabled = false;
                 }
             }
         }
