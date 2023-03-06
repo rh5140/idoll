@@ -3,31 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
-public class PlayerDialogue : MonoBehaviour
+public class Dialogue : Interactable
 {
-    private bool isNear = false;
     [SerializeField] GameObject dialogueSystem;
     private static bool dialogue_is_active = false;
 
-    private void Update()
+    protected override void interact()
     {
         //To Do: add check for dialogue isActive
-        if (isNear && Input.GetKeyDown("z") && !dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)
+        if (!dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)
         {
             Debug.Log("Interacted");
             dialogueSystem.GetComponent<DialogueRunner>().StartDialogue("Start");
         }
-    }
-
-    /* TODO: Replace these functions once Player Interaction is implemented. */
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        isNear = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        isNear = false;
     }
 
     [YarnCommand("ToggleMovement")]
@@ -37,11 +25,13 @@ public class PlayerDialogue : MonoBehaviour
         if (dialogue_is_active)
         {
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+            GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
             return dialogue_is_active;
         }
         else
         {
             GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+            GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = true;
             return dialogue_is_active;
         }
     }

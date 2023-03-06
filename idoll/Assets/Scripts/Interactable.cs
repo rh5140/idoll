@@ -14,9 +14,8 @@ public class Interactable : MonoBehaviour
     {
         if (useable)
         {
-            timer = interactDelay;
+            StartTimer();
             interact();
-            useable = false;
         }
 
     }
@@ -24,6 +23,12 @@ public class Interactable : MonoBehaviour
     public virtual void OnHover() //Triggered when the player presses the Interact key
     {
 
+    }
+
+    public virtual void StartTimer()
+    {
+        useable = false;
+        timer = interactDelay;
     }
 
     protected virtual void interact() //Triggered when the player presses the Interact key
