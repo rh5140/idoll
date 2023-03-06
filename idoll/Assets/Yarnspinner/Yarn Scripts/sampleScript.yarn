@@ -1,4 +1,4 @@
-﻿title: Start
+﻿title: Manager
 ---
 <<ToggleMovement>>
 Manager: It might be a beautiful day for you, but for me, it's just another day of dealing with your endless energy and enthusiasm. 
@@ -10,5 +10,12 @@ Manager: We can't let your fame and success go to your head. We need to stay foc
     Manager: Watch what you say.
 -> I don't care!
     Manager: Who do you think you're talking to?
+<<ToggleMovement>>
+===
+
+title: Companion
+---
+<<ToggleMovement>>
+Companion: Hey, how's it going?
 <<ToggleMovement>>
 ===

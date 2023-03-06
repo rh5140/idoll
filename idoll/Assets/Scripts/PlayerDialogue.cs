@@ -5,29 +5,36 @@ using Yarn.Unity;
 
 public class PlayerDialogue : MonoBehaviour
 {
-    private bool isNear = false;
+    private GameObject target = null;
     [SerializeField] GameObject dialogueSystem;
     private static bool dialogue_is_active = false;
 
     private void Update()
     {
         //To Do: add check for dialogue isActive
-        if (isNear && Input.GetKeyDown("z") && !dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)
+        if (target && Input.GetKeyDown("z") && !dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)
         {
             Debug.Log("Interacted");
-            dialogueSystem.GetComponent<DialogueRunner>().StartDialogue("Start");
+            try
+            {
+                dialogueSystem.GetComponent<DialogueRunner>().StartDialogue(target.name);
+            }
+            catch
+            {
+                Debug.Log("No dialogue available");
+            }
         }
     }
 
     /* TODO: Replace these functions once Player Interaction is implemented. */
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isNear = true;
+        target = collision.gameObject;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isNear = false;
+        target = null;
     }
 
     [YarnCommand("ToggleMovement")]
