@@ -1,22 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Eyeballs : MonoBehaviour
 {
     public const int NUM_EYES = 2;
     
     private SpriteRenderer sprite;
-    private Color thisColor;
+    private Tilemap tilemap;
+    private Color spriteColor;
+    private Color mapColor;
     private Color transparent;
+    private bool isSprite;
 
     [SerializeField] private List<bool> eyes = new List<bool>(NUM_EYES);
 
     // Start is called before the first frame update
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
-        thisColor = sprite.material.GetColor("_Color");
+        if (sprite = GetComponent<SpriteRenderer>()) {
+            isSprite = true;
+            spriteColor = sprite.material.GetColor("_Color");
+        }
+        else if (tilemap = GetComponent<Tilemap>()) {
+            isSprite = false;
+            mapColor = tilemap.color;
+        }
         transparent = new Color (1f, 1f, 1f, 0f);
     }
 
@@ -25,18 +35,38 @@ public class Eyeballs : MonoBehaviour
     {
         if (Input.GetKeyDown("1")) {
             if (eyes[0]) {
-                sprite.material.SetColor("_Color", thisColor);
+                if (isSprite) {
+                    sprite.material.SetColor("_Color", spriteColor);
+                }
+                else {
+                    tilemap.color = mapColor;
+                }
             }
             else {
-                sprite.material.SetColor("_Color", transparent);
+                if (isSprite) {
+                    sprite.material.SetColor("_Color", transparent);
+                }
+                else {
+                    tilemap.color = transparent;
+                }
             }
         }
         else if (Input.GetKeyDown("2")) {
             if (eyes[1]) {
-                sprite.material.SetColor("_Color", thisColor);
+                if (isSprite) {
+                    sprite.material.SetColor("_Color", spriteColor);
+                }
+                else {
+                    tilemap.color = mapColor;
+                }
             }
             else {
-                sprite.material.SetColor("_Color", transparent);
+                if (isSprite) {
+                    sprite.material.SetColor("_Color", transparent);
+                }
+                else {
+                    tilemap.color = transparent;
+                }
             }
         }
     }
