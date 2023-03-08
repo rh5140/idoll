@@ -40,7 +40,7 @@ public class PlayerInteractor : MonoBehaviour
             currentInteractable.OnHover();
             if (Input.GetButton("Interact") && CanInteract)
             {
-                currentInteractable.OnInteract();
+                currentInteractable.interact();
                 CanInteract = false;
                 Timer = Duration;
             }

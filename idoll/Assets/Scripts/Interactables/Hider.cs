@@ -7,7 +7,7 @@ public class Hider : Interactable
     public GameObject target;
     // Start is called before the first frame update
 
-    protected override void interact()
+    public override void OnInteract()
     {
         if (target == null) {
             return;

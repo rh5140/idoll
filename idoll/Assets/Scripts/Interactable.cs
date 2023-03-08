@@ -10,14 +10,10 @@ public class Interactable : MonoBehaviour
 
     public float timer = 0;
 
-    public void OnInteract()
+    public virtual void OnInteract()
     {
-        if (useable)
-        {
-            StartTimer();
-            interact();
-        }
-
+        
+        Debug.Log("Interacted!");
     }
 
     public virtual void OnHover() //Triggered when the player presses the Interact key
@@ -31,9 +27,14 @@ public class Interactable : MonoBehaviour
         timer = interactDelay;
     }
 
-    protected virtual void interact() //Triggered when the player presses the Interact key
+    public virtual void interact() //Triggered when the player presses the Interact key
     {
-        Debug.Log("Interacted!");
+        if (useable)
+        {
+            StartTimer();
+            OnInteract();
+        }
+
     }
 
     // Update is called once per frame
