@@ -2,30 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item
+public abstract class Item : ScriptableObject
 {
-    public string name {get; private set;}
-    public bool hasDurability {get; private set;}
-    public Sprite sprite {get; private set;}
-    public Inventory inventory {get; private set;}
+    new public string name;
+    public bool hasDurability;
+    public int maxCount;
+    public Sprite sprite;
 
-    public Item(string n, bool hasDur, Sprite s)
+    public Item(string n, bool hasDur, int maxC)
     {
         name = n;
         hasDurability = hasDur;
-        sprite = s;
-        inventory = Inventory.instance;
+        maxCount = maxC;
     }
 
     public Item(Item item)
     {
         name = item.name;
         hasDurability = item.hasDurability;
+        maxCount = item.maxCount;
         sprite = item.sprite;
-        inventory = item.inventory;
     }
 
-    public abstract Item Copy();
+    //public abstract Item Copy();
 
     // Remove one instance/damage item in inventory, then perform Effect.
     public abstract void Use(int i = 1);

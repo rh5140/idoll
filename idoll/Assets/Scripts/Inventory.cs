@@ -3,20 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance {get; private set;} = null;
 
     public Transform itemsParent;
+    public DurabilityItem testDurabilityItem;
+    public SingleUseItem testSingleUseItem;
 
     private ItemSlot[] itemSlots;
 
-    private const int MaxCount = 64;
-    private const int MaxInvSize = 24;
+    private const int MaxInventorySize = 24;
+    private int currentInventoryUsage = 0;
 
-    private Dictionary<Item, int> singleUseInventory = new Dictionary<Item, int>();
-    private List<DurabilityItem> durabilityInventory = new List<DurabilityItem>();
+    private Dictionary<string, List<int>> inventory = new Dictionary<string, List<int>>();
+    private Dictionary<string, Item> nameToItem = new Dictionary<string, Item>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,195 +44,261 @@ public class Inventory : MonoBehaviour
 
     public void UpdateUI()
     {
-        int n = 0;
-        foreach(Item i in durabilityInventory)
+        int itemSlotIndex = 0;
+        
+        foreach(string itemName in inventory.Keys)
         {
-            itemSlots[n].AddItem(i, 1);
-            n++;
-        }
+            List<int> stackCounts = inventory[itemName];
+            int stackIndex = 0;
 
-        foreach(Item i in singleUseInventory.Keys)
-        {
-            itemSlots[n].AddItem(i, singleUseInventory[i]);
-            n++;
-        }
-
-        for (int i = n; i < MaxInvSize; i++)
-        {
-            itemSlots[i].ClearSlot();
-        }
-    }
-
-    public int Count(Item o)
-    {
-        if (o.hasDurability)
-        {
-            return durabilityInventory.IndexOf((DurabilityItem) o) == -1 ? 0 : 1;
-        }
-
-        else
-        {
-            if (singleUseInventory.ContainsKey(o))
+            foreach(int count in stackCounts)
             {
-                return singleUseInventory[o];
+                itemSlots[itemSlotIndex].AddItem(nameToItem[itemName], count, stackIndex);
+                itemSlotIndex++;
+                stackIndex++;
             }
+        }
 
-            else
-            {
-                return 0;
-            }
+        for (; itemSlotIndex < MaxInventorySize; itemSlotIndex++)
+        {
+            itemSlots[itemSlotIndex].ClearSlot();
         }
     }
 
     // Returns the count added to the inventory up to MAX_COUNT.
-    public int AddItem(Item o, int count = 1) 
+    public int AddItem(Item item, int numberToAdd = 1) 
     {
-        if (o.hasDurability) {
-            for (int i = 0; i < count; i++)
+        string itemName = item.name;
+        int numberAdded = 0;
+
+        if (!nameToItem.ContainsKey(itemName))
+        {
+            nameToItem.Add(itemName, item);
+        }
+
+        if (item.hasDurability) {
+            if (!inventory.ContainsKey(itemName))
             {
-                durabilityInventory.Add((DurabilityItem) (o.Copy()));
+                inventory.Add(itemName, new List<int>());
             }
 
-            Debug.Log("Added item " + o.name);
+            List<int> durabilities = inventory[itemName];
 
-            UpdateUI();
+            for (int i = 0; i < numberToAdd && currentInventoryUsage != MaxInventorySize; i++)
+            {
+                durabilities.Add(((DurabilityItem) item).maxDurability);
 
-            return count;
+                currentInventoryUsage += 1;
+                numberAdded++;
+            }
+
+            Debug.Log("Added item " + itemName + " " + numberAdded + " times");
         }
 
         else {
-            int c = Math.Min(count, MaxCount);
+            int itemMaxCount = item.maxCount;
 
-            if (!singleUseInventory.ContainsKey(o)) 
+            if (!inventory.ContainsKey(itemName) && currentInventoryUsage < MaxInventorySize) 
             {
-                singleUseInventory.Add(o, c);
+                List<int> countList = new List<int>();
+                countList.Add(0);
+                inventory.Add(itemName, countList);
+
+                currentInventoryUsage++;
             }
-            else if (singleUseInventory[o] + count > MaxCount) 
+            
+            if (inventory.ContainsKey(itemName))
             {
-                int diff = singleUseInventory[o] + count - MaxCount;
-                singleUseInventory[o] = MaxCount;
+                List<int> stackCounts = inventory[itemName];
+                int lastElementIndex = stackCounts.Count - 1;
+                int lastCount = stackCounts[lastElementIndex];
 
-                UpdateUI();
+                if (lastCount + numberToAdd > item.maxCount)
+                {
+                    int diff = lastCount + numberToAdd - itemMaxCount;
+                    stackCounts[lastElementIndex] = itemMaxCount;
 
-                return diff;
+                    numberAdded += itemMaxCount - lastCount;
+
+                    if (currentInventoryUsage < MaxInventorySize)
+                    {
+                        // Add another stack then call recursively to add the rest
+                        stackCounts.Add(0);
+
+                        currentInventoryUsage++;
+
+                        numberAdded += AddItem(item, diff);
+                    }
+                }
+
+                else
+                {
+                    stackCounts[lastElementIndex] += numberToAdd;
+                    numberAdded = numberToAdd;
+                }
             }
-            else
-            {
-                singleUseInventory[o] += c;
-            }
-
-            UpdateUI();
-
-            return c;
         }
+
+        UpdateUI();
+
+        return numberAdded;
     }
 
     // Returns true if items used successfully. Otherwise, return false.
-    public bool UseItem(Item o, int count = 1) 
+    public bool UseItem(Item item, int numberToUse = 1, int itemStackIndex = 1) 
     {
-        if (o.hasDurability)
-        {
-            DurabilityItem oDur = (DurabilityItem) o;
+        // if (item.hasDurability)
+        // {
+        //     DurabilityItem durabilityItem = (DurabilityItem) item;
 
-            if (durabilityInventory.IndexOf(oDur) == -1) 
+        //     if (!durabilityInventory.ContainsKey(durabilityItem)) 
+        //     {
+        //         return false;
+        //     }
+
+        //     List<int> durabilities = durabilityInventory[item];
+            
+        //     if (durabilities[itemStackIndex] >= numberToUse)
+        //     {
+        //         for (int i = 0; i < numberToUse; i++)
+        //         {
+        //             durabilityItem.Use();
+        //         }
+        //     }
+
+        //     else 
+        //     {
+        //         return false;
+        //     }
+
+        //     durabilities[itemStackIndex] -= numberToUse;
+
+        //     if (durabilities[itemStackIndex] == 0)
+        //     {
+        //         RemoveItemStack(durabilityItem, itemStackIndex);
+        //     }
+        // }
+
+        //else {
+            string itemName = item.name;
+            List<int> stackCounts = inventory[itemName];
+            int numStacks = stackCounts.Count;
+            int currentStack = stackCounts[numStacks - 1];
+            int totalOfItem = (numStacks - 1) * item.maxCount + currentStack;
+
+            Debug.Log("Total of " + itemName + " is " + totalOfItem);
+
+            if (!inventory.ContainsKey(itemName))
             {
                 return false;
+            }
+
+            if (totalOfItem < numberToUse)
+            {
+                return false;
+            }
+
+            else if (totalOfItem == numberToUse)
+            {
+                for (int i = 0; i < numStacks; i++)
+                {
+                    RemoveItemStack(item);
+                }
+            }
+
+            else if (currentStack < numberToUse)
+            {
+                RemoveItemStack(item);
+
+                for (int i = 0; i < currentStack; i++)
+                {
+                    item.Use();
+                }
+
+                UseItem(item, numberToUse - currentStack);
             }
 
             else 
             {
-                if (oDur.durability >= count)
+                stackCounts[numStacks - 1] -= numberToUse;
+
+                for (int i = 0; i < numberToUse; i++)
                 {
-                    for (int i = 0; i < count; i++)
-                    {
-                        oDur.Use();
-                    }
-                }
-                else 
-                {
-                    return false;
+                    item.Use();
                 }
 
-                if (oDur.durability == 0)
+                if (stackCounts[numStacks - 1] == 0)
                 {
-                    RemoveItem(oDur);
+                    RemoveItemStack(item);
                 }
-
-                UpdateUI();
-
-                return true;
             }
-        }
+        //}
 
-        else {
-            if (!singleUseInventory.ContainsKey(o) || singleUseInventory[o] < count) 
-            {
-                return false;
-            }
-            else if (singleUseInventory[o] == count)
-            {
-                RemoveItem(o);
-            }
-            else
-            {
-                singleUseInventory[o] -= count;
-            }
+        UpdateUI();
 
-            for (int i = 0; i < count; i++)
-            {
-                o.Use();
-            }
-
-            UpdateUI();
-
-            return true;
-        }
+        return true;
     }
 
-    public bool RemoveItem(Item o) 
+    public bool RemoveItemStack(Item item, int itemStackIndex = -1) 
     {
-        if (o.hasDurability)
-        {
-            DurabilityItem oDur = (DurabilityItem) o;
+        // if (item.hasDurability)
+        // {
+        //     DurabilityItem durabilityItem = (DurabilityItem) item;
 
-            if (durabilityInventory.IndexOf(oDur) == -1) 
+
+        //     if (!durabilityInventory.ContainsKey(durabilityItem)) 
+        //     {
+        //         return false;
+        //     }
+
+        //     List<int> durabilities = durabilityInventory[durabilityItem];
+
+        //     durabilities.RemoveAt(itemStackIndex);
+        //     currentInventoryUsage--;
+
+        //     if (durabilities)
+        // }
+
+        //else {
+            string itemName = item.name;
+
+            if (!inventory.ContainsKey(itemName)) 
             {
                 return false;
             }
 
-            else 
+            List<int> stackCounts = inventory[itemName];
+
+            if (itemStackIndex == -1) 
             {
-                durabilityInventory.Remove(oDur);
-
-                UpdateUI();
-
-                return true;
+                stackCounts.RemoveAt(stackCounts.Count - 1);
             }
-        }
 
-        else {
-            if (!singleUseInventory.ContainsKey(o)) 
-            {
-                return false;
-            }
             else
             {
-                singleUseInventory.Remove(o);
+                stackCounts.RemoveAt(itemStackIndex);
             }
 
-            UpdateUI();
+            currentInventoryUsage--;
 
-            return true;
-        }
+            if (stackCounts.Count == 0)
+            {
+                inventory.Remove(itemName);
+            }
+        //}
+
+        UpdateUI();
+
+        return true;
     }
 
     public void AddTestDurabilityItem()
     {
-        AddItem(new TestDurabilityItem());
+        AddItem(testDurabilityItem);
     }
 
     public void AddTestSingleUseItem()
     {
-        AddItem(new TestSingleUseItem());
+        AddItem(testSingleUseItem);
     }
 }

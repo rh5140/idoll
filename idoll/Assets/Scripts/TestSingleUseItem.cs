@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class TestSingleUseItem : SingleUseItem
 {
-    public static Sprite s;
     public TestSingleUseItem()
-        : base("test_single_use_item", s)
+        : base("test_single_use_item", 20)
     {
         
     }
@@ -17,8 +17,8 @@ public class TestSingleUseItem : SingleUseItem
 
     }
 
-    public override Item Copy()
+    /*public override Item Copy()
     {
-        return new TestSingleUseItem(this);
-    }
+        return (Item) ScriptableObject.CreateInstance("TestSingleUseItem");
+    }*/
 }

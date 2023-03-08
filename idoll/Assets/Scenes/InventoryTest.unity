@@ -280,6 +280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsParent: {fileID: 655081507}
+  testDurabilityItem: {fileID: 11400000, guid: 691a9946788142b4294beee9de7a0a71, type: 2}
+  testSingleUseItem: {fileID: 11400000, guid: fbd96cf0bcf01ad44915ed300cd98d91, type: 2}
 --- !u!224 &92650711 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4399320497756177095, guid: c375f1e49d76224438a37a2f3fb2d4f2, type: 3}

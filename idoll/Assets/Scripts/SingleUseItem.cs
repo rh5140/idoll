@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SingleUseItem : Item
+public class SingleUseItem : Item
 {
-    public SingleUseItem(string name, Sprite sprite)
-        : base(name, false, sprite)
+    public SingleUseItem(string name, int maxCount)
+        : base(name, false, maxCount)
     {
         
     }
@@ -25,4 +25,9 @@ public abstract class SingleUseItem : Item
     {
         Debug.Log("Used item " + name);
     }
+
+    /*public override Item Copy()
+    {
+        return (Item) ScriptableObject.CreateInstance(this);
+    }*/
 }

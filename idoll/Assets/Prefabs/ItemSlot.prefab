@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7688679, g: 1, b: 0.7953322, a: 1}
+  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0.83137256}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -629,7 +629,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c36e453f6a4374499452f5a6a8f71c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 5959333442386535066}
+  itemStackIndex: 0
+  icon: {fileID: 4228277593545188603}
   removeButton: {fileID: 4171694904182983705}
   amountOrDurability: {fileID: 6840090190099787768}
   name: {fileID: 668516892525031220}

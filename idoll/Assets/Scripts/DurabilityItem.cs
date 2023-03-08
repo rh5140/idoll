@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DurabilityItem : Item
+public class DurabilityItem : Item
 {
-    public int durability {get; private set;}
-    public int maxDurability {get; private set;}
+    public int durability;
+    public int maxDurability;
 
-    public DurabilityItem(string name, Sprite sprite, int dur, int maxDur)
-        : base(name, true, sprite)
+    public DurabilityItem(string name, int dur, int maxDur)
+        : base(name, true, 1)
     {    
         durability = dur;
-        maxDurability = maxDurability;
+        maxDurability = maxDur;
     }
 
-    // All descendant Classes must have a similar constructor to copy itself.
     protected DurabilityItem(DurabilityItem item)
         : base(item)
     {
@@ -24,8 +23,6 @@ public abstract class DurabilityItem : Item
 
     public override void Use(int i = 1)
     {
-        durability -= i;
-
         Effect();
     }
 
@@ -33,4 +30,9 @@ public abstract class DurabilityItem : Item
     {
         Debug.Log("Used item: " + name + "\nDurability left: " + durability + "\\" + maxDurability);
     }
+
+    /*public override Item Copy()
+    {
+        return (Item) ScriptableObject.CreateInstance(this);
+    }*/
 }

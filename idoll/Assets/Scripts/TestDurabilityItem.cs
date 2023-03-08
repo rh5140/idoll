@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class TestDurabilityItem : DurabilityItem
 {
     public static Sprite s;
     public TestDurabilityItem()
-        : base("test_dur_item", s, 100, 100)
+        : base("test_dur_item", 10, 10)
     {
 
     }
@@ -17,8 +18,8 @@ public class TestDurabilityItem : DurabilityItem
 
     }
 
-    public override Item Copy()
+    /*public override Item Copy()
     {
-        return new TestDurabilityItem(this);
-    }
+        return (Item) ScriptableObject.CreateInstance("TestDurabilityItem");
+    }*/
 }
