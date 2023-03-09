@@ -9,7 +9,7 @@ public class SceneChanger : Interactable
     public Vector2Int spawnLocation;
     // Start is called before the first frame update
 
-    protected override void interact()
+    public override void OnInteract()
     {
         if (targetScene == null || spawnLocation == null)
         {
