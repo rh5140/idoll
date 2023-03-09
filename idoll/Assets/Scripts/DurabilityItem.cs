@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class DurabilityItem : Item
 {
-    public int durability;
     public int maxDurability;
 
-    public DurabilityItem(string name, int dur, int maxDur)
+    public DurabilityItem(string name, int maxDur)
         : base(name, true, 1)
     {    
-        durability = dur;
         maxDurability = maxDur;
     }
 
     protected DurabilityItem(DurabilityItem item)
         : base(item)
     {
-        durability = item.durability;
         maxDurability = item.maxDurability;
     }
 
@@ -28,7 +25,7 @@ public class DurabilityItem : Item
 
     protected override void Effect()
     {
-        Debug.Log("Used item: " + name + "\nDurability left: " + durability + "\\" + maxDurability);
+        Debug.Log("Used item: " + name + "\nMax durability: " + maxDurability);
     }
 
     /*public override Item Copy()
