@@ -63,7 +63,7 @@ public class ItemSlot : MonoBehaviour
         }
         else
         {
-            Inventory.instance.UseItem(item, 1);
+            Inventory.instance.UseItem(item, 1, itemStackIndex);
         }
     }
 

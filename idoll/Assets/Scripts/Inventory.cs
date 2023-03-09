@@ -145,94 +145,59 @@ public class Inventory : MonoBehaviour
     }
 
     // Returns true if items used successfully. Otherwise, return false.
-    public bool UseItem(Item item, int numberToUse = 1, int itemStackIndex = 1) 
+    public bool UseItem(Item item, int numberToUse = 1, int itemStackIndex = -1) 
     {
-        // if (item.hasDurability)
-        // {
-        //     DurabilityItem durabilityItem = (DurabilityItem) item;
+        string itemName = item.name;
+        List<int> stackCounts = inventory[itemName];
+        int numStacks = stackCounts.Count;
+        int currentStackIndex = itemStackIndex == -1 ? numStacks - 1 : itemStackIndex;
+        int currentStack = stackCounts[currentStackIndex];
+        int totalOfItem = (numStacks - 1) * item.maxCount + stackCounts[numStacks - 1];
 
-        //     if (!durabilityInventory.ContainsKey(durabilityItem)) 
-        //     {
-        //         return false;
-        //     }
+        if (!inventory.ContainsKey(itemName) || totalOfItem < numberToUse)
+        {
+            return false;
+        }
 
-        //     List<int> durabilities = durabilityInventory[item];
-            
-        //     if (durabilities[itemStackIndex] >= numberToUse)
-        //     {
-        //         for (int i = 0; i < numberToUse; i++)
-        //         {
-        //             durabilityItem.Use();
-        //         }
-        //     }
-
-        //     else 
-        //     {
-        //         return false;
-        //     }
-
-        //     durabilities[itemStackIndex] -= numberToUse;
-
-        //     if (durabilities[itemStackIndex] == 0)
-        //     {
-        //         RemoveItemStack(durabilityItem, itemStackIndex);
-        //     }
-        // }
-
-        //else {
-            string itemName = item.name;
-            List<int> stackCounts = inventory[itemName];
-            int numStacks = stackCounts.Count;
-            int currentStack = stackCounts[numStacks - 1];
-            int totalOfItem = (numStacks - 1) * item.maxCount + currentStack;
-
-            Debug.Log("Total of " + itemName + " is " + totalOfItem);
-
-            if (!inventory.ContainsKey(itemName))
+        else if (totalOfItem == numberToUse)
+        {
+            for (int i = 0; i < totalOfItem; i++)
             {
-                return false;
+                item.Use();
             }
 
-            if (totalOfItem < numberToUse)
+            for (int i = 0; i < numStacks; i++)
             {
-                return false;
+                RemoveItemStack(item, currentStackIndex);
+            }
+        }
+
+        else if (currentStack < numberToUse)
+        {
+            for (int i = 0; i < currentStack; i++)
+            {
+                item.Use();
             }
 
-            else if (totalOfItem == numberToUse)
+            RemoveItemStack(item, currentStackIndex);
+
+            UseItem(item, numberToUse - currentStack);
+        }
+
+        else 
+        {
+            stackCounts[currentStackIndex] -= numberToUse;
+
+            for (int i = 0; i < numberToUse; i++)
             {
-                for (int i = 0; i < numStacks; i++)
-                {
-                    RemoveItemStack(item);
-                }
+                item.Use();
             }
 
-            else if (currentStack < numberToUse)
+            if (stackCounts[currentStackIndex] == 0)
             {
-                RemoveItemStack(item);
-
-                for (int i = 0; i < currentStack; i++)
-                {
-                    item.Use();
-                }
-
-                UseItem(item, numberToUse - currentStack);
+                RemoveItemStack(item, currentStackIndex);
             }
-
-            else 
-            {
-                stackCounts[numStacks - 1] -= numberToUse;
-
-                for (int i = 0; i < numberToUse; i++)
-                {
-                    item.Use();
-                }
-
-                if (stackCounts[numStacks - 1] == 0)
-                {
-                    RemoveItemStack(item);
-                }
-            }
-        //}
+        }
 
         UpdateUI();
 
@@ -241,51 +206,31 @@ public class Inventory : MonoBehaviour
 
     public bool RemoveItemStack(Item item, int itemStackIndex = -1) 
     {
-        // if (item.hasDurability)
-        // {
-        //     DurabilityItem durabilityItem = (DurabilityItem) item;
+        string itemName = item.name;
 
+        if (!inventory.ContainsKey(itemName)) 
+        {
+            return false;
+        }
 
-        //     if (!durabilityInventory.ContainsKey(durabilityItem)) 
-        //     {
-        //         return false;
-        //     }
+        List<int> stackCounts = inventory[itemName];
 
-        //     List<int> durabilities = durabilityInventory[durabilityItem];
+        if (itemStackIndex == -1) 
+        {
+            stackCounts.RemoveAt(stackCounts.Count - 1);
+        }
 
-        //     durabilities.RemoveAt(itemStackIndex);
-        //     currentInventoryUsage--;
+        else
+        {
+            stackCounts.RemoveAt(itemStackIndex);
+        }
 
-        //     if (durabilities)
-        // }
+        currentInventoryUsage--;
 
-        //else {
-            string itemName = item.name;
-
-            if (!inventory.ContainsKey(itemName)) 
-            {
-                return false;
-            }
-
-            List<int> stackCounts = inventory[itemName];
-
-            if (itemStackIndex == -1) 
-            {
-                stackCounts.RemoveAt(stackCounts.Count - 1);
-            }
-
-            else
-            {
-                stackCounts.RemoveAt(itemStackIndex);
-            }
-
-            currentInventoryUsage--;
-
-            if (stackCounts.Count == 0)
-            {
-                inventory.Remove(itemName);
-            }
-        //}
+        if (stackCounts.Count == 0)
+        {
+            inventory.Remove(itemName);
+        }
 
         UpdateUI();
 
