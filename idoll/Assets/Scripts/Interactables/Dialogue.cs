@@ -5,8 +5,20 @@ using Yarn.Unity;
 
 public class Dialogue : Interactable
 {
-    [SerializeField] GameObject dialogueSystem;
+    private GameObject dialogueSystem;
     private static bool dialogue_is_active = false;
+
+    private void Start() // Automatically link up with other game objects when loading the scene
+    {
+        try
+        {
+            dialogueSystem = GameObject.FindGameObjectWithTag("DialogueSystem");
+        }
+        catch
+        {
+            Debug.Log("Please add a Dialogue System to the scene!");
+        }
+    }
 
     public override void OnInteract()
     {
@@ -24,7 +36,7 @@ public class Dialogue : Interactable
     }
 
     [YarnCommand("ToggleMovement")]
-    public static bool ToggleMovexment()
+    public static bool ToggleMovexment() // TODO: Handle enabling/disabling player with GameManager 
     {
         dialogue_is_active = !dialogue_is_active;
         if (dialogue_is_active)
