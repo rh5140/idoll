@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Rendering.Universal; // Light2D
 
 public class Eyeballs : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class Eyeballs : MonoBehaviour
                     tilemapRenderer.enabled = false;
                 }
             }
+            GameManager.Instance.GetComponentInChildren<Light2D>().color = new Color32(255, 255, 255, 255);
         }
         else if (Input.GetKeyDown("2")) {
             if (eyes[1]) {
@@ -78,6 +80,7 @@ public class Eyeballs : MonoBehaviour
                     tilemapRenderer.enabled = false;
                 }
             }
+            GameManager.Instance.GetComponentInChildren<Light2D>().color = new Color32(255, 150, 150, 255);
         }
     }
 }
