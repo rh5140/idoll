@@ -16,6 +16,8 @@ public class Eyeballs : MonoBehaviour
     private Color transparent;
     private bool isSprite;
 
+    private int loadSceneWithFirstEyeballCounter = 0; // Temporary for Winter showcase. Switch to eyeball 1 when scene loads
+
     [SerializeField] private List<bool> eyes = new List<bool>(NUM_EYES);
 
     // Start is called before the first frame update
@@ -36,7 +38,8 @@ public class Eyeballs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("1")) {
+        if (loadSceneWithFirstEyeballCounter <= 2) loadSceneWithFirstEyeballCounter++;
+        if (Input.GetKeyDown("1") || loadSceneWithFirstEyeballCounter == 2) {
             if (eyes[0]) {
                 if (isSprite) {
                     //sprite.material.SetColor("_Color", spriteColor);

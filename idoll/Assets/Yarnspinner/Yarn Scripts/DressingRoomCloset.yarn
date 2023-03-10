@@ -1,0 +1,16 @@
+﻿title: Book2
+---
+<<ToggleMovement>>
+This book is of no particular interest.
+...
+BOO!
+<<ToggleMovement>>
+===
+
+title: Book1
+---
+<<ToggleMovement>>
+In order to progress through some areas, it might help to switch out your eye!
+(Press '1' and '2' to switch between your two eyes!)
+<<ToggleMovement>>
+===
