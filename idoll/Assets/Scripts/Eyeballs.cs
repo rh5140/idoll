@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Rendering.Universal; // Light2D
 
 public class Eyeballs : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Eyeballs : MonoBehaviour
     private Color mapColor;
     private Color transparent;
     private bool isSprite;
+
+    private int loadSceneWithFirstEyeballCounter = 0; // Temporary for Winter showcase. Switch to eyeball 1 when scene loads
 
     [SerializeField] private List<bool> eyes = new List<bool>(NUM_EYES);
 
@@ -35,7 +38,8 @@ public class Eyeballs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("1")) {
+        if (loadSceneWithFirstEyeballCounter <= 2) loadSceneWithFirstEyeballCounter++;
+        if (Input.GetKeyDown("1") || loadSceneWithFirstEyeballCounter == 2) {
             if (eyes[0]) {
                 if (isSprite) {
                     //sprite.material.SetColor("_Color", spriteColor);
@@ -56,6 +60,7 @@ public class Eyeballs : MonoBehaviour
                     tilemapRenderer.enabled = false;
                 }
             }
+            GameManager.Instance.GetComponentInChildren<Light2D>().color = new Color32(255, 255, 255, 255);
         }
         else if (Input.GetKeyDown("2")) {
             if (eyes[1]) {
@@ -78,6 +83,7 @@ public class Eyeballs : MonoBehaviour
                     tilemapRenderer.enabled = false;
                 }
             }
+            GameManager.Instance.GetComponentInChildren<Light2D>().color = new Color32(255, 150, 150, 255);
         }
     }
 }

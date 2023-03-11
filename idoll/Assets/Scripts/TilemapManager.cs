@@ -33,6 +33,10 @@ public class TilemapManager : MonoBehaviour
     // Spawn a light at each location in the lights tilemap
     private void InitializeLights()
     {
+        // Global light level
+
+
+        // Spawn lights based on the Tilemap
         int lightCount = 0;
         foreach (Vector3Int pos in lightTilemap.cellBounds.allPositionsWithin)
         {

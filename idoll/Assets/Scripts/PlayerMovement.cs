@@ -65,16 +65,16 @@ public class PlayerMovement : MonoBehaviour
         if (xAxis != 0 && !currentlyMoving ) // X Axis Movement
         {
             currentlyMoving = true;
-            PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
+            PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y); // Move playerTarget to the target movement tile
 
             faceDirection = xAxis == 1 ? 3 : 2;
 
-            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 1f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.45f)) // Check if we can move in the specified direction
+            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(-xAxis, 0), 0.5f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.2f)) // Check if we can move in the specified direction
             {
                 target = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
                 currentlyMoving = true;
                 curPos = target;
-                PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
+                PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y); // Move playerTarget to the next tile, for interactions
             }
         }
 
@@ -85,12 +85,12 @@ public class PlayerMovement : MonoBehaviour
 
             faceDirection = yAxis == 1 ? 1 : 0;
 
-            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 1f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.45f)) // Check if we can move in the specified direction
+            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, -yAxis), 0.5f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.2f)) // Check if we can move in the specified direction
             {
                 target = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
                 currentlyMoving = true;
                 curPos = target;
-                PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
+                PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis); // Move playerTarget to the next tile, for interactions
             }
         }
     }
