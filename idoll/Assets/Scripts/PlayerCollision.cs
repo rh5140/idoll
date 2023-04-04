@@ -12,27 +12,27 @@ public class PlayerCollision : MonoBehaviour
         SpriteRenderer s = collision.GetComponent<SpriteRenderer>();
         TilemapRenderer t = collision.GetComponent<TilemapRenderer>();
 
-        if (s == null && t == null)
+        if (s == null && t == null) // if no renderers simply return
         {
             return;
         }
 
-        collisionDetected = true;
+        collisionDetected = true; // we collided!
     }
 
     private void OnTriggerExit2D(Collider2D collision) // No more collision!
     {
         SpriteRenderer s = collision.GetComponent<SpriteRenderer>();
         TilemapRenderer t = collision.GetComponent<TilemapRenderer>();
-        if (s == null && t == null)
+        if (s == null && t == null) // if no renderers, ignore
         {
             return;
         }
 
-        collisionDetected = false;
+        collisionDetected = false; // no more collisions!
     }
     
-    public bool GetCollision()
+    public bool GetCollision() // Current Collision status
     {
         return collisionDetected;
     }
@@ -41,35 +41,44 @@ public class PlayerCollision : MonoBehaviour
     {
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, dirVect, dist); // RaycastAll to check for stacked colliders
 
-        for (int numColliders = 0; numColliders < hit.Length; numColliders++)
+        for (int numColliders = 0; numColliders < hit.Length; numColliders++) // Go through results from RayCast
         {
             // ABSOLUTELY PERFECT CODE TO check to see if sprites are visible (TODO: probably needs to be made better later)
             SpriteRenderer s = null;
             TilemapRenderer t = null;
-            try
+
+            try 
             {
                 s = hit[numColliders].collider.gameObject.GetComponent<SpriteRenderer>();
             }
-            catch { }
+            catch
+            {
+                Debug.Log("No SpriteRenderer");
+            }
+
             try
             {
                 t = hit[numColliders].collider.gameObject.GetComponent<TilemapRenderer>();
             }
-            catch { }
+            catch
+            {
+                Debug.Log("No TilemapRenderer");
+            }
 
             if (s != null || t != null)
             {
-                if (s == null && t.enabled)
+                if (s == null && t.enabled) // If has enabled TilemapRenderer but no SpriteRenderer
                 {
                     Debug.Log("Collided");
                     return (hit[numColliders].collider != null);
                 }
-                if (t == null && s.enabled)
+                if (t == null && s.enabled) // If has enabled SpriteRenderer but no TilemapRenderer
                 {
                     return (hit[numColliders].collider != null);
                 }
             }
         }
+
         return false;
     }
 }
