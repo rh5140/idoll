@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Intensity: 0.2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000005ba4a9e095d165bc177576c281ceaef793bea1e41bbdbafa
+  m_ApplyToSortingLayers: 000000005ba4a9e095d165bc177576c281ceaef793bea1e4
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -993,7 +993,7 @@ GameObject:
   - component: {fileID: 6652595097656841109}
   - component: {fileID: 1354376482435220804}
   m_Layer: 5
-  m_Name: InventoryCanvas
+  m_Name: InventoryCanvasWIP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

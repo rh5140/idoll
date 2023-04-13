@@ -59,9 +59,12 @@ TagManager:
   - name: Foreground
     uniqueID: 3835805331
     locked: 0
+  - name: UI
+    uniqueID: 2764106147
+    locked: 0
   - name: Screen Effects
     uniqueID: 4206542107
     locked: 0
-  - name: UI
-    uniqueID: 2764106147
+  - name: Debugging
+    uniqueID: 1123235109
     locked: 0

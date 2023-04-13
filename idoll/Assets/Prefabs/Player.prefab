@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2690871393670442804}
   - component: {fileID: 5553388378929285790}
   m_Layer: 0
-  m_Name: Shadow
+  m_Name: PlayerShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 823497737651682262}
   - component: {fileID: 3935848055838880807}
   m_Layer: 0
-  m_Name: Light 2D
+  m_Name: PlayerLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

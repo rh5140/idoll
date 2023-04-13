@@ -5,10 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class PlayerInteractor : MonoBehaviour
 {
-    private Interactable currentInteractable; //Only 1 interactable can be accessed at a time
-    public bool CanInteract = true;
-    private float Timer = 0.1f; //Add base 100ms delay between interacting. Can be changed as needed.
-    private float Duration = 0.1f; //
+    private Interactable currentInteractable; // Only 1 interactable can be accessed at a time
+
+    [Tooltip("False when your ability to interact with interactables is on a cooldown (For testing purposes)'")]
+    [SerializeField]
+    private bool canInteract = true;
+    private float timer;
+    private float interactDelay = 0.1f; // Add base 100ms delay between interacting. Can be changed as needed.
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -39,24 +42,24 @@ public class PlayerInteractor : MonoBehaviour
         if (currentInteractable != null)
         {
             currentInteractable.OnHover();
-            if (Input.GetButton("Interact") && CanInteract)
+            if (Input.GetButton("Interact") && canInteract)
             {
                 if ((currentInteractable.GetComponent<SpriteRenderer>() != null && currentInteractable.GetComponent<SpriteRenderer>().enabled)
                     || (currentInteractable.GetComponent<TilemapRenderer>() != null && currentInteractable.GetComponent<TilemapRenderer>().enabled))
                 {
                     currentInteractable.interact();
                 }
-                CanInteract = false;
-                Timer = Duration;
+                canInteract = false;
+                timer = interactDelay;
             }
         }
 
-        if (Timer > 0)
+        if (timer > 0)
         {
-            Timer = Mathf.Max(0, Timer - Time.deltaTime);
-            if (Timer == 0)
+            timer = Mathf.Max(0, timer - Time.deltaTime);
+            if (timer == 0)
             {
-                CanInteract = true;
+                canInteract = true;
             }
         }
     }
