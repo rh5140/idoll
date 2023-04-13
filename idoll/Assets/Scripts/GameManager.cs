@@ -48,10 +48,10 @@ public class GameManager : MonoBehaviour
     // Get story state... also idk we need to maintain bools somewhere...
     public StoryState StoryState { get; set; }
 
+    // Store the eyeball
+    public int currentEye { get; set; } = 1;
+ 
     #endregion
-
-    // Stores the x/y position and the facing direction of the player when switching scenes
-    public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
 
     private Inventory inventory; // Temporary inventory code for the winter showcase
     private bool inventoryCooldown = false;
@@ -78,6 +78,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Stores the x/y position and the facing direction of the player when switching scenes
+    public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
+       
     // Public function to change scene can be called from anywhere w/ access to GameManager
     public void ChangeToScene(string sceneName, Vector2Int playerPos)
     {

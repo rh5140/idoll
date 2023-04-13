@@ -11,75 +11,73 @@ public class Eyeballs : MonoBehaviour
     private SpriteRenderer sprite;
     private Tilemap tilemap;
     private TilemapRenderer tilemapRenderer;
-    private Color spriteColor;
-    private Color mapColor;
-    private Color transparent;
     private bool isSprite;
 
+    // Currently used to make sure frames update in the right order :(
     private int loadSceneWithFirstEyeballCounter = 0; // Temporary for Winter showcase. Switch to eyeball 1 when scene loads
 
     [SerializeField] private List<bool> eyes = new List<bool>(NUM_EYES);
+    private int currentEye = GameManager.Instance.currentEye;
 
     // Start is called before the first frame update
     void Start()
     {
         if (sprite = GetComponent<SpriteRenderer>()) {
             isSprite = true;
-            spriteColor = sprite.material.GetColor("_Color");
         }
-        //else if (tilemap = GetComponent<Tilemap>()) {
         else if (tilemapRenderer = GetComponent<TilemapRenderer>()) {
             isSprite = false;
-            mapColor = tilemap.color;
         }
-        transparent = new Color (1f, 1f, 1f, 0f);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (loadSceneWithFirstEyeballCounter <= 2) loadSceneWithFirstEyeballCounter++;
-        if (Input.GetKeyDown("1") || loadSceneWithFirstEyeballCounter == 2) {
+
+        if (Input.GetKeyDown("1"))
+        {
+            GameManager.Instance.currentEye = 1;
+        }
+        else if (Input.GetKeyDown("2"))
+        {
+            GameManager.Instance.currentEye = 2;   
+        }
+
+        if (GameManager.Instance.currentEye == 1 || loadSceneWithFirstEyeballCounter == 2) {
             if (eyes[0]) {
                 if (isSprite) {
-                    //sprite.material.SetColor("_Color", spriteColor);
                     sprite.enabled = true;
                 }
                 else {
-                    //tilemap.color = mapColor;
                     tilemapRenderer.enabled = true;
                 }
             }
             else {
                 if (isSprite) {
-                    //sprite.material.SetColor("_Color", transparent);
+
                     sprite.enabled = false;
                 }
                 else {
-                    //tilemap.color = transparent;
                     tilemapRenderer.enabled = false;
                 }
             }
             GameManager.Instance.GetComponentInChildren<Light2D>().color = new Color32(255, 255, 255, 255);
         }
-        else if (Input.GetKeyDown("2")) {
+        else if (GameManager.Instance.currentEye == 2) {
             if (eyes[1]) {
                 if (isSprite) {
-                    //sprite.material.SetColor("_Color", spriteColor);
                     sprite.enabled = true;
                 }
                 else {
-                    //tilemap.color = mapColor;
                     tilemapRenderer.enabled = true;
                 }
             }
             else {
                 if (isSprite) {
-                    //sprite.material.SetColor("_Color", transparent);
                     sprite.enabled = false;
                 }
                 else {
-                    //tilemap.color = transparent;
                     tilemapRenderer.enabled = false;
                 }
             }
