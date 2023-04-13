@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -101,11 +101,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Items_Eyes1_red
+      name: Items_Eyes1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,20 +125,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6d19c5bb1bf0774b82035a613450e12
-      internalID: -747482490
+      spriteID: 83adc0120c476db4cbf3313137efd9c6
+      internalID: -431792953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Items_Eyes1_green
+      name: Items_Eyes1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -134,20 +146,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5668686f0b83a1e44a7db7b9abea5e66
-      internalID: -1469524065
+      spriteID: 9ee7c227187435649b92e922c22b2622
+      internalID: -2032519947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Items_Eyes1_blue
+      name: Items_Eyes1_2
       rect:
         serializedVersion: 2
         x: 64
@@ -155,20 +167,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc4c45cb7199ab84dbb0f5308c276022
-      internalID: -1459017783
+      spriteID: d64b3c24812cf214999c5bcb70077435
+      internalID: -1808481293
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Items_Eyes1_purple
+      name: Items_Eyes1_3
       rect:
         serializedVersion: 2
         x: 96
@@ -176,14 +188,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10697af2208544646979e2749cfb2a94
-      internalID: -10774248
+      spriteID: 6de30833821665b4cbce8592d55544c0
+      internalID: 2052557959
       vertices: []
       indices: 
       edges: []
@@ -199,10 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Items_Eyes1_blue: -1459017783
-      Items_Eyes1_red: -747482490
-      Items_Eyes1_green: -1469524065
-      Items_Eyes1_purple: -10774248
+      Items_Eyes1_0: -431792953
+      Items_Eyes1_2: -1808481293
+      Items_Eyes1_1: -2032519947
+      Items_Eyes1_3: 2052557959
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

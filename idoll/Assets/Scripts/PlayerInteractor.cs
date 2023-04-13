@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerInteractor : MonoBehaviour
 {
@@ -40,7 +41,11 @@ public class PlayerInteractor : MonoBehaviour
             currentInteractable.OnHover();
             if (Input.GetButton("Interact") && CanInteract)
             {
-                currentInteractable.interact();
+                if ((currentInteractable.GetComponent<SpriteRenderer>() != null && currentInteractable.GetComponent<SpriteRenderer>().enabled)
+                    || (currentInteractable.GetComponent<TilemapRenderer>() != null && currentInteractable.GetComponent<TilemapRenderer>().enabled))
+                {
+                    currentInteractable.interact();
+                }
                 CanInteract = false;
                 Timer = Duration;
             }

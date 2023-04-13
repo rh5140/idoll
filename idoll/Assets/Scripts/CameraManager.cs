@@ -98,23 +98,23 @@ public class CameraManager : MonoBehaviour
             // Debug.Log("Active Camera: Player");
             // GetActiveCamera();
         }
-        else if (Input.GetKeyDown("1"))
+        else if (Input.GetKeyDown("9"))
         {
             SetActiveCamera(Cameras.CutsceneCamera);
             // Debug.Log("Active Camera: Cutscene");
             // GetActiveCamera();
         }
-        else if (Input.GetKeyDown("m"))
+        else if (Input.GetKeyDown("8"))
         {
             Vector2 destination = new Vector2();
             destination.Set((float)-3.21, (float)(3.34));
             Move(destination, 5);
         }
-        else if (Input.GetKeyDown("r"))
+        else if (Input.GetKeyDown("-"))
         {
             ResetPosition();
         }
-        else if (Input.GetKeyDown("i"))
+        else if (Input.GetKeyDown("="))
         {
             Shake();
         }

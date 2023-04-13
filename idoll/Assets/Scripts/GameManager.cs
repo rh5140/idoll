@@ -53,6 +53,31 @@ public class GameManager : MonoBehaviour
     // Stores the x/y position and the facing direction of the player when switching scenes
     public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
 
+    private Inventory inventory; // Temporary inventory code for the winter showcase
+    private bool inventoryCooldown = false;
+    private void Start()
+    {
+        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+        inventory.gameObject.transform.parent.gameObject.SetActive(false);
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown("e")) // Oh wait why am I using a Coroutine? I forgot GetKeyDown only triggers on the 'down' press haha
+        {
+            StartCoroutine(ToggleInventory());
+        }
+    }
+    private IEnumerator ToggleInventory()
+    {
+        if (!inventoryCooldown)
+        {
+            inventoryCooldown = true;
+            inventory.gameObject.transform.parent.gameObject.SetActive(!inventory.gameObject.transform.parent.gameObject.activeSelf);
+            yield return new WaitForSeconds(0.3f); // Prevent multi-presses
+            inventoryCooldown = false;
+        }
+    }
+
     // Public function to change scene can be called from anywhere w/ access to GameManager
     public void ChangeToScene(string sceneName, Vector2Int playerPos)
     {

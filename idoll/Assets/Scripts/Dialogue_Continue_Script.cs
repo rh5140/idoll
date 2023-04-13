@@ -5,12 +5,17 @@ using Yarn.Unity;
 
 public class Dialogue_Continue_Script : MonoBehaviour
 {
-    private float timer = 0.75f;
-    private float duration = 0.75f; //Add delay between skips
+    private float timer;
+    private float duration = 0.5f; //Add delay between skips
     [SerializeField] LineView lineview;
 
+    private void Start()
+    {
+        timer = 0.5f;
+    }
+
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(Input.GetButton("Interact") && timer == 0) {
             lineview.OnContinueClicked();
