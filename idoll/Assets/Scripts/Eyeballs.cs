@@ -9,8 +9,7 @@ public class Eyeballs : MonoBehaviour
     public const int NUM_EYES = 2;
     
     private SpriteRenderer sprite;
-    private Tilemap tilemap;
-    private TilemapRenderer tilemapRenderer;
+    private TilemapRenderer tilemap;
     private bool isSprite;
 
     // Currently used to make sure frames update in the right order :(
@@ -25,7 +24,7 @@ public class Eyeballs : MonoBehaviour
         if (sprite = GetComponent<SpriteRenderer>()) {
             isSprite = true;
         }
-        else if (tilemapRenderer = GetComponent<TilemapRenderer>()) {
+        else if (tilemap = GetComponent<TilemapRenderer>()) {
             isSprite = false;
         }
     }
@@ -50,7 +49,7 @@ public class Eyeballs : MonoBehaviour
                     sprite.enabled = true;
                 }
                 else {
-                    tilemapRenderer.enabled = true;
+                    tilemap.enabled = true;
                 }
             }
             else {
@@ -59,7 +58,7 @@ public class Eyeballs : MonoBehaviour
                     sprite.enabled = false;
                 }
                 else {
-                    tilemapRenderer.enabled = false;
+                    tilemap.enabled = false;
                 }
             }
             GameManager.Instance.GetComponentInChildren<Light2D>().color = new Color32(255, 255, 255, 255);
@@ -70,7 +69,7 @@ public class Eyeballs : MonoBehaviour
                     sprite.enabled = true;
                 }
                 else {
-                    tilemapRenderer.enabled = true;
+                    tilemap.enabled = true;
                 }
             }
             else {
@@ -78,7 +77,7 @@ public class Eyeballs : MonoBehaviour
                     sprite.enabled = false;
                 }
                 else {
-                    tilemapRenderer.enabled = false;
+                    tilemap.enabled = false;
                 }
             }
             GameManager.Instance.GetComponentInChildren<Light2D>().color = new Color32(255, 150, 150, 255);
