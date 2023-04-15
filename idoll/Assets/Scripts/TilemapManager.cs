@@ -45,7 +45,8 @@ public class TilemapManager : MonoBehaviour
                     {
                         light = Instantiate(lightPrefabs[lightNumber]);
                         light.transform.position = pos;
-                        light.transform.position = light.transform.position / 4f - new Vector3(0.25f,0.25f);
+                        // Reposition tilemap for differently-sized light tilemaps
+                        light.transform.position = light.transform.position / (1f/ lightTilemap.transform.localScale.x) - new Vector3(lightTilemap.transform.localPosition.x / 2f, lightTilemap.transform.localPosition.y / 2f);
                         break;
                     }
                 }

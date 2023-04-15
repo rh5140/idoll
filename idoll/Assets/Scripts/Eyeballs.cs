@@ -16,7 +16,7 @@ public class Eyeballs : MonoBehaviour
     private int loadSceneWithFirstEyeballCounter = 0; // Temporary for Winter showcase. Switch to eyeball 1 when scene loads
 
     [SerializeField] private List<bool> eyes = new List<bool>(NUM_EYES);
-    private int currentEye = GameManager.Instance.currentEye;
+    private int currentEye;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,7 @@ public class Eyeballs : MonoBehaviour
         else if (tilemap = GetComponent<TilemapRenderer>()) {
             isSprite = false;
         }
+        currentEye = GameManager.Instance.currentEye;
     }
 
     // Update is called once per frame
