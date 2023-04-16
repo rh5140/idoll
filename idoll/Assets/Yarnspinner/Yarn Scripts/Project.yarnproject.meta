@@ -13,7 +13,15 @@ ScriptedImporter:
   - {fileID: 6391573757903218779, guid: 502deafbebb712a4ebf5777371a3ac68, type: 3}
   - {fileID: 6391573757903218779, guid: 9cccec37332051a42b21ef7214bc341c, type: 3}
   compileErrors: []
-  serializedDeclarations: []
+  serializedDeclarations:
+  - name: $friendship
+    typeName: Number
+    defaultValueBool: 0
+    defaultValueNumber: 100
+    defaultValueString: 
+    description: 
+    isImplicit: 0
+    sourceYarnAsset: {instanceID: 0}
   defaultLanguage: en-US
   languagesToSourceAssets: []
   useAddressableAssets: 0
