@@ -17,7 +17,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void SpriteAnimation()
     {
-        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
+        Vector3 input = new Vector3(playerMovement.GetMoveVector().x, playerMovement.GetMoveVector().y);
         Vector2 movement = new Vector2(0f, -1f);
         int direction = playerMovement.GetFaceDirection();
         
@@ -48,5 +48,4 @@ public class PlayerAnimation : MonoBehaviour
     {
         SpriteAnimation();
     }
-
 }
