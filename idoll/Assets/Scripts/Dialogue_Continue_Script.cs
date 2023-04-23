@@ -8,8 +8,8 @@ public class Dialogue_Continue_Script : MonoBehaviour
 {
     private Inputs input;
 
-    private float timer;
-    private float duration = 0.1f; // Add delay between skips
+    //private float timer; // Timer is no-longer required with the LineViewCustom script!
+    //private float duration = 0.1f; // Add delay between skips
     [SerializeField] LineViewCustom lineview;
 
     #region InputSystem
@@ -35,13 +35,13 @@ public class Dialogue_Continue_Script : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (timer <= 0)
-        {
+        //if (timer <= 0)
+        //{
             lineview.OnContinueClicked();
-            timer = duration;
-        }
+        //    timer = duration;
+        //}
     }
-
+    /*
     // Update is called once per frame
     private void Update()
     {
@@ -50,4 +50,5 @@ public class Dialogue_Continue_Script : MonoBehaviour
             timer = Mathf.Max(0, timer - Time.deltaTime);
         }
     }
+    */
 }
