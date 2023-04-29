@@ -27,11 +27,10 @@ public class Companion : MonoBehaviour
             case 0:
                 if (companion_y < player_y)
                 {
-                    // StopCoroutine(movement_coroutine);
+                    animator.SetFloat("yAxis", 1f);
                 }
                 else
                 {
-                    // this.transform.position = new Vector2(player_x, player_y + 1);
                     movement_coroutine = MoveHelper(new Vector2(player_x, player_y + 1), 0.025f);
                     StartCoroutine(movement_coroutine);
                 }
@@ -39,11 +38,10 @@ public class Companion : MonoBehaviour
             case 1:
                 if (companion_y > player_y)
                 {
-                    // StopCoroutine(movement_coroutine);
+                    animator.SetFloat("yAxis", -1f);
                 }
                 else
                 {
-                    // this.transform.position = new Vector2(player_x, player_y - 1);
                     movement_coroutine = MoveHelper(new Vector2(player_x, player_y - 1), 0.025f);
                     StartCoroutine(movement_coroutine);
                 }
@@ -51,11 +49,10 @@ public class Companion : MonoBehaviour
             case 2:
                 if (companion_x < player_x)
                 {
-                    // StopCoroutine(movement_coroutine);
+                    animator.SetFloat("xAxis", 1f);
                 }
                 else
                 {
-                    // this.transform.position = new Vector2(player_x + 1, player_y + 0.5f);
                     movement_coroutine = MoveHelper(new Vector2(player_x + 1, player_y + 0.5f), 0.025f);
                     StartCoroutine(movement_coroutine);
                 }
@@ -63,11 +60,10 @@ public class Companion : MonoBehaviour
             case 3:
                 if (companion_x > player_x)
                 {
-                    // StopCoroutine(movement_coroutine);
+                    animator.SetFloat("xAxis", -1f);
                 }
                 else
                 {
-                    // this.transform.position = new Vector2(player_x - 1, player_y + 0.5f);
                     movement_coroutine = MoveHelper(new Vector2(player_x - 1, player_y + 0.5f), 0.025f);
                     StartCoroutine(movement_coroutine);
                 }
@@ -91,7 +87,7 @@ public class Companion : MonoBehaviour
 
         int player_direction = target.GetComponent<PlayerMovement>().GetFaceDirection();
         Vector2 movement = new Vector2(0f, -1f);
-        switch(player_direction)
+        switch (player_direction)
         {
             case 0: // Down
                 break;
