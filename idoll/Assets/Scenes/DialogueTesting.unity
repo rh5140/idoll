@@ -1828,8 +1828,24 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 940862363}
+    - target: {fileID: 608618852677199142, guid: 41fdeb0e6c778b5408084712c4825db3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 608618852677199142, guid: 41fdeb0e6c778b5408084712c4825db3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 608618852677199143, guid: 41fdeb0e6c778b5408084712c4825db3, type: 3}
       propertyPath: m_Name
+      value: Companion
+      objectReference: {fileID: 0}
+    - target: {fileID: 608618852677199143, guid: 41fdeb0e6c778b5408084712c4825db3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 608618852677199143, guid: 41fdeb0e6c778b5408084712c4825db3, type: 3}
+      propertyPath: m_TagString
       value: Companion
       objectReference: {fileID: 0}
     - target: {fileID: 608618852677199147, guid: 41fdeb0e6c778b5408084712c4825db3, type: 3}
