@@ -22,6 +22,11 @@ public class Dialogue : Interactable
 
     public override void OnInteract()
     {
+        if (this.tag == "Companion")
+        {
+            this.GetComponent<Companion>().FacePlayer();
+        }
+
         if (!dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)
         {
             try

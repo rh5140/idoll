@@ -57,7 +57,7 @@ public class PlayerCollision : MonoBehaviour
             }
             catch { }
 
-            if(s.gameObject.tag == "Companion") {
+            if(s != null && s.gameObject.tag == "Companion") {
                 if (s.gameObject.GetComponent<Companion>().IsGhosted()) {
                     return false;
                 }

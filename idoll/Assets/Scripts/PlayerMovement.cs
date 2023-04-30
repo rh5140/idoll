@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private UnityEngine.Vector2 target = UnityEngine.Vector2.zero;
     private UnityEngine.Vector2 curPos = UnityEngine.Vector2.zero;
+    private UnityEngine.Vector2 prevPos = UnityEngine.Vector2.zero;
 
     private bool currentlyMoving = false;
     private int faceDirection = 0; // 0 - Down, 1 - Up, 2 - Left, 3 - Right
@@ -86,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
     {
         this.transform.position = new Vector3Int(GameManager.Instance.playerSpawnLocation.x, GameManager.Instance.playerSpawnLocation.y);
         curPos = transform.position;
+        prevPos = transform.position;
         target = transform.position;
         faceDirection = GameManager.Instance.playerSpawnLocation.z;
         speed = DEFAULT_SPEED;
@@ -100,6 +102,11 @@ public class PlayerMovement : MonoBehaviour
     public int GetFaceDirection() // Get direction player is facing.  0 - Down, 1 - Up, 2 - Left, 3 - Right
     {
         return faceDirection;
+    }
+
+    public UnityEngine.Vector2 GetPrevPos()
+    {
+        return prevPos;
     }
 
     public bool IsMoving() // return whether player is moving or not
@@ -126,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 target = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
                 currentlyMoving = true;
+                prevPos = curPos;
                 curPos = target;
                 PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y); // Move playerTarget to the next tile, for interactions
             }
@@ -142,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 target = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
                 currentlyMoving = true;
+                prevPos = curPos;
                 curPos = target;
                 PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis); // Move playerTarget to the next tile, for interactions
             }
