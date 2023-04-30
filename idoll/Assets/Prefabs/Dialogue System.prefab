@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b793615bd265eee47a405c5fe4699d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineview: {fileID: 4290678368799056207}
+  lineview: {fileID: 0}
 --- !u!1 &4290678369220892589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,7 +1690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5798789765388149255}
-  - component: {fileID: 5798789765388149254}
+  - component: {fileID: 5349092207617842461}
   - component: {fileID: 5798789765388149753}
   - component: {fileID: 5798789765388149752}
   - component: {fileID: 5798789765388149755}
@@ -1725,7 +1725,7 @@ RectTransform:
   m_AnchoredPosition: {x: -90, y: -125}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5798789765388149254
+--- !u!114 &5349092207617842461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1734,7 +1734,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5798789765388149252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddcdd604a328c4ab296f048eb7b3a925, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b41a083bc96f2d4fb9deab2cec27876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 5798789765388149753}
@@ -1776,7 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b793615bd265eee47a405c5fe4699d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineview: {fileID: 5798789765388149254}
+  lineview: {fileID: 5349092207617842461}
 --- !u!114 &5798789765388149755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1789,9 +1789,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097b95c9f69f04f2d8c08a817e7786af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueView: {fileID: 5798789765388149254}
+  dialogueView: {fileID: 0}
   continueActionType: 1
   continueActionKeyCode: 122
+  continueActionReference: {fileID: 0}
+  continueAction:
+    m_Name: Skip
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 
+      m_Path: Submit
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip
+      m_Flags: 0
+    m_Flags: 0
+  enableActionOnStart: 1
 --- !u!1 &5798789765394927492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,7 +2006,7 @@ MonoBehaviour:
   yarnProject: {fileID: 7545569452688597077, guid: 37ca2ead59b80564099db320f4ab6012, type: 3}
   _variableStorage: {fileID: 7301365496473670924}
   dialogueViews:
-  - {fileID: 5798789765388149254}
+  - {fileID: 5349092207617842461}
   - {fileID: 5798789764986330281}
   startNode: Start
   startAutomatically: 0

@@ -4,9 +4,14 @@ using System.Collections.Generic;
 using System.Numerics;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem; // New Unity input system!
 
 public class PlayerMovement : MonoBehaviour
 {
+    // InputSystem
+    private Inputs input = null;
+    private UnityEngine.Vector2 moveVector = UnityEngine.Vector2.zero;
+
     private bool playerAnchored = false;
     private float DEFAULT_SPEED = 5.0f; // TODO: Move to separate settings class
     private float speed;
@@ -19,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
         Right,
     }
 
-    private UnityEngine.Vector2 target = new UnityEngine.Vector2(0, 0);
-    private UnityEngine.Vector2 curPos;
+    private UnityEngine.Vector2 target = UnityEngine.Vector2.zero;
+    private UnityEngine.Vector2 curPos = UnityEngine.Vector2.zero;
 
     private bool currentlyMoving = false;
     private int faceDirection = 0; // 0 - Down, 1 - Up, 2 - Left, 3 - Right
@@ -28,16 +33,61 @@ public class PlayerMovement : MonoBehaviour
     private GameObject PlayerTarget;
     private PlayerCollision CollisionHandler;
 
+    private void Awake()
+    {
+        input = new Inputs();
+        PlayerTarget = GameObject.Find("PlayerTarget");
+        PlayerTarget.transform.parent = null;
+        CollisionHandler = PlayerTarget.GetComponent<PlayerCollision>();
+    }
+
+    #region InputSystem
+
+    private void OnEnable()
+    {
+        input.Enable();
+        input.Player.Movement.performed += OnMovementPerformed;
+        input.Player.Movement.canceled += OnMovementCancelled;
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+        input.Player.Movement.performed -= OnMovementPerformed;
+        input.Player.Movement.canceled -= OnMovementCancelled;
+    }
+
+    private void OnMovementPerformed(InputAction.CallbackContext value)
+    {
+        moveVector = value.ReadValue<UnityEngine.Vector2>();
+        if (moveVector.x != 0f)
+        {
+            moveVector.x = moveVector.x / Mathf.Abs(moveVector.x); // Set magnitude to 1
+        }
+        if (moveVector.y != 0f)
+        {
+            moveVector.y = moveVector.y / Mathf.Abs(moveVector.y); // Set magnitude to 1
+        }
+    }
+
+    private void OnMovementCancelled(InputAction.CallbackContext value)
+    {
+        moveVector = UnityEngine.Vector2.zero;
+    }
+
+    public UnityEngine.Vector2 GetMoveVector()
+    {
+        return moveVector;
+    }
+
+    #endregion
+
     void Start()
     {
         this.transform.position = new Vector3Int(GameManager.Instance.playerSpawnLocation.x, GameManager.Instance.playerSpawnLocation.y);
         curPos = transform.position;
         target = transform.position;
         faceDirection = GameManager.Instance.playerSpawnLocation.z;
-        //transform.Find("PlayerTarget").parent = null;
-        PlayerTarget = GameObject.Find("PlayerTarget");
-        PlayerTarget.transform.parent = null;
-        CollisionHandler = PlayerTarget.GetComponent<PlayerCollision>();
         speed = DEFAULT_SPEED;
         PlayerTarget.transform.position = curPos;
     }
@@ -59,10 +109,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateLocation() // In charge of setting our new target location based on input
     {
-        float yAxis = Input.GetAxisRaw("Vertical");
-        float xAxis = Input.GetAxisRaw("Horizontal");
-        
-        if (xAxis != 0 && !currentlyMoving ) // X Axis Movement
+        //float yAxis = Input.GetAxisRaw("Vertical"); // Old Unity movement
+        //float xAxis = Input.GetAxisRaw("Horizontal");
+
+        float xAxis = moveVector.x;
+        float yAxis = moveVector.y;
+
+        if (xAxis != 0 && !currentlyMoving) // X Axis Movement
         {
             currentlyMoving = true;
             PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y); // Move playerTarget to the target movement tile

@@ -3,20 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Rendering.Universal; // Light2D
+using UnityEngine.InputSystem; // New Unity input system!
 
 public class Eyeballs : MonoBehaviour
 {
-    public const int NUM_EYES = 2;
-    
     private SpriteRenderer sprite;
     private TilemapRenderer tilemap;
     private bool isSprite;
 
-    // Currently used to make sure frames update in the right order :(
-    private int loadSceneWithFirstEyeballCounter = 0; // Temporary for Winter showcase. Switch to eyeball 1 when scene loads
+    [SerializeField] private List<bool> eyes = new List<bool>();
+    private List<Color32> screenTint = new List<Color32>();
 
-    [SerializeField] private List<bool> eyes = new List<bool>(NUM_EYES);
-    private int currentEye;
+    // Input System
+    private Inputs inputs = null;
+    private float input;
+
+    private void Awake()
+    {
+        inputs = new Inputs();
+        input = GameManager.Instance.currentEye;
+    }
+
+    #region InputSystem
+
+    private void OnEnable()
+    {
+        inputs.Enable();
+        inputs.Player.Eyeballs.performed += OnMovementPerformed;
+        inputs.Player.Eyeballs.canceled += OnMovementCancelled;
+    }
+
+    private void OnDisable()
+    {
+        inputs.Disable();
+        inputs.Player.Eyeballs.performed -= OnMovementPerformed;
+        inputs.Player.Eyeballs.canceled -= OnMovementCancelled;
+    }
+
+    private void OnMovementPerformed(InputAction.CallbackContext value)
+    {
+        input = value.ReadValue<float>();
+    }
+
+    private void OnMovementCancelled(InputAction.CallbackContext value)
+    {
+        input = 0;
+    }
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -27,61 +61,51 @@ public class Eyeballs : MonoBehaviour
         else if (tilemap = GetComponent<TilemapRenderer>()) {
             isSprite = false;
         }
-        currentEye = GameManager.Instance.currentEye;
+
+        // Screen Tints
+        screenTint.Add(new Color32(255, 255, 255, 255)); // Eyeball 1
+        screenTint.Add(new Color32(255, 150, 150, 255)); // Eyeball 2
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (loadSceneWithFirstEyeballCounter <= 2) loadSceneWithFirstEyeballCounter++;
-
-        if (Input.GetKeyDown("1"))
+        // Check for valid input, set currentEye to the input
+        if (input == 0)
         {
-            GameManager.Instance.currentEye = 1;
+            return;
         }
-        else if (Input.GetKeyDown("2"))
+        else if (input > eyes.Count || input > screenTint.Count)
         {
-            GameManager.Instance.currentEye = 2;   
+            Debug.Log("No eyeball #" + input + " exists!");
+            return;
+        }
+        else
+        {
+            GameManager.Instance.currentEye = (int) input;
         }
 
-        if (GameManager.Instance.currentEye == 1 || loadSceneWithFirstEyeballCounter == 2) {
-            if (eyes[0]) {
-                if (isSprite) {
-                    sprite.enabled = true;
-                }
-                else {
-                    tilemap.enabled = true;
-                }
-            }
-            else {
-                if (isSprite) {
-
-                    sprite.enabled = false;
-                }
-                else {
-                    tilemap.enabled = false;
-                }
-            }
-            GameManager.Instance.GetComponentInChildren<Light2D>().color = new Color32(255, 255, 255, 255);
+        // Change visibility based on current eye
+        if (eyes[GameManager.Instance.currentEye - 1])
+        {
+            SetVisible(true);
+            GameManager.Instance.GetComponentInChildren<Light2D>().color = screenTint[GameManager.Instance.currentEye - 1];
         }
-        else if (GameManager.Instance.currentEye == 2) {
-            if (eyes[1]) {
-                if (isSprite) {
-                    sprite.enabled = true;
-                }
-                else {
-                    tilemap.enabled = true;
-                }
-            }
-            else {
-                if (isSprite) {
-                    sprite.enabled = false;
-                }
-                else {
-                    tilemap.enabled = false;
-                }
-            }
-            GameManager.Instance.GetComponentInChildren<Light2D>().color = new Color32(255, 150, 150, 255);
+        else
+        {
+            SetVisible(false);
+        }
+    }
+
+    private void SetVisible(bool b)
+    {
+        if (isSprite)
+        {
+            sprite.enabled = b;
+        }
+        else
+        {
+            tilemap.enabled = b;
         }
     }
 }
