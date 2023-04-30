@@ -12,3 +12,23 @@ Manager: We can't let your fame and success go to your head. We need to stay foc
     Manager: Who do you think you're talking to?
 <<ToggleMovement>>
 ===
+title: Companion
+---
+<<ToggleMovement>>
+Companion: I'll follow you to the manager's office.
+-> Chat
+    Companion: I'm nervous for next week's interview...
+-> Friendship
+    <<if $friendship >= 50>>
+        Companion: Aren't we such great friends?
+    <<else>>
+        Companion: ...
+    <<endif>>
+-> Give gift
+    <<set $friendship = 100>>
+    Companion: Aww, you shouldn't have!
+-> Insult
+    <<set $friendship = 0>>
+    Companion: Why would you say that...
+<<ToggleMovement>>
+===
