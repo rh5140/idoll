@@ -460,6 +460,7 @@ MonoBehaviour:
   - {fileID: 7036720780310624207, guid: 9affae5e7b46dff48959ce44130cc73a, type: 3}
   - {fileID: 7036720780310624207, guid: 0ce480f4c6adf084d84f82cc61b3e5e7, type: 3}
   - {fileID: 7036720780310624207, guid: fe6b2688ce59efc47afba1d3c7f2127a, type: 3}
+  wallShadowRuleTile: {fileID: 11400000, guid: aa7192bddff94fd41a445a87a1499999, type: 2}
 --- !u!1 &6212009576190344595
 GameObject:
   m_ObjectHideFlags: 0

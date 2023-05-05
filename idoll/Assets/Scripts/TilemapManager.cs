@@ -7,7 +7,8 @@ using UnityEngine.Rendering.Universal;
 public class TilemapManager : MonoBehaviour
 {
     // Tilemaps
-    //private Tilemap roomTilemap; 
+    //private Tilemap roomTilemap;
+    private Tilemap floorTilemap;
     private Tilemap lightTilemap;
 
     // Light Prefabs
@@ -17,12 +18,33 @@ public class TilemapManager : MonoBehaviour
     // Created GameObjects
     private List<GameObject> lights;
 
+    // Shadow Rule Tiles
+    [SerializeField]
+    private TileBase wallShadowRuleTile;
+
     void Start()
     {
         //roomTilemap = GameObject.Find("Rooms").GetComponent<Tilemap>();
-        lightTilemap = GameObject.Find("Lights").GetComponent<Tilemap>();
+        try
+        {
+            lightTilemap = GameObject.Find("Lights").GetComponent<Tilemap>();
+            InitializeLights();
+        }
+        catch
+        {
+            Debug.Log("No Tilemap GameObject named 'Lights' was found");
+        }
 
-        InitializeLights();
+
+        try
+        {
+            floorTilemap = GameObject.Find("Floors").GetComponent<Tilemap>();
+            InitializeWallShadows();
+        }
+        catch
+        {
+            Debug.Log("No Tilemap GameObject named 'Floors' was found");
+        }
     }
 
     // Spawn a light at each location in the lights tilemap
@@ -64,5 +86,32 @@ public class TilemapManager : MonoBehaviour
         }
 
         lightTilemap.ClearAllTiles();
+    }
+
+    private void InitializeWallShadows()
+    {
+        // Potential reasons why wall shadows aren't showing up
+        // 1) Shadows Rule Tile needs to be dragged into the TilemapManager in the inspector
+        // 2) Room Grid is not tagged with 'CurrentRoom'
+        // 3) No Floor tilemap was found
+        // 4) Something on the Background sorting layer has an order > 10 (unlikely)
+
+        // Create WallShadows Tilemap
+        var wallShadows = new GameObject("WallShadows");
+        var tm = wallShadows.AddComponent<Tilemap>();
+        var tr = wallShadows.AddComponent<TilemapRenderer>();
+
+        wallShadows.transform.SetParent(GameObject.FindGameObjectWithTag("CurrentRoom").transform);
+        tr.sortingLayerName = "Background";
+        tr.sortingOrder = 10; // Render shadows on top of all of the background/floor tiles
+        wallShadows.transform.localPosition = new Vector2(0f, 0f);
+
+        foreach (Vector3Int pos in floorTilemap.cellBounds.allPositionsWithin)
+        {
+            if (floorTilemap.HasTile(pos))
+            {
+                tm.SetTile(pos, wallShadowRuleTile);
+            }
+        }    
     }
 }
