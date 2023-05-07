@@ -959,6 +959,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5798789764986330285, guid: 19980396f3b38e546a8a61aea4e1edce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.0280151
+      objectReference: {fileID: 0}
     - target: {fileID: 8524851628427550054, guid: 19980396f3b38e546a8a61aea4e1edce, type: 3}
       propertyPath: m_Name
       value: Dialogue System
@@ -1493,6 +1497,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 994149069005366832, guid: 84752d0766644cd44a22a8e97bdf6c0f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 994149070444555717, guid: 84752d0766644cd44a22a8e97bdf6c0f, type: 3}
+      propertyPath: m_Antialiasing
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
