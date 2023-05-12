@@ -124,13 +124,7 @@ public class TilemapManager : MonoBehaviour
         {
             Tilemap tilemap = t.GetComponent<Tilemap>();
 
-            foreach (Vector3Int pos in tilemap.cellBounds.allPositionsWithin)
-            {
-                if (tilemap.HasTile(pos))
-                {
-                    tilemap.SetColor(pos, new Color(0f, 0f, 0f, 0f)); // Make the tile transparent!
-                }
-            }
+            tilemap.color = new Color(0f, 0f, 0f, 0f); // Make the tile transparent!
         }
     }
 }
