@@ -8,6 +8,7 @@ TagManager:
   - DialogueSystem
   - Inventory
   - CurrentRoom
+  - HideThisTilemap
   layers:
   - Default
   - TransparentFX

@@ -45,6 +45,8 @@ public class TilemapManager : MonoBehaviour
         {
             Debug.Log("No Tilemap GameObject named 'Floors' was found");
         }
+
+        HideEditorTilemaps();
     }
 
     // Spawn a light at each location in the lights tilemap
@@ -113,5 +115,22 @@ public class TilemapManager : MonoBehaviour
                 tm.SetTile(pos, wallShadowRuleTile);
             }
         }    
+    }
+
+    private void HideEditorTilemaps()
+    {
+        GameObject[] tilemapsToHide = GameObject.FindGameObjectsWithTag("HideThisTilemap");
+        foreach (GameObject t in tilemapsToHide)
+        {
+            Tilemap tilemap = t.GetComponent<Tilemap>();
+
+            foreach (Vector3Int pos in tilemap.cellBounds.allPositionsWithin)
+            {
+                if (tilemap.HasTile(pos))
+                {
+                    tilemap.SetColor(pos, new Color(0f, 0f, 0f, 0f)); // Make the tile transparent!
+                }
+            }
+        }
     }
 }
