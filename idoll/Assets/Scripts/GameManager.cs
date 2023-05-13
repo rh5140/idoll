@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
 
     // Current scene
     public string currentScene {get; set; }
+
+    // Is the companion following you?
+    public bool companionFollow { get; set;}
  
     #endregion
     
