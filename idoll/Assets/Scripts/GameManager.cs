@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
+
+        // Check if scene dictionary exists, if not, create scene dictionary
         
         // Persist across scenes
         DontDestroyOnLoad(this);
@@ -50,8 +52,16 @@ public class GameManager : MonoBehaviour
 
     // Store the eyeball
     public int currentEye { get; set; } = 1;
+
+    // Current scene
+    public string currentScene {get; set; }
  
     #endregion
+    
+    // Game Manager Dictionary: key = scene name, value = scene-specific dictionary
+    // scene-specific dictionary: key = object name, value = bool
+    // nested dictionary might have weird things going on be sure to check it works
+    public Dictionary<string, Dictionary<string, bool>> progressDict = new Dictionary<string, Dictionary<string, bool>>();
 
     private Inventory inventory; // Temporary inventory code for the winter showcase
     private bool inventoryCooldown = false;
@@ -86,7 +96,10 @@ public class GameManager : MonoBehaviour
     {
         playerSpawnLocation = new Vector3Int(playerPos.x, playerPos.y, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetFaceDirection());
         SceneManager.LoadScene(sceneName);
+        currentScene = sceneName;
     }
+
+
 
     // MAYBE Player + Inventory
 
