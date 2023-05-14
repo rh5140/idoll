@@ -4666,6 +4666,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue System
       objectReference: {fileID: 0}
+    - target: {fileID: 4345289087708842232, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.0280151
+      objectReference: {fileID: 0}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_MoveAction
+      value: 
+      objectReference: {fileID: 761956945140276408, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_PointAction
+      value: 
+      objectReference: {fileID: -2556656614454140589, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_ActionsAsset
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_CancelAction
+      value: 
+      objectReference: {fileID: -8610139867983236172, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_SubmitAction
+      value: 
+      objectReference: {fileID: 7145668171661875115, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_LeftClickAction
+      value: 
+      objectReference: {fileID: -5862466845970551801, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_RightClickAction
+      value: 
+      objectReference: {fileID: 3991758669099236164, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_MiddleClickAction
+      value: 
+      objectReference: {fileID: 8596834322335225168, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_ScrollWheelAction
+      value: 
+      objectReference: {fileID: -8975127083218477113, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_TrackedDevicePositionAction
+      value: 
+      objectReference: {fileID: -2007653415826360240, guid: a3c22d78040e94c45913175747e1b558, type: 3}
+    - target: {fileID: 7797105303339133515, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
+      propertyPath: m_TrackedDeviceOrientationAction
+      value: 
+      objectReference: {fileID: -7639978378672013114, guid: a3c22d78040e94c45913175747e1b558, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2fe3fb55995237418e4413bccab5ed4, type: 3}
 --- !u!1 &8088030492885462822
