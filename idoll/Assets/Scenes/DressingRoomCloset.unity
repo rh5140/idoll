@@ -220,6 +220,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &30964765
 SpriteRenderer:
@@ -899,6 +900,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &448492969
 SpriteRenderer:
@@ -959,6 +961,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5798789764986330285, guid: 19980396f3b38e546a8a61aea4e1edce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.0279846
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033096641217403250, guid: 19980396f3b38e546a8a61aea4e1edce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8524851628427550054, guid: 19980396f3b38e546a8a61aea4e1edce, type: 3}
       propertyPath: m_Name
       value: Dialogue System
@@ -1237,6 +1247,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &641948927
 SpriteRenderer:
@@ -1387,6 +1398,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &930039667
 SpriteRenderer:
@@ -1729,6 +1741,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &1267773037
 SpriteRenderer:
@@ -1879,6 +1892,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &1276090292
 SpriteRenderer:
@@ -2518,6 +2532,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &1435818676
 SpriteRenderer:
@@ -2664,6 +2679,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!114 &1534870497
 MonoBehaviour:
@@ -2889,6 +2905,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &1544932309
 SpriteRenderer:
@@ -3039,6 +3056,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &1607208289
 SpriteRenderer:
@@ -3190,6 +3208,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!114 &1618530372
 MonoBehaviour:
@@ -4059,6 +4078,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &1797511690
 SpriteRenderer:

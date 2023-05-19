@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Properties
+    // Properties are Capitalized
+
     // Call and change GameMode using Yarn Spinner functions
     // GameMode is a variable of enum type, defined in enums.cs
     public GameMode GameMode { get; set; }
@@ -51,13 +53,23 @@ public class GameManager : MonoBehaviour
     public StoryState StoryState { get; set; }
 
     // Store the eyeball
-    public int currentEye { get; set; } = 1;
+    public int CurrentEye { get; set; } = 1;
 
     // Current scene
-    public string currentScene {get; set; }
+    public string CurrentScene {get; set; }
 
     // Is the companion following you?
-    public bool companionFollow { get; set;}
+    public bool CompanionFollow { get; set;}
+    
+    // Player coordinates
+    public int PlayerPositionX {get; set;}
+    public int PlayerPositionY {get; set;}
+
+    // Player facing direction
+    public int PlayerFacing {get; set;}
+
+    //
+    public bool LoadedSave {get; set;} = false;
  
     #endregion
     
@@ -79,6 +91,16 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(ToggleInventory());
         }
+        
+        if (Input.GetKeyDown("o"))
+        {
+            SaveGame();
+        }
+        
+        if (Input.GetKeyDown("p"))
+        {
+            LoadGame();
+        }
     }
     private IEnumerator ToggleInventory()
     {
@@ -99,10 +121,52 @@ public class GameManager : MonoBehaviour
     {
         playerSpawnLocation = new Vector3Int(playerPos.x, playerPos.y, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetFaceDirection());
         SceneManager.LoadScene(sceneName);
-        currentScene = sceneName;
+        CurrentScene = sceneName;
     }
 
+    public void GetPlayerPosition()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector2Int playerPos = new Vector2Int((int) player.transform.position.x, (int) player.transform.position.y);
+        PlayerPositionX = playerPos[0];
+        PlayerPositionY = playerPos[1];
 
+        int playerFacing = player.GetComponent<PlayerMovement>().GetFaceDirection();
+        PlayerFacing = playerFacing;
+    }
+
+    // Prayge Save System works
+    public void SaveGame()
+    {
+        Debug.Log("Saved game!");
+        SaveSystem.SaveGame();
+    }
+
+    public void LoadGame()
+    {
+        GameData data = SaveSystem.LoadGame();
+
+        StoryState = (StoryState) data.storyState;
+        CurrentEye = data.currentEye;
+        CurrentScene = data.currentScene;
+        CompanionFollow = data.companionFollow;
+
+        PlayerPositionX = data.position[0];
+        PlayerPositionY = data.position[1];
+        PlayerFacing = data.direction;
+
+        playerSpawnLocation = new Vector3Int(PlayerPositionX, PlayerPositionY, PlayerFacing);
+
+        // Need to load scene
+
+        LoadedSave = true;
+        SceneManager.LoadScene(CurrentScene);
+
+        // Execution order problem -- wait for scene to fully load before the below
+        // GameObject player = GameObject.FindGameObjectWithTag("Player");
+        // player.transform.position = new Vector2(PlayerPositionX, PlayerPositionY);
+        // player.GetComponent<PlayerMovement>().SetFaceDirection(PlayerFacing);
+    }
 
     // MAYBE Player + Inventory
 

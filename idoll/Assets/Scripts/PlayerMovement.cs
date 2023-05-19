@@ -104,6 +104,11 @@ public class PlayerMovement : MonoBehaviour
         return faceDirection;
     }
 
+    public void SetFaceDirection(int direction) // Set direction (from loading a save)
+    {
+        faceDirection = direction;
+    }
+
     public UnityEngine.Vector2 GetPrevPos()
     {
         return prevPos;

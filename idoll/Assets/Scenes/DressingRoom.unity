@@ -220,6 +220,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &134802050
 SpriteRenderer:
@@ -407,6 +408,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &281564415
 SpriteRenderer:
@@ -1654,6 +1656,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &638326144
 SpriteRenderer:
@@ -2004,6 +2007,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &1069053100
 SpriteRenderer:
@@ -2064,6 +2068,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5798789764986330285, guid: 19980396f3b38e546a8a61aea4e1edce, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.0279846
+      objectReference: {fileID: 0}
     - target: {fileID: 8524851628427550054, guid: 19980396f3b38e546a8a61aea4e1edce, type: 3}
       propertyPath: m_Name
       value: Dialogue System
@@ -2211,6 +2219,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &1263185981
 SpriteRenderer:
@@ -2306,7 +2315,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404878453 stripped
 GameObject:
@@ -2328,6 +2337,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!1 &1406874635
 GameObject:
@@ -4577,6 +4587,7 @@ MonoBehaviour:
   interactDelay: 0.5
   useable: 1
   reusable: 1
+  activated: 0
   timer: 0
 --- !u!212 &1911736665
 SpriteRenderer:

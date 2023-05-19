@@ -8,9 +8,19 @@ public class SceneSetup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set player position if from save
+        if (GameManager.Instance.LoadedSave)
+        {           
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.transform.position = new Vector2(GameManager.Instance.PlayerPositionX, GameManager.Instance.PlayerPositionY);
+            player.GetComponent<PlayerMovement>().SetFaceDirection(GameManager.Instance.PlayerFacing);
+
+            // Set Player Target to have the same position
+        }
+
         // CHECK IF THE DICTIONARY ALREADY EXISTS
         string sceneName = SceneManager.GetActiveScene().name;
-        GameManager.Instance.currentScene = sceneName;
+        GameManager.Instance.CurrentScene = sceneName;
         if (!GameManager.Instance.progressDict.ContainsKey(sceneName))
         {
             // Scene-specific dictionary generator
@@ -30,7 +40,6 @@ public class SceneSetup : MonoBehaviour
             }
             GameManager.Instance.progressDict.Add(sceneName, sceneDict);
         }
-        
     }
 
     // Update is called once per frame

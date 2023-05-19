@@ -42,7 +42,7 @@ public class Interactable : MonoBehaviour
     public virtual void activate()
     {
         activated = !activated;
-        string sceneName = GameManager.Instance.currentScene;
+        string sceneName = GameManager.Instance.CurrentScene;
         string objectName = gameObject.name;
 
         GameManager.Instance.progressDict[sceneName][objectName] = activated;
