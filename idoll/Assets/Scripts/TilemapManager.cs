@@ -22,6 +22,9 @@ public class TilemapManager : MonoBehaviour
     [SerializeField]
     private TileBase wallShadowRuleTile;
 
+    // Objects Sprite For Tliemap
+    [SerializeField]
+    private List<Sprite> objectsSpritesheet;
     void Start()
     {
         //roomTilemap = GameObject.Find("Rooms").GetComponent<Tilemap>();
