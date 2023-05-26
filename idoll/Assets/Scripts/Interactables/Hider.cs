@@ -6,7 +6,16 @@ using UnityEngine.Tilemaps;
 public class Hider : Interactable
 {
     public GameObject target;
-    // Start is called before the first frame update
+
+
+    void Start()
+    {
+        if (this.activated % 2 == 1) // %2 deals with uninteracting
+        {
+            OnInteract(); // Hides the object if it was hidden beforehand
+        }
+    }
+
 
     public override void OnInteract()
     {

@@ -33,14 +33,14 @@ public class Interactable : MonoBehaviour
     public virtual void interact() //Triggered when the player presses the Interact key
     {
         // Only enable the interactable for a range of acts/scenes/subscenes
-        Vector3Int enableVector = GameManager.Instance.storyState - enableInAct;
+        Vector3Int enableVector = GameManager.Instance.StoryState - enableInAct;
         if (enableVector.x < 0 ||
            (enableVector.x == 0 && enableVector.y < 0) ||
            (enableVector.x == 0 && enableVector.y == 0 && enableVector.z < 0))
         {
             return;
         }
-        Vector3Int disableVector = disableAfterAct - GameManager.Instance.storyState;
+        Vector3Int disableVector = disableAfterAct - GameManager.Instance.StoryState;
         if (disableVector != Vector3Int.zero &&
             disableVector.x < 0 ||
            (disableVector.x == 0 && disableVector.y < 0) ||
@@ -60,7 +60,7 @@ public class Interactable : MonoBehaviour
     public virtual void activate()
     {
         activated += 1;
-        string sceneName = GameManager.Instance.currentScene;
+        string sceneName = GameManager.Instance.CurrentScene;
         string objectName = gameObject.name;
 
         GameManager.Instance.progressDict[sceneName][objectName] = true;

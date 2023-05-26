@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int storyState;
+    public int[] storyState;
     public int currentEye;
     public string currentScene;
     public bool companionFollow;
@@ -16,7 +16,10 @@ public class GameData
 
     public GameData()
     {
-        storyState= (int) GameManager.Instance.StoryState;
+        storyState = new int[3];
+        storyState[0] = GameManager.Instance.StoryState.x;
+        storyState[1] = GameManager.Instance.StoryState.y;
+        storyState[2] = GameManager.Instance.StoryState.z;
         currentEye = GameManager.Instance.CurrentEye;
         currentScene = GameManager.Instance.CurrentScene;
         companionFollow = GameManager.Instance.CompanionFollow;

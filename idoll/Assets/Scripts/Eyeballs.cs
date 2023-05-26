@@ -97,7 +97,7 @@ public class Eyeballs : MonoBehaviour
         {
             SetVisible(false);
         }
-        GameManager.Instance.GetComponentInChildren<Light2D>().color = screenTint[GameManager.Instance.currentEye - 1];
+        GameManager.Instance.GetComponentInChildren<Light2D>().color = screenTint[GameManager.Instance.CurrentEye - 1];
     }
 
     private void SetVisible(bool b)
