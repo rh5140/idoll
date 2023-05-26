@@ -27,22 +27,22 @@ public class Companion : MonoBehaviour
         switch (faceDirection)
         {
             case 0: // Down
-                this.transform.position = transform.position + new Vector3Int(0, 1);
+                //this.transform.position = transform.position + new Vector3Int(0, 1);
                 animator.SetFloat("xAxis", 0f);
                 animator.SetFloat("yAxis", -1f);
                 break;
             case 1: // Up
-                this.transform.position = transform.position + new Vector3Int(0, -1);
+                //this.transform.position = transform.position + new Vector3Int(0, -1);
                 animator.SetFloat("xAxis", 0f);
                 animator.SetFloat("yAxis", 1f);
                 break;
             case 2: // Left
-                this.transform.position = transform.position + new Vector3Int(1, 0);
+                //this.transform.position = transform.position + new Vector3Int(1, 0);
                 animator.SetFloat("xAxis", -1f);
                 animator.SetFloat("yAxis", 0f);
                 break;
             case 3: // Right
-                this.transform.position = transform.position + new Vector3Int(-1, 0);
+                //this.transform.position = transform.position + new Vector3Int(-1, 0);
                 animator.SetFloat("xAxis", 1f);
                 animator.SetFloat("yAxis", 0f);
                 break;

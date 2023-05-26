@@ -7,7 +7,9 @@ public class Interactable : MonoBehaviour
     public float interactDelay = 0.5f; //Time in seconds before it can be interacted with again
     public bool useable = true;
     public bool reusable = true;
-    public bool activated = false;
+    public int activated = 0;
+    public Vector3Int enableInAct; // Define the first act/scene/subscene where the interactable shows up
+    public Vector3Int disableAfterAct; // Define the last act/scene/subscene where the interactable shows up
 
     public float timer = 0;
 
@@ -30,22 +32,38 @@ public class Interactable : MonoBehaviour
 
     public virtual void interact() //Triggered when the player presses the Interact key
     {
+        // Only enable the interactable for a range of acts/scenes/subscenes
+        Vector3Int enableVector = GameManager.Instance.storyState - enableInAct;
+        if (enableVector.x < 0 ||
+           (enableVector.x == 0 && enableVector.y < 0) ||
+           (enableVector.x == 0 && enableVector.y == 0 && enableVector.z < 0))
+        {
+            return;
+        }
+        Vector3Int disableVector = disableAfterAct - GameManager.Instance.storyState;
+        if (disableVector != Vector3Int.zero &&
+            disableVector.x < 0 ||
+           (disableVector.x == 0 && disableVector.y < 0) ||
+           (disableVector.x == 0 && disableVector.y == 0 && disableVector.z < 0))
+        {
+            return;
+        }
+
         if (useable)
         {
             StartTimer();
             OnInteract();
             activate();
         }
-
     }
 
     public virtual void activate()
     {
-        activated = !activated;
-        string sceneName = GameManager.Instance.CurrentScene;
+        activated += 1;
+        string sceneName = GameManager.Instance.currentScene;
         string objectName = gameObject.name;
 
-        GameManager.Instance.progressDict[sceneName][objectName] = activated;
+        GameManager.Instance.progressDict[sceneName][objectName] = true;
     }
 
     // Update is called once per frame

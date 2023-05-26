@@ -35,7 +35,7 @@ public class SceneSetup : MonoBehaviour
             for (int i = 0; i < length; i++)
             {
                 string objName = foundInteractables[i].name;
-                bool objBool = foundInteractables[i].activated; 
+                bool objBool = foundInteractables[i].activated > 0; 
                 sceneDict.Add(objName, objBool);
             }
             GameManager.Instance.progressDict.Add(sceneName, sceneDict);

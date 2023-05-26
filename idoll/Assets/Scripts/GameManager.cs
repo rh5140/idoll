@@ -46,17 +46,19 @@ public class GameManager : MonoBehaviour
     // Properties are Capitalized
 
     // Call and change GameMode using Yarn Spinner functions
-    // GameMode is a variable of enum type, defined in enums.cs
-    public GameMode GameMode { get; set; }
+    public string gameMode { get; set; }
 
     // Get story state... also idk we need to maintain bools somewhere...
-    public StoryState StoryState { get; set; }
+    public Vector3Int storyState { get; set; } = new Vector3Int(0,0,0); // (Act, Scene, Subscene)
+
+    [SerializeField]
+    private Vector3Int actSceneSubscene;
 
     // Store the eyeball
     public int CurrentEye { get; set; } = 1;
 
     // Current scene
-    public string CurrentScene {get; set; }
+    public string currentScene { get; set; }
 
     // Is the companion following you?
     public bool CompanionFollow { get; set;}
@@ -100,6 +102,12 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown("p"))
         {
             LoadGame();
+
+        // Jump to scene using the Unity Inspector
+        if (actSceneSubscene != storyState) // If the player manually changes the scene
+        {
+            storyState = actSceneSubscene;
+            // Update act/scene logic!
         }
     }
     private IEnumerator ToggleInventory()
@@ -130,9 +138,54 @@ public class GameManager : MonoBehaviour
         Vector2Int playerPos = new Vector2Int((int) player.transform.position.x, (int) player.transform.position.y);
         PlayerPositionX = playerPos[0];
         PlayerPositionY = playerPos[1];
-
         int playerFacing = player.GetComponent<PlayerMovement>().GetFaceDirection();
         PlayerFacing = playerFacing;
+    }
+
+    public void NextStoryAct()
+    {
+        storyState += new Vector3Int(1, 0, 0);
+        actSceneSubscene = storyState;
+        // Update act/scene logic!
+    }
+    public void NextStoryScene()
+    {
+        storyState += new Vector3Int(0, 1, 0);
+        actSceneSubscene = storyState;
+        // Update act/scene logic!
+    }
+    public void NextStorySubscene()
+    {
+        storyState += new Vector3Int(0, 0, 1);
+        actSceneSubscene = storyState;
+        // Update act/scene logic!
+    }
+
+    public void SetGameMode(string gm)
+    {
+        switch(gm)
+        {
+            case "dialogue":
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
+                break;
+            case "gameplay":
+            case "":
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = true;
+                break;
+            case "menu":
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
+                break;
+            case "chase":
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = true;
+                break;
+            default:
+                Debug.Log("Invalid GameMode!");
+                break;
+        }
     }
 
     // Prayge Save System works
