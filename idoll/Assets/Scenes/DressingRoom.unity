@@ -221,6 +221,8 @@ MonoBehaviour:
   useable: 1
   reusable: 1
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
 --- !u!212 &134802050
 SpriteRenderer:
@@ -1159,6 +1161,8 @@ MonoBehaviour:
   useable: 1
   reusable: 1
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
 --- !u!212 &281564415
 SpriteRenderer:
@@ -1648,6 +1652,8 @@ MonoBehaviour:
   useable: 1
   reusable: 0
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
 --- !u!61 &561384332
 BoxCollider2D:
@@ -2213,6 +2219,8 @@ MonoBehaviour:
   useable: 1
   reusable: 1
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
 --- !u!212 &638326144
 SpriteRenderer:
@@ -2368,6 +2376,8 @@ MonoBehaviour:
   useable: 1
   reusable: 1
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
   target: {fileID: 8088030493129648600}
 --- !u!61 &645108031
@@ -2702,6 +2712,8 @@ MonoBehaviour:
   useable: 1
   reusable: 1
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
 --- !u!212 &1069053100
 SpriteRenderer:
@@ -4505,6 +4517,8 @@ MonoBehaviour:
   useable: 1
   reusable: 1
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
 --- !u!212 &1263185981
 SpriteRenderer:
@@ -4623,6 +4637,8 @@ MonoBehaviour:
   useable: 1
   reusable: 1
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
 --- !u!1 &1406874635
 GameObject:
@@ -7420,6 +7436,8 @@ MonoBehaviour:
   useable: 1
   reusable: 1
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
 --- !u!212 &1911736665
 SpriteRenderer:
