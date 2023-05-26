@@ -88,13 +88,13 @@ public class Eyeballs : MonoBehaviour
         // Change visibility based on current eye
         if (eyes[GameManager.Instance.currentEye - 1])
         {
-            SetVisible(true);
-            GameManager.Instance.GetComponentInChildren<Light2D>().color = screenTint[GameManager.Instance.currentEye - 1];
+            SetVisible(true);;
         }
         else
         {
             SetVisible(false);
         }
+        GameManager.Instance.GetComponentInChildren<Light2D>().color = screenTint[GameManager.Instance.currentEye - 1];
     }
 
     private void SetVisible(bool b)
