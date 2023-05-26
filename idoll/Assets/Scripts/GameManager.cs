@@ -47,13 +47,16 @@ public class GameManager : MonoBehaviour
     public string gameMode { get; set; }
 
     // Get story state... also idk we need to maintain bools somewhere...
-    public Vector3Int StoryState { get; set; } // (Act, Scene, Subscene)
+    public Vector3Int storyState { get; set; } = new Vector3Int(0,0,0); // (Act, Scene, Subscene)
+
+    [SerializeField]
+    private Vector3Int actSceneSubscene;
 
     // Store the eyeball
     public int currentEye { get; set; } = 1;
 
     // Current scene
-    public string currentScene {get; set; }
+    public string currentScene { get; set; }
 
     // Is the companion following you?
     public bool companionFollow { get; set;}
@@ -77,6 +80,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown("e")) // Oh wait why am I using a Coroutine? I forgot GetKeyDown only triggers on the 'down' press haha
         {
             StartCoroutine(ToggleInventory());
+        }
+
+        // Jump to scene using the Unity Inspector
+        if (actSceneSubscene != storyState) // If the player manually changes the scene
+        {
+            storyState = actSceneSubscene;
+            // Update act/scene logic!
         }
     }
     private IEnumerator ToggleInventory()
@@ -103,15 +113,21 @@ public class GameManager : MonoBehaviour
 
     public void NextStoryAct()
     {
-        StoryState = StoryState + new Vector3Int(1, 0, 0);
+        storyState += new Vector3Int(1, 0, 0);
+        actSceneSubscene = storyState;
+        // Update act/scene logic!
     }
     public void NextStoryScene()
     {
-        StoryState = StoryState + new Vector3Int(0, 1, 0);
+        storyState += new Vector3Int(0, 1, 0);
+        actSceneSubscene = storyState;
+        // Update act/scene logic!
     }
     public void NextStorySubscene()
     {
-        StoryState = StoryState + new Vector3Int(0, 0, 1);
+        storyState += new Vector3Int(0, 0, 1);
+        actSceneSubscene = storyState;
+        // Update act/scene logic!
     }
 
     public void SetGameMode(string gm)
