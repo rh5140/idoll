@@ -44,11 +44,10 @@ public class GameManager : MonoBehaviour
 
     #region Properties
     // Call and change GameMode using Yarn Spinner functions
-    // GameMode is a variable of enum type, defined in enums.cs
-    public GameMode GameMode { get; set; }
+    public string gameMode { get; set; }
 
     // Get story state... also idk we need to maintain bools somewhere...
-    public StoryState StoryState { get; set; }
+    public Vector3Int StoryState { get; set; } // (Act, Scene, Subscene)
 
     // Store the eyeball
     public int currentEye { get; set; } = 1;
@@ -102,6 +101,45 @@ public class GameManager : MonoBehaviour
         currentScene = sceneName;
     }
 
+    public void NextStoryAct()
+    {
+        StoryState = StoryState + new Vector3Int(1, 0, 0);
+    }
+    public void NextStoryScene()
+    {
+        StoryState = StoryState + new Vector3Int(0, 1, 0);
+    }
+    public void NextStorySubscene()
+    {
+        StoryState = StoryState + new Vector3Int(0, 0, 1);
+    }
+
+    public void SetGameMode(string gm)
+    {
+        switch(gm)
+        {
+            case "dialogue":
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
+                break;
+            case "gameplay":
+            case "":
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = true;
+                break;
+            case "menu":
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
+                break;
+            case "chase":
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
+                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = true;
+                break;
+            default:
+                Debug.Log("Invalid GameMode!");
+                break;
+        }
+    }
 
 
     // MAYBE Player + Inventory
