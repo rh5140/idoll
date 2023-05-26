@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour
     public float interactDelay = 0.5f; //Time in seconds before it can be interacted with again
     public bool useable = true;
     public bool reusable = true;
-    public bool activated = false;
+    public int activated = 0;
 
     public float timer = 0;
 
@@ -36,16 +36,15 @@ public class Interactable : MonoBehaviour
             OnInteract();
             activate();
         }
-
     }
 
     public virtual void activate()
     {
-        activated = !activated;
+        activated += 1;
         string sceneName = GameManager.Instance.currentScene;
         string objectName = gameObject.name;
 
-        GameManager.Instance.progressDict[sceneName][objectName] = activated;
+        GameManager.Instance.progressDict[sceneName][objectName] = true;
     }
 
     // Update is called once per frame

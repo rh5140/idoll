@@ -40,7 +40,7 @@ public class PlayerInteractor : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Interactable obj = other.GetComponentInParent<Interactable>();
-        if (obj != null)
+        if (obj != null && obj.tag != "Activator")
         {
             currentInteractable = obj;
         }

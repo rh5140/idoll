@@ -40,9 +40,12 @@ public class PlayerCollision : MonoBehaviour
     public bool CheckCollision(UnityEngine.Vector2 dirVect, float dist) // Check if there is any collision using raycast in specified direction and distance.
     {
         RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, dirVect, dist); // RaycastAll to check for stacked colliders
+        bool hasCollided = false;
 
         for (int numColliders = 0; numColliders < hit.Length; numColliders++)
         {
+            //Debug.Log(numColliders + " | " + hit[numColliders].collider.gameObject.name);
+
             // ABSOLUTELY PERFECT CODE TO check to see if sprites are visible (TODO: probably needs to be made better later)
             SpriteRenderer s = null;
             TilemapRenderer t = null;
@@ -57,25 +60,29 @@ public class PlayerCollision : MonoBehaviour
             }
             catch { }
 
-            if(s != null && s.gameObject.tag == "Companion") {
-                if (s.gameObject.GetComponent<Companion>().IsGhosted()) {
-                    return false;
+            if (s != null && s.gameObject.tag == "Activator")
+            {
+                s.GetComponentInParent<Interactable>().interact();
+            }
+
+            else if (s != null && s.gameObject.tag == "Companion") {
+                if (s.gameObject.GetComponent<Companion>().IsGhosted() == false) {
+                    hasCollided = true; // Collision if companion is not ghosted!
                 }
             }
 
-            if (s != null || t != null)
+            else if (s != null || t != null)
             {
-                if (s == null && t.enabled)
+                if ((s == null && t.enabled) || (t == null && s.enabled))
                 {
-                    Debug.Log("Collided");
-                    return (hit[numColliders].collider != null);
-                }
-                if (t == null && s.enabled)
-                {
-                    return (hit[numColliders].collider != null);
+                    if (hit[numColliders].collider != null)
+                    {
+                        hasCollided = true;
+                    }
                 }
             }
         }
-        return false;
+
+        return hasCollided;
     }
 }
