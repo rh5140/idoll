@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: RobotoMono-VariableFont_wght SDF
   m_EditorClassIdentifier: 
-  hashCode: -2143912846
+  hashCode: 0
   material: {fileID: 3377306972793478257}
-  materialHashCode: 42795922
+  materialHashCode: 0
   m_Version: 1.1.0
   m_SourceFontFileGUID: 7f2ed8d1c8011c64db7c8a69dd114323
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 7f2ed8d1c8011c64db7c8a69dd114323, type: 3}
@@ -2809,9 +2809,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.6770833
-    - _ScaleRatioC: 0.6770833
+    - _ScaleRatioA: 1
+    - _ScaleRatioB: 1
+    - _ScaleRatioC: 1
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

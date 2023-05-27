@@ -20,8 +20,8 @@ public class Eyeballs : MonoBehaviour
 
     private void Awake()
     {
-        inputs = new Inputs();
-        input = GameManager.Instance.currentEye;
+        // inputs = new Inputs();
+        // input = GameManager.Instance.CurrentEye;
     }
 
     #region InputSystem
@@ -55,6 +55,9 @@ public class Eyeballs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inputs = new Inputs();
+        input = GameManager.Instance.CurrentEye;
+        
         if (sprite = GetComponent<SpriteRenderer>()) {
             isSprite = true;
         }
@@ -82,19 +85,19 @@ public class Eyeballs : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.currentEye = (int) input;
+            GameManager.Instance.CurrentEye = (int) input;
         }
 
         // Change visibility based on current eye
-        if (eyes[GameManager.Instance.currentEye - 1])
+        if (eyes[GameManager.Instance.CurrentEye - 1])
         {
-            SetVisible(true);;
+            SetVisible(true);
         }
         else
         {
             SetVisible(false);
         }
-        GameManager.Instance.GetComponentInChildren<Light2D>().color = screenTint[GameManager.Instance.currentEye - 1];
+        GameManager.Instance.GetComponentInChildren<Light2D>().color = screenTint[GameManager.Instance.CurrentEye - 1];
     }
 
     private void SetVisible(bool b)

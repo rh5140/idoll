@@ -43,23 +43,35 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Properties
+    // Properties are Capitalized
+
     // Call and change GameMode using Yarn Spinner functions
-    public string gameMode { get; set; }
+    public string GameMode { get; set; }
 
     // Get story state... also idk we need to maintain bools somewhere...
-    public Vector3Int storyState { get; set; } = new Vector3Int(0,0,0); // (Act, Scene, Subscene)
+    public Vector3Int StoryState { get; set; } = new Vector3Int(0,0,0); // (Act, Scene, Subscene)
 
     [SerializeField]
     private Vector3Int actSceneSubscene;
 
     // Store the eyeball
-    public int currentEye { get; set; } = 1;
+    public int CurrentEye { get; set; } = 1;
 
     // Current scene
-    public string currentScene { get; set; }
+    public string CurrentScene { get; set; }
 
     // Is the companion following you?
-    public bool companionFollow { get; set;}
+    public bool CompanionFollow { get; set;}
+    
+    // Player coordinates
+    public int PlayerPositionX {get; set;}
+    public int PlayerPositionY {get; set;}
+
+    // Player facing direction
+    public int PlayerFacing {get; set;}
+
+    //
+    public bool LoadedSave {get; set;} = false;
  
     #endregion
     
@@ -79,26 +91,37 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown("e")) // Oh wait why am I using a Coroutine? I forgot GetKeyDown only triggers on the 'down' press haha
         {
-            StartCoroutine(ToggleInventory());
+            //StartCoroutine(ToggleInventory());
+        }
+        
+        if (Input.GetKeyDown("o"))
+        {
+            SaveGame();
+        }
+
+        if (Input.GetKeyDown("p"))
+        {
+            LoadGame();
         }
 
         // Jump to scene using the Unity Inspector
-        if (actSceneSubscene != storyState) // If the player manually changes the scene
+        if (actSceneSubscene != StoryState) // If the player manually changes the scene
         {
-            storyState = actSceneSubscene;
+            StoryState = actSceneSubscene;
             // Update act/scene logic!
         }
     }
-    private IEnumerator ToggleInventory()
-    {
-        if (!inventoryCooldown)
-        {
-            inventoryCooldown = true;
-            inventory.gameObject.transform.parent.gameObject.SetActive(!inventory.gameObject.transform.parent.gameObject.activeSelf);
-            yield return new WaitForSeconds(0.3f); // Prevent multi-presses
-            inventoryCooldown = false;
-        }
-    }
+
+    //private IEnumerator ToggleInventory()
+    //{
+    //    if (!inventoryCooldown)
+    //    {
+    //        inventoryCooldown = true;
+    //        inventory.gameObject.transform.parent.gameObject.SetActive(!inventory.gameObject.transform.parent.gameObject.activeSelf);
+    //        yield return new WaitForSeconds(0.3f); // Prevent multi-presses
+    //        inventoryCooldown = false;
+    //    }
+    //}
 
     // Stores the x/y position and the facing direction of the player when switching scenes
     public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
@@ -108,25 +131,35 @@ public class GameManager : MonoBehaviour
     {
         playerSpawnLocation = new Vector3Int(playerPos.x, playerPos.y, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetFaceDirection());
         SceneManager.LoadScene(sceneName);
-        currentScene = sceneName;
+        CurrentScene = sceneName;
+    }
+
+    public void GetPlayerPosition()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector2Int playerPos = new Vector2Int((int) player.transform.position.x, (int) player.transform.position.y);
+        PlayerPositionX = playerPos[0];
+        PlayerPositionY = playerPos[1];
+        int playerFacing = player.GetComponent<PlayerMovement>().GetFaceDirection();
+        PlayerFacing = playerFacing;
     }
 
     public void NextStoryAct()
     {
-        storyState += new Vector3Int(1, 0, 0);
-        actSceneSubscene = storyState;
+        StoryState += new Vector3Int(1, 0, 0);
+        actSceneSubscene = StoryState;
         // Update act/scene logic!
     }
     public void NextStoryScene()
     {
-        storyState += new Vector3Int(0, 1, 0);
-        actSceneSubscene = storyState;
+        StoryState += new Vector3Int(0, 1, 0);
+        actSceneSubscene = StoryState;
         // Update act/scene logic!
     }
     public void NextStorySubscene()
     {
-        storyState += new Vector3Int(0, 0, 1);
-        actSceneSubscene = storyState;
+        StoryState += new Vector3Int(0, 0, 1);
+        actSceneSubscene = StoryState;
         // Update act/scene logic!
     }
 
@@ -157,6 +190,38 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Prayge Save System works
+    public void SaveGame()
+    {
+        Debug.Log("Saved game!");
+        SaveSystem.SaveGame();
+    }
+
+    public void LoadGame()
+    {
+        GameData data = SaveSystem.LoadGame();
+
+        StoryState = new Vector3Int(data.storyState[0], data.storyState[1], data.storyState[2]);
+        CurrentEye = data.currentEye;
+        CurrentScene = data.currentScene;
+        CompanionFollow = data.companionFollow;
+
+        PlayerPositionX = data.position[0];
+        PlayerPositionY = data.position[1];
+        PlayerFacing = data.direction;
+
+        playerSpawnLocation = new Vector3Int(PlayerPositionX, PlayerPositionY, PlayerFacing);
+
+        // Need to load scene
+
+        LoadedSave = true;
+        SceneManager.LoadScene(CurrentScene);
+
+        // Execution order problem -- wait for scene to fully load before the below
+        // GameObject player = GameObject.FindGameObjectWithTag("Player");
+        // player.transform.position = new Vector2(PlayerPositionX, PlayerPositionY);
+        // player.GetComponent<PlayerMovement>().SetFaceDirection(PlayerFacing);
+    }
 
     // MAYBE Player + Inventory
 

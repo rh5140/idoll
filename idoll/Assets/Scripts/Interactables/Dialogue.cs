@@ -59,7 +59,7 @@ public class Dialogue : Interactable
         else
         {
             GameManager.Instance.SetGameMode("newGameMode");
-            if (GameManager.Instance.gameMode == "dialogue")
+            if (GameManager.Instance.GameMode == "dialogue")
             {
                 dialogue_is_active = true;
             }
