@@ -104,6 +104,11 @@ public class PlayerMovement : MonoBehaviour
         return faceDirection;
     }
 
+    public void SetFaceDirection(int direction) // Set direction (from loading a save)
+    {
+        faceDirection = direction;
+    }
+
     public UnityEngine.Vector2 GetPrevPos()
     {
         return prevPos;
@@ -129,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
             faceDirection = xAxis == 1 ? 3 : 2;
 
-            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(-xAxis, 0), 0.5f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.2f)) // Check if we can move in the specified direction
+            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(-xAxis, 0), 0.45f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.2f)) // Check if we can move in the specified direction
             {
                 target = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
                 currentlyMoving = true;
@@ -146,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
 
             faceDirection = yAxis == 1 ? 1 : 0;
 
-            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, -yAxis), 0.5f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.2f)) // Check if we can move in the specified direction
+            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, -yAxis), 0.45f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.2f)) // Check if we can move in the specified direction
             {
                 target = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
                 currentlyMoving = true;

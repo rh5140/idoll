@@ -7,6 +7,10 @@ TagManager:
   - Object
   - DialogueSystem
   - Inventory
+  - CurrentRoom
+  - HideThisTilemap
+  - Companion
+  - Activator
   layers:
   - Default
   - TransparentFX
@@ -47,14 +51,8 @@ TagManager:
   - name: Background
     uniqueID: 3769214043
     locked: 0
-  - name: ObjectsB
-    uniqueID: 3160789397
-    locked: 0
-  - name: Actors
+  - name: Main
     uniqueID: 3262543127
-    locked: 0
-  - name: ObjectsA
-    uniqueID: 4155428481
     locked: 0
   - name: Foreground
     uniqueID: 3835805331

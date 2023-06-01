@@ -6,6 +6,7 @@ using Yarn.Unity;
 public class Dialogue : Interactable
 {
     private GameObject dialogueSystem;
+    //private string modeBeforeDialogue;
     private static bool dialogue_is_active = false;
 
     private void Start() // Automatically link up with other game objects when loading the scene
@@ -41,20 +42,33 @@ public class Dialogue : Interactable
     }
 
     [YarnCommand("ToggleMovement")]
-    public static bool ToggleMovexment() // TODO: Handle enabling/disabling player with GameManager 
+    public static bool ToggleMovement(string newGameMode = "default")
     {
-        dialogue_is_active = !dialogue_is_active;
-        if (dialogue_is_active)
+        if (newGameMode == "default")
         {
-            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
-            GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
-            return dialogue_is_active;
+            dialogue_is_active = !dialogue_is_active;
+            if (dialogue_is_active)
+            {
+                GameManager.Instance.SetGameMode("dialogue");
+            }
+            else
+            {
+                GameManager.Instance.SetGameMode("gameplay");
+            }
         }
         else
         {
-            GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
-            GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = true;
-            return dialogue_is_active;
+            GameManager.Instance.SetGameMode("newGameMode");
+            if (GameManager.Instance.GameMode == "dialogue")
+            {
+                dialogue_is_active = true;
+            }
+            else
+            {
+                dialogue_is_active = false;
+            }
         }
+
+        return dialogue_is_active;
     }
 }
