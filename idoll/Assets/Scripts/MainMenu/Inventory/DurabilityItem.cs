@@ -7,8 +7,8 @@ public class DurabilityItem : Item
     public int durability;
     public int maxDurability;
 
-    public DurabilityItem(string name, int dur, int maxDur)
-        : base(name, true, 1)
+    public DurabilityItem(string name, int dur, int maxDur, string description)
+        : base(name, true, 1, description)
     {    
         durability = dur;
         maxDurability = maxDur;

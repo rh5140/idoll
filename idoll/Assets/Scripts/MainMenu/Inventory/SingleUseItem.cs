@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SingleUseItem : Item
 {
-    public SingleUseItem(string name, int maxCount)
-        : base(name, false, maxCount)
+    public SingleUseItem(string name, int maxCount, string description)
+        : base(name, false, maxCount, description)
     {
         
     }

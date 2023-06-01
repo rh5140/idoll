@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class Inventory : MonoBehaviour
     public DurabilityItem testDurabilityItem;
     public SingleUseItem testSingleUseItem;
 
+    public TextMeshProUGUI descriptionBox;
+
     private ItemSlot[] itemSlots;
 
-    private const int MaxInventorySize = 24;
+    private const int MaxInventorySize = 12;
     private int currentInventoryUsage = 0;
 
     private Dictionary<string, List<int>> inventory = new Dictionary<string, List<int>>();
@@ -32,6 +35,13 @@ public class Inventory : MonoBehaviour
         }
 
         itemSlots = itemsParent.GetComponentsInChildren<ItemSlot>();
+
+        foreach (ItemSlot slot in itemSlots)
+        {
+            slot.description = descriptionBox;
+        }
+
+        descriptionBox.text = "";
 
         Debug.Log("Successfully setup Inventory with " + itemSlots.Length + " ItemSlots");
     }

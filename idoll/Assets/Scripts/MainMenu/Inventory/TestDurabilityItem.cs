@@ -7,7 +7,7 @@ public class TestDurabilityItem : DurabilityItem
 {
     public static Sprite s;
     public TestDurabilityItem()
-        : base("test_dur_item", 10, 10)
+        : base("test_dur_item", 10, 10, "This is a test durability item")
     {
 
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class TestSingleUseItem : SingleUseItem
 {
     public TestSingleUseItem()
-        : base("test_single_use_item", 20)
+        : base("test_single_use_item", 20, "This is a test single use item")
     {
         
     }
