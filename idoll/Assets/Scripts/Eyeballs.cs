@@ -20,8 +20,8 @@ public class Eyeballs : MonoBehaviour
 
     private void Awake()
     {
-        // inputs = new Inputs();
-        // input = GameManager.Instance.CurrentEye;
+        inputs = new Inputs();
+        input = GameManager.Instance.CurrentEye;
     }
 
     #region InputSystem

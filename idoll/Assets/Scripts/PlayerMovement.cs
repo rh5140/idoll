@@ -83,16 +83,6 @@ public class PlayerMovement : MonoBehaviour
         return moveVector;
     }
 
-    /*
-    private void OnSecondaryPerformed(InputAction.CallbackContext value)
-    {
-        if (GameManager.Instance.GameMode == "gameplay" || GameManager.Instance.GameMode == "")
-        {
-            GameManager.Instance.ToggleMenu();
-        }
-    }
-    */
-
     #endregion
 
     void Start()

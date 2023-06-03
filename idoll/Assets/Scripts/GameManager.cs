@@ -227,13 +227,11 @@ public class GameManager : MonoBehaviour
         if (GameMode == "menu")
         {
             SetGameMode("gameplay");
-            Debug.Log("switching to gameplay");
             mainMenu.SlideMenu("off");
         }
-        else //if (GameMode == "gameplay" || GameMode == "")
+        else if (GameMode == "gameplay" || GameMode == "")
         {
             SetGameMode("menu");
-            Debug.Log("switching to menu");
             mainMenu.SlideMenu("on");
         }
     }

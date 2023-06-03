@@ -211,11 +211,9 @@ public class MainMenu : MonoBehaviour
     {
         if (!inputBlocked)
         {
-            Debug.Log("Input Blocked, waiting");
             inputBlocked = true;
             yield return new WaitForSeconds(inputDelay);
             inputBlocked = false;
-            Debug.Log("Input unblocked");
         }
     }
 
