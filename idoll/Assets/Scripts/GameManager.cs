@@ -80,20 +80,14 @@ public class GameManager : MonoBehaviour
     // nested dictionary might have weird things going on be sure to check it works
     public Dictionary<string, Dictionary<string, bool>> progressDict = new Dictionary<string, Dictionary<string, bool>>();
 
-    private Inventory inventory; // Temporary inventory code for the winter showcase
-    private bool inventoryCooldown = false;
+    private MainMenu mainMenu;
     private void Start()
     {
-        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
-        inventory.gameObject.transform.parent.gameObject.SetActive(false);
+        mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<MainMenu>();
+        //mainMenu.gameObject.SetActive(false);
     }
     private void Update()
     {
-        if (Input.GetKeyDown("e")) // Oh wait why am I using a Coroutine? I forgot GetKeyDown only triggers on the 'down' press haha
-        {
-            //StartCoroutine(ToggleInventory());
-        }
-        
         if (Input.GetKeyDown("o"))
         {
             SaveGame();
@@ -170,19 +164,23 @@ public class GameManager : MonoBehaviour
             case "dialogue":
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
                 GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
+                GameMode = "dialogue";
                 break;
             case "gameplay":
             case "":
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
                 GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = true;
+                GameMode = "gameplay";
                 break;
             case "menu":
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
                 GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
+                GameMode = "menu";
                 break;
             case "chase":
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
                 GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = true;
+                GameMode = "chase";
                 break;
             default:
                 Debug.Log("Invalid GameMode!");
@@ -224,6 +222,21 @@ public class GameManager : MonoBehaviour
     }
 
     // MAYBE Player + Inventory
+    public void ToggleMenu()
+    {
+        if (GameMode == "menu")
+        {
+            SetGameMode("gameplay");
+            Debug.Log("switching to gameplay");
+            mainMenu.SlideMenu("off");
+        }
+        else //if (GameMode == "gameplay" || GameMode == "")
+        {
+            SetGameMode("menu");
+            Debug.Log("switching to menu");
+            mainMenu.SlideMenu("on");
+        }
+    }
 
     // MAYBE Background Music
 

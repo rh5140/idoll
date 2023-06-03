@@ -40,6 +40,9 @@ public class SceneSetup : MonoBehaviour
             }
             GameManager.Instance.progressDict.Add(sceneName, sceneDict);
         }
+
+        // Set GameMode to "gameplay"
+        GameManager.Instance.SetGameMode("gameplay");
     }
 
     // Update is called once per frame

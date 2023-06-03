@@ -11,6 +11,7 @@ TagManager:
   - HideThisTilemap
   - Companion
   - Activator
+  - MainMenu
   layers:
   - Default
   - TransparentFX

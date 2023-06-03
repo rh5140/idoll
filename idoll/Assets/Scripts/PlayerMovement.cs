@@ -48,14 +48,16 @@ public class PlayerMovement : MonoBehaviour
     {
         input.Enable();
         input.Player.Movement.performed += OnMovementPerformed;
-        input.Player.Movement.canceled += OnMovementCancelled;
+        input.Player.Movement.canceled += OnMovementCanceled;
+        //input.Player.Secondary.performed += OnSecondaryPerformed;
     }
 
     private void OnDisable()
     {
         input.Disable();
         input.Player.Movement.performed -= OnMovementPerformed;
-        input.Player.Movement.canceled -= OnMovementCancelled;
+        input.Player.Movement.canceled -= OnMovementCanceled;
+        //input.Player.Secondary.performed -= OnSecondaryPerformed;
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
@@ -71,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnMovementCancelled(InputAction.CallbackContext value)
+    private void OnMovementCanceled(InputAction.CallbackContext value)
     {
         moveVector = UnityEngine.Vector2.zero;
     }
@@ -80,6 +82,16 @@ public class PlayerMovement : MonoBehaviour
     {
         return moveVector;
     }
+
+    /*
+    private void OnSecondaryPerformed(InputAction.CallbackContext value)
+    {
+        if (GameManager.Instance.GameMode == "gameplay" || GameManager.Instance.GameMode == "")
+        {
+            GameManager.Instance.ToggleMenu();
+        }
+    }
+    */
 
     #endregion
 
