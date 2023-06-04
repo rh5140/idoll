@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1216058181, guid: 3a7a44a06f2f7164fb683b956a9e9559, type: 3}
-  m_Color: {r: 0, g: 0.21481133, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -325,4 +325,6 @@ MonoBehaviour:
   useable: 1
   reusable: 1
   activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
