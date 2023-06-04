@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
     public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
 
     [SerializeField]
+    public MainMenu mainMenu;
+
+    [SerializeField]
     public GameObject globalLight;
 
     [SerializeField]
@@ -100,10 +103,8 @@ public class GameManager : MonoBehaviour
     // nested dictionary might have weird things going on be sure to check it works
     public Dictionary<string, Dictionary<string, bool>> progressDict = new Dictionary<string, Dictionary<string, bool>>();
 
-    private MainMenu mainMenu;
     private void Start()
     {
-        mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<MainMenu>();
         locationText.text = System.Text.RegularExpressions.Regex.Replace(SceneManager.GetActiveScene().name, "([a-z])([A-Z])", "$1 $2"); /* https://stackoverflow.com/questions/272633/add-spaces-before-capital-letters */
         blackScreen.gameObject.SetActive(true);
         blackScreen.color = new Color(255, 255, 255, 0);
