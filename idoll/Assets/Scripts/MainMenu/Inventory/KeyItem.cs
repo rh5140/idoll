@@ -7,7 +7,7 @@ public class KeyItem : SingleUseItem
 {
     public string DoorName;
 
-    public KeyItem() : base("KeyItem",1)
+    public KeyItem() : base("KeyItem",1, "It's a key.")
     {}
 
     public KeyItem(KeyItem item)

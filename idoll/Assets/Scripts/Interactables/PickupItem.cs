@@ -19,9 +19,10 @@ public class PickupItem : Interactable
             return;
         }
 
-        GameObject inv = GameObject.FindGameObjectWithTag("Inventory");
+        GameObject inv = GameManager.Instance.mainMenu.inventoryMenuContainer;
         if (inv != null)
         {
+            Debug.Log(target.name + " added to inventory");
             inv.GetComponent<Inventory>().AddItem(target);
             Destroy(gameObject);
         } else
