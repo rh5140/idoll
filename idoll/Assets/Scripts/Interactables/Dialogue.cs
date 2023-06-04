@@ -21,6 +21,23 @@ public class Dialogue : Interactable
         }
     }
 
+    private void Update()
+    {
+        if (dialogue_is_active != dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)
+        {
+            if (dialogue_is_active == false) // If dialogue is being enabled
+            {
+                dialogue_is_active = true;
+                GameManager.Instance.SetGameMode("dialogue");
+            }
+            else
+            {
+                dialogue_is_active = false;
+                GameManager.Instance.SetGameMode("gameplay");
+            }
+        }
+    }
+
     public override void OnInteract()
     {
         if (this.tag == "Companion")
@@ -41,6 +58,7 @@ public class Dialogue : Interactable
         }
     }
 
+    /*
     [YarnCommand("ToggleMovement")]
     public static bool ToggleMovement(string newGameMode = "default")
     {
@@ -68,7 +86,7 @@ public class Dialogue : Interactable
                 dialogue_is_active = false;
             }
         }
-
         return dialogue_is_active;
     }
+    */
 }

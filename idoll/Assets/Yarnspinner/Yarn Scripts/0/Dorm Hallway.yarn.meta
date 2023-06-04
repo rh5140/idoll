@@ -11,10 +11,4 @@ ScriptedImporter:
   LastImportHadImplicitStringIDs: 1
   LastImportHadAnyStrings: 1
   isSuccessfullyParsed: 1
-  parseErrorMessages:
-  - '1:0: Error: The node ''Door (ReceptionRoom)'' contains illegal characters in
-    its title.
-
-    title: Door (ReceptionRoom)
-
-'
+  parseErrorMessages: []

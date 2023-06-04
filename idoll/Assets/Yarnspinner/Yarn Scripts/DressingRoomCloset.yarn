@@ -1,95 +1,71 @@
 ﻿title: Book1
 ---
-<<ToggleMovement>>
 In order to progress through some areas, it might help to switch out your eye!
 (Press '1' and '2' to switch between your two eyes!)
-<<ToggleMovement>>
 ===
 
 title: Book2
 ---
-<<ToggleMovement>>
 This book is of no particular interest.
 ...
 BOO!
-<<ToggleMovement>>
 ===
 
 title: Book3
 ---
-<<ToggleMovement>>
 There's a book in the box!
 "History of Horrendous Hamburgers"
-<<ToggleMovement>>
 ===
 
 title: Book4
 ---
-<<ToggleMovement>>
 : "Hilbert Curves: A Tool for Resolution Independent Haptic Texture"
 Protagonist: How Terrifying!
-<<ToggleMovement>>
 ===
 
 title: Book5
 ---
-<<ToggleMovement>>
 You recognize your manager's handwriting on the spine of this book.
 "Love Live Fanfic No. 99999"
-<<ToggleMovement>>
 ===
 
 title: Book6
 ---
-<<ToggleMovement>>
 "Scary Bedtime Stories, Featuring Mr. Krabs"
-<<ToggleMovement>>
 ===
 
 title: ToyCar1
 ---
-<<ToggleMovement>>
 A vivid red car stand out in the musty room.
 Oh, it's a Hot Wheels™!
-<<ToggleMovement>>
 ===
 
 title: Trash1
 ---
-<<ToggleMovement>>
 A 72-page C++ project spec document lies crumpled and torn apart at the bottom of the bin.
 You relate.
-<<ToggleMovement>>
 ===
 
 title: DeadPlant1
 ---
-<<ToggleMovement>>
 Why did someone pot a plant in a room with no sunlight?
-<<ToggleMovement>>
 ===
 
 title: Knife1
 ---
-<<ToggleMovement>>
 ... This knife wasn't here before...
-<<ToggleMovement>>
 ===
 
 title: Candle1
 ---
-<<ToggleMovement>>
 You stare at the steadily flickering candle.
 ...
 Nothing happens.
-<<ToggleMovement>>
 ===
 
 title: Candle2
 ---
-<<ToggleMovement>>
 You stare at the steadily flickering candle.
 ...
 This candle seems to be slowly growing?
-<<ToggleMovement>>
 ===

@@ -1,59 +1,45 @@
 ﻿title: Door1
 ---
-<<ToggleMovement>>
 The door is locked firmly shut.
 (Since this is just a tech demo, you're confined to these two scenes)
-<<ToggleMovement>>
 ===
 
 title: Book7
 ---
-<<ToggleMovement>>
 Books generally have useful information!
 ...
 Well, most of the time.
 ...
 There's a singular avocado on my shelf.
-<<ToggleMovement>>
 ===
 
 title: Chair1
 ---
-<<ToggleMovement>>
 It's literally just a chair, what were you expecting?
-<<ToggleMovement>>
 ===
 
 title: Window1
 ---
-<<ToggleMovement>>
 There's supposed to be a window on this wall, but it's missing.
 ... Probably because the artists didn't have time to draw it.
-<<ToggleMovement>>
 ===
 
 title: Plant1
 ---
-<<ToggleMovement>>
 It's a mandrake!
 ...
 Well that would be cool, but it's actually just a typical shrubbery.
-<<ToggleMovement>>
 ===
 
 title: Cabinet1
 ---
-<<ToggleMovement>>
 Unfortunately, you're way too nice to steal things from this drawer.
-<<ToggleMovement>>
 ===
 
 title: Cabinet2
 ---
-<<ToggleMovement>>
 You're evil urges make you open this drawer.
 ...
 There's nothing inside to steal.
 Since the yarnspinner code for petty theft has not been written yet.
-<<ToggleMovement>>
 ===
