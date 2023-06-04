@@ -44,10 +44,4 @@ public class SceneSetup : MonoBehaviour
         // Set GameMode to "gameplay"
         GameManager.Instance.SetGameMode("gameplay");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

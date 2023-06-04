@@ -44,7 +44,7 @@ public class PlayerCollision : MonoBehaviour
 
         for (int numColliders = 0; numColliders < hit.Length; numColliders++)
         {
-            Debug.Log(numColliders + " | " + hit[numColliders].collider.gameObject.name);
+            //Debug.Log(numColliders + " | " + hit[numColliders].collider.gameObject.name);
 
             // ABSOLUTELY PERFECT CODE TO check to see if sprites are visible (TODO: probably needs to be made better later)
             SpriteRenderer s = null;

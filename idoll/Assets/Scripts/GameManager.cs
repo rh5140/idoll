@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 // References: 
 // https://medium.com/nerd-for-tech/implementing-a-game-manager-using-the-singleton-pattern-unity-eb614b9b1a74
@@ -51,9 +53,6 @@ public class GameManager : MonoBehaviour
     // Get story state... also idk we need to maintain bools somewhere...
     public Vector3Int StoryState { get; set; } = new Vector3Int(0,0,0); // (Act, Scene, Subscene)
 
-    [SerializeField]
-    private Vector3Int actSceneSubscene;
-
     // Store the eyeball
     public int CurrentEye { get; set; } = 1;
 
@@ -72,9 +71,30 @@ public class GameManager : MonoBehaviour
 
     //
     public bool LoadedSave {get; set;} = false;
- 
+
     #endregion
-    
+
+    #region InspectorVariables
+
+    [SerializeField]
+    private Vector3Int actSceneSubscene;
+
+    // Stores the x/y position and the facing direction of the player when switching scenes
+    [SerializeField]
+    public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
+
+    [SerializeField]
+    public GameObject globalLight;
+
+    [SerializeField]
+    public TMP_Text locationText;
+
+    [SerializeField]
+    public Image blackScreen;
+    private bool isChangingScene;
+
+    #endregion
+
     // Game Manager Dictionary: key = scene name, value = scene-specific dictionary
     // scene-specific dictionary: key = object name, value = bool
     // nested dictionary might have weird things going on be sure to check it works
@@ -84,7 +104,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         mainMenu = GameObject.FindGameObjectWithTag("MainMenu").GetComponent<MainMenu>();
-        //mainMenu.gameObject.SetActive(false);
+        locationText.text = System.Text.RegularExpressions.Regex.Replace(SceneManager.GetActiveScene().name, "([a-z])([A-Z])", "$1 $2"); /* https://stackoverflow.com/questions/272633/add-spaces-before-capital-letters */
+        blackScreen.gameObject.SetActive(true);
+        blackScreen.color = new Color(255, 255, 255, 0);
+        globalLight.SetActive(true);
     }
     private void Update()
     {
@@ -116,18 +139,7 @@ public class GameManager : MonoBehaviour
     //        inventoryCooldown = false;
     //    }
     //}
-
-    // Stores the x/y position and the facing direction of the player when switching scenes
-    public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
-       
-    // Public function to change scene can be called from anywhere w/ access to GameManager
-    public void ChangeToScene(string sceneName, Vector2Int playerPos)
-    {
-        playerSpawnLocation = new Vector3Int(playerPos.x, playerPos.y, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetFaceDirection());
-        SceneManager.LoadScene(sceneName);
-        CurrentScene = sceneName;
-    }
-
+   
     public void GetPlayerPosition()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -213,7 +225,7 @@ public class GameManager : MonoBehaviour
         // Need to load scene
 
         LoadedSave = true;
-        SceneManager.LoadScene(CurrentScene);
+        ChangeToScene(CurrentScene, new Vector2Int(PlayerPositionX, PlayerPositionY), false);
 
         // Execution order problem -- wait for scene to fully load before the below
         // GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -239,4 +251,48 @@ public class GameManager : MonoBehaviour
     // MAYBE Background Music
 
     // Settings (volume, sfx, text speed)
+
+    // Public function to change scene can be called from anywhere w/ access to GameManager
+    public void ChangeToScene(string sceneName, Vector2Int playerPos, bool fade = true)
+    {
+        if (isChangingScene) return;
+        playerSpawnLocation = new Vector3Int(playerPos.x, playerPos.y, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetFaceDirection());
+        StartCoroutine(SceneChange(sceneName, playerPos, fade));
+    }
+    IEnumerator SceneChange(string sceneName, Vector2Int playerPos, bool fade)
+    {
+        isChangingScene = true;
+
+        if (fade) { yield return StartCoroutine(ToggleFadeToBlack(true)); }
+
+        SceneManager.LoadScene(sceneName);
+        CurrentScene = sceneName;
+        locationText.text = System.Text.RegularExpressions.Regex.Replace(CurrentScene, "([a-z])([A-Z])", "$1 $2"); /* https://stackoverflow.com/questions/272633/add-spaces-before-capital-letters */
+
+        if (fade) { yield return StartCoroutine(ToggleFadeToBlack(false)); }
+
+        isChangingScene = false;
+        LoadedSave = false; // The save has been loaded, disable this variable to prevent every scene change from loading incorrectly
+        yield return null;
+    }
+
+    IEnumerator ToggleFadeToBlack(bool fadeToBlack)
+    {
+        if (!fadeToBlack) // Black -> transparent
+        {
+            for (float alpha = blackScreen.color.a; alpha > 0f; alpha -= 0.05f)
+            {
+                blackScreen.color = new Color(255f, 255f, 255f, alpha);
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
+        else // Transparent -> Black
+        {
+            for (float alpha = blackScreen.color.a; alpha < 1f; alpha += 0.05f)
+            {
+                blackScreen.color = new Color(255f, 255f, 255f, alpha);
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
+    }
 }
