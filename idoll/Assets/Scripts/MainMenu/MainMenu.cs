@@ -126,22 +126,22 @@ public class MainMenu : MonoBehaviour
                 case 0: // Profile
                     if (!inTab)
                     {
-                        if (navVector.x < -0.5) { curTab = 2; OnSettingsClick(); }
-                        if (navVector.x > 0.5) { curTab = 1; OnInventoryClick(); }
+                        if (navVector.x < -0.5) { OnSettingsClick(); }
+                        if (navVector.x > 0.5) { OnInventoryClick(); }
                     }
                     break;
                 case 1: // Inventory
                     if (!inTab)
                     {
-                        if (navVector.x < -0.5) { curTab = 0; OnProfileClick(); }
-                        if (navVector.x > 0.5) { curTab = 2; OnSettingsClick(); }
+                        if (navVector.x < -0.5) { OnProfileClick(); }
+                        if (navVector.x > 0.5) { OnSettingsClick(); }
                     }
                     break;
                 case 2: // Settings
                     if (!inTab)
                     {
-                        if (navVector.x < -0.5) { curTab = 1; OnInventoryClick(); }
-                        if (navVector.x > 0.5) { curTab = 0; OnProfileClick(); }
+                        if (navVector.x < -0.5) { OnInventoryClick(); }
+                        if (navVector.x > 0.5) { OnProfileClick(); }
                     }
                     break;
                 default:
@@ -161,6 +161,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnProfileClick()
     {
+        curTab = 0;
         profileMenuContainer.SetActive(true);
         inventoryMenuContainer.SetActive(false);
         settingsMenuContainer.SetActive(false);
@@ -168,6 +169,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnInventoryClick()
     {
+        curTab = 1;
         profileMenuContainer.SetActive(false);
         inventoryMenuContainer.SetActive(true);
         settingsMenuContainer.SetActive(false);
@@ -177,6 +179,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnSettingsClick()
     {
+        curTab = 2;
         profileMenuContainer.SetActive(false);
         inventoryMenuContainer.SetActive(false);
         settingsMenuContainer.SetActive(true);
