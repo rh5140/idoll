@@ -63,6 +63,7 @@ public class Interactable : MonoBehaviour
         string sceneName = GameManager.Instance.CurrentScene;
         string objectName = gameObject.name;
 
+        Debug.Log("scene: " + sceneName + " | object: " + objectName);
         GameManager.Instance.progressDict[sceneName][objectName] = true;
     }
 

@@ -18,12 +18,6 @@ public class Eyeballs : MonoBehaviour
     private Inputs inputs = null;
     private float input;
 
-    private void Awake()
-    {
-        inputs = new Inputs();
-        input = GameManager.Instance.CurrentEye;
-    }
-
     #region InputSystem
 
     private void OnEnable()

@@ -12,6 +12,8 @@ Manager: We can't let your fame and success go to your head. We need to stay foc
 ===
 title: Companion
 ---
+<<declare $friendship = 0 as number>>
+<<if $friendship <= 50>>
 Companion: I'll follow you to the manager's office.
 -> Chat
     Companion: I'm nervous for next week's interview...
@@ -27,4 +29,7 @@ Companion: I'll follow you to the manager's office.
 -> Insult
     <<set $friendship = 0>>
     Companion: Why would you say that...
+<<else>>
+    Companion: More than 50 friendship
+<<endif>>
 ===
