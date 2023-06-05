@@ -9,9 +9,10 @@ ScriptedImporter:
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 053561912b1654d80a424bb0696a74ae, type: 3}
   sourceScripts:
+  - {fileID: 6391573757903218779, guid: 0143499687528034bae9b0afaa664938, type: 3}
+  - {fileID: 6391573757903218779, guid: 956e62ec10319244a8082a67e3f7b59e, type: 3}
   - {fileID: 6391573757903218779, guid: 1f8bb0f5f73f069489845434f36876c9, type: 3}
   - {fileID: 6391573757903218779, guid: 0a52547e3264a214faa7c2be9bd1dc09, type: 3}
-  - {fileID: 6391573757903218779, guid: 956e62ec10319244a8082a67e3f7b59e, type: 3}
   - {fileID: 6391573757903218779, guid: 502deafbebb712a4ebf5777371a3ac68, type: 3}
   - {fileID: 6391573757903218779, guid: 9cccec37332051a42b21ef7214bc341c, type: 3}
   compileErrors: []
@@ -21,8 +22,8 @@ ScriptedImporter:
     defaultValueBool: 0
     defaultValueNumber: 0
     defaultValueString: 
-    description: Implicitly declared in sampleScript.yarn, node Companion
-    isImplicit: 1
+    description: 
+    isImplicit: 0
     sourceYarnAsset: {fileID: 6391573757903218779, guid: 956e62ec10319244a8082a67e3f7b59e, type: 3}
   defaultLanguage: en-US
   languagesToSourceAssets: []
@@ -30,6 +31,21 @@ ScriptedImporter:
   searchAllAssembliesForActions: 1
   assembliesToSearch: []
   ListOfFunctions:
+  - Name: IsStory
+    ReturnType: -> Boolean
+    Parameters:
+    - act
+    - scene
+    - sub
+  - Name: BetweenStory
+    ReturnType: -> Boolean
+    Parameters:
+    - act1
+    - scene1
+    - sub1
+    - act2
+    - scene2
+    - sub2
   - Name: Random
     ReturnType: -> Single
     Parameters: []

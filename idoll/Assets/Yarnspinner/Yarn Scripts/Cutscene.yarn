@@ -1,0 +1,38 @@
+title: Cutscene_0_0_1
+// In Poppy's Room, Loading into the game for the first time
+---
+<<hideface Portrait>>
+Near night time, protagonist is getting ready to go to sleep.
+<<showface Portrait Poppy1>>
+Poppy: *humming* Today was a great day! It's time for bed! For a great next day!
+<<hideface Portrait>>
+Suddenly, there are loud knocks at the door.
+<<showface Portrait Poppy1>>
+Poppy: I wonder who's at the door. Oh, maybe it's Pumpkin?
+<<NextSubscene>>
+===
+
+title: Cutscene_0_1_0
+// Poppy exits to the hallway and runs into Cecilia
+---
+<<TeleportSprite Companion 2 -2>>
+<<hideface Portrait>>
+An unfamiliar woman stands in the hallway, slightly out of breath.
+<<showface Portrait Companion1>>
+???: Oh, thank goodness, someone's here! 
+<<showface Portrait Poppy1>>
+Poppy: Huh? Who are you? What's wrong?
+<<showface Portrait Companion1>>
+???: Sorry to bother you so late... I was a bit lost on my way to the manager's office. 
+<<showface Portrait Poppy1>>
+Poppy: *thinking* This late? 
+<<showface Portrait Companion1>>
+???: I'm Cecilia, an old friend of the manager. I wanted to visit her on her birthday, but I got lost. There was a loud clattering noise in the hallway out there, so I got spooked!
+<<showface Portrait Poppy1>>
+Poppy: Oh, is it the manager's birthday? I had no idea! *beat* Wait, it's almost midnight! We might miss the Manager's birthday!
+<<showface Portrait Companion1>>
+Cecilia: Well, there's still about three hours before midnight. I can definitely make something happen.
+<<showface Portrait Poppy1>>
+Poppy: Then what are we waiting for? Let's go let the others know so we can throw her a surprise celebration!
+<<ToggleCompanionFollow "on">>
+===

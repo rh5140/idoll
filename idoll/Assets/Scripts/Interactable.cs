@@ -41,12 +41,14 @@ public class Interactable : MonoBehaviour
             return;
         }
         Vector3Int disableVector = disableAfterAct - GameManager.Instance.StoryState;
-        if (disableVector != Vector3Int.zero &&
-            disableVector.x < 0 ||
-           (disableVector.x == 0 && disableVector.y < 0) ||
-           (disableVector.x == 0 && disableVector.y == 0 && disableVector.z < 0))
+        if (disableAfterAct != Vector3Int.zero) // Ignore the disable vector if it's 0,0,0
         {
-            return;
+            if (disableVector.x < 0 ||
+               (disableVector.x == 0 && disableVector.y < 0) ||
+               (disableVector.x == 0 && disableVector.y == 0 && disableVector.z < 0))
+            {
+                return;
+            }
         }
 
         if (useable)

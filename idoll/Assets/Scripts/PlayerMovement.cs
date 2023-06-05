@@ -216,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 target = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
                 currentlyMoving = true;
+                prevPos = curPos;
                 curPos = target;
                 PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y); // Move playerTarget to the next tile, for interactions
             }
@@ -283,6 +284,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 target = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
                 currentlyMoving = true;
+                prevPos = curPos;
                 curPos = target;
                 PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis); // Move playerTarget to the next tile, for interactions
             }
