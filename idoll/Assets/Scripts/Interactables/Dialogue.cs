@@ -8,6 +8,7 @@ public class Dialogue : Interactable
     private GameObject dialogueSystem;
     //private string modeBeforeDialogue;
     private static bool dialogue_is_active = false;
+    [SerializeField] private bool autoInteractWhenSceneLoads = false;
 
     private void Start() // Automatically link up with other game objects when loading the scene
     {
@@ -18,6 +19,11 @@ public class Dialogue : Interactable
         catch
         {
             Debug.Log("Please add a Dialogue System to the scene!");
+        }
+
+        if (autoInteractWhenSceneLoads)
+        {
+            OnInteract();
         }
     }
 

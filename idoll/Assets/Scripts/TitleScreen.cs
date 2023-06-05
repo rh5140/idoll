@@ -127,6 +127,7 @@ public class TitleScreen : MonoBehaviour
                 if (submitPressed)
                 {
                     StopCoroutine(fade);
+                    GameManager.Instance.SetStory(0, 0, 0);
                     GameManager.Instance.ChangeToScene("Poppy's Room", new Vector2Int(0, 0));
                 }
                 if (navVector.y > 0) HighlightMenuOption(3);

@@ -157,6 +157,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void SetStory(int act, int scene, int sub)
+    {
+        actSceneSubscene = new Vector3Int(act, scene, sub);
+    }
+
     public void NextStoryAct()
     {
         StoryState = new Vector3Int(StoryState.x + 1, 0, 0);
