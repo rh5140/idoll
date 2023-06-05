@@ -44,7 +44,7 @@ public class PlayerCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlrMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        PlrMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     public bool CheckCollision(UnityEngine.Vector2 dirVect, float dist, GameObject center = null) // Check if there is any collision using raycast in specified direction and distance.

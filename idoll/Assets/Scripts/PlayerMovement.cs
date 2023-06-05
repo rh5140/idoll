@@ -18,10 +18,10 @@ public class PlayerMovement : MonoBehaviour
     private float MAX_TURN_TIME = 0.1f;
 
     private float speed;
-    private float scan_distance_addition = 1.0f;
+    private float scan_distance_addition = 0f;
     private bool skip_move = false;
-    public bool broom_game = true;
-    private GameObject BroomObject;
+    public bool broom_game = false;
+    [SerializeField] private GameObject BroomObject;
 
     public enum Facing // TODO: Move facing to enums.cs
     {
@@ -112,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
         faceDirection = GameManager.Instance.playerSpawnLocation.z;
         speed = DEFAULT_SPEED;
         PlayerTarget.transform.position = curPos;
-        BroomObject = GameObject.Find("BroomObj");
     }
 
     public void AnchorPlayer(bool anchorState) // If anchorState == true then player will be locked in place
@@ -303,6 +302,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("6"))
+        {
+            if (!broom_game) { SetBroomGame(true); }
+            else { SetBroomGame(false); }
+        }
+
         if (Turn_Time > 0)
             Turn_Time -= Time.deltaTime;
         if (!playerAnchored && !currentlyMoving) // && Turn_Time <= 0
@@ -313,7 +318,14 @@ public class PlayerMovement : MonoBehaviour
         }
         float yAxis = faceDirection == 1 ? 1 : (faceDirection == 0) ? -1 : 0;
         float xAxis = faceDirection == 3 ? 1 : (faceDirection == 2) ? -1 : 0;
-        BroomObject.transform.position = new UnityEngine.Vector2(transform.position.x + xAxis, transform.position.y + yAxis);
+        try
+        {
+            BroomObject.transform.position = new UnityEngine.Vector2(transform.position.x + xAxis, transform.position.y + yAxis);
+        }
+        catch
+        {
+            Debug.Log("No broom object found!");
+        }
 
     }
 }

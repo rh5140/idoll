@@ -33,7 +33,7 @@ public class ObjectMovement : MonoBehaviour
     {
         targetPos = transform.position;
         pointPos = transform.position;
-        PlrMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        PlrMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
