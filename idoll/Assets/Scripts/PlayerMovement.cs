@@ -14,8 +14,11 @@ public class PlayerMovement : MonoBehaviour
 
     private bool playerAnchored = false;
     private float DEFAULT_SPEED = 5.0f; // TODO: Move to separate settings class
+    private float Turn_Time = 0.1f;
+    private float MAX_TURN_TIME = 0.1f;
+
     private float speed;
-    private float scan_distance_addition = 0.8f;
+    private float scan_distance_addition = 1.0f;
     private bool skip_move = false;
     public bool broom_game = true;
     private GameObject BroomObject;
@@ -97,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             BroomObject.GetComponent<SpriteRenderer>().enabled = true;
-            scan_distance_addition = 0.8f;
+            scan_distance_addition = 1f;
         }
     }
     void Start()
@@ -153,6 +156,9 @@ public class PlayerMovement : MonoBehaviour
             currentlyMoving = true;
             PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y); // Move playerTarget to the target movement tile
 
+          //  if (Turn_Time > 0)
+           //     return;
+
             if (broom_game)
             {
                 UnityEngine.Vector2 myVect = new UnityEngine.Vector2(xAxis, 0);
@@ -166,7 +172,12 @@ public class PlayerMovement : MonoBehaviour
                 // if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(-xAxis, 0), 0.5f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.2f)) // Check if we can move in the specified direction
                 if (faceDirection != 2 && faceDirection != 3 && gotCollision)
                 {
-                    faceDirection = xAxis == 1 ? 3 : 2;
+                    int newFaceDir = xAxis == 1 ? 3 : 2;
+                    if (faceDirection != newFaceDir)
+                    {
+                        Turn_Time = MAX_TURN_TIME;
+                    }
+                    faceDirection = newFaceDir;
                     skip_move = true;
                     return;
                 }
@@ -176,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
                     int newFaceDir = xAxis == 1 ? 3 : 2;
                     if (faceDirection != newFaceDir)
                     {
+                        Turn_Time = MAX_TURN_TIME;
                         faceDirection = newFaceDir;
                         return;
                     }
@@ -184,9 +196,21 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             else
-                faceDirection = xAxis == 1 ? 3 : 2;
+            {
+                int newFaceDir = xAxis == 1 ? 3 : 2;
+                if (faceDirection != newFaceDir)
+                {
+                    Turn_Time = MAX_TURN_TIME;
+                    faceDirection = newFaceDir;
+                //    return;
+                }
+                faceDirection = newFaceDir;
+            }
+           // faceDirection = xAxis == 1 ? 3 : 2;
 
-            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(-xAxis, 0), 0.75f + scan_distance_addition)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.4f + scan_distance_addition)) // Check if we can move in the specified direction
+
+
+            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(-xAxis, 0), 0.45f + scan_distance_addition)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.2f + scan_distance_addition)) // Check if we can move in the specified direction
             {
                 target = new UnityEngine.Vector2(curPos.x + xAxis, curPos.y);
                 currentlyMoving = true;
@@ -199,6 +223,9 @@ public class PlayerMovement : MonoBehaviour
         {
             currentlyMoving = true;
             PlayerTarget.transform.position = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
+
+            //if (Turn_Time > 0)
+             //   return;
 
             if (broom_game)
             {
@@ -213,6 +240,11 @@ public class PlayerMovement : MonoBehaviour
                 // faceDirection = yAxis == 1 ? 1 : 0;
                 if (faceDirection != 1 && faceDirection != 0 && gotCollision)
                 {
+                    int newFaceDir = yAxis == 1 ? 1 : 0;
+                    if (faceDirection != newFaceDir)
+                    {
+                        Turn_Time = MAX_TURN_TIME;
+                    }
                     faceDirection = yAxis == 1 ? 1 : 0;
                     Debug.Log("SKIP!!!");
                     skip_move = true;
@@ -224,6 +256,7 @@ public class PlayerMovement : MonoBehaviour
                     int newFaceDir = yAxis == 1 ? 1 : 0;
                     if (faceDirection != newFaceDir)
                     {
+                        Turn_Time = MAX_TURN_TIME;
                         faceDirection = newFaceDir;
                         return;
                     }
@@ -231,9 +264,18 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             else
-                faceDirection = yAxis == 1 ? 1 : 0;
+            {
+                int newFaceDir = yAxis == 1 ? 1 : 0;
+                if (faceDirection != newFaceDir)
+                {
+                    Turn_Time = MAX_TURN_TIME;
+                    faceDirection = newFaceDir;
+                 //   return;
+                }
+                faceDirection = newFaceDir;
+            }
 
-            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, -yAxis), 0.6f + scan_distance_addition)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.4f + scan_distance_addition)) // Check if we can move in the specified direction
+            if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, -yAxis), 0.45f + scan_distance_addition)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.2f + scan_distance_addition)) // Check if we can move in the specified direction
             {
                 target = new UnityEngine.Vector2(curPos.x, curPos.y + yAxis);
                 currentlyMoving = true;
@@ -256,7 +298,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerAnchored && !currentlyMoving)
+        if (Turn_Time > 0)
+            Turn_Time -= Time.deltaTime;
+        if (!playerAnchored && !currentlyMoving) // && Turn_Time <= 0
             UpdateLocation();
 
         if (currentlyMoving) {
