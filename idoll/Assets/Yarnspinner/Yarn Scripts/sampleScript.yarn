@@ -26,10 +26,14 @@ Companion: I'll follow you to the manager's office.
 -> Give gift
     <<set $friendship = 100>>
     Companion: Aww, you shouldn't have!
+    <<ToggleCompanionFollow "on">>
 -> Insult
     <<set $friendship = 0>>
     Companion: Why would you say that...
+    <<ToggleCompanionFollow "off">>
 <<else>>
-    Companion: More than 50 friendship
+    Companion: How dare you talk with me!
+    Companion: I shall set our friendship level to zero!
+    <<set $friendship = 0>>
 <<endif>>
 ===

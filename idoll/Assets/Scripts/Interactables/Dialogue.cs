@@ -72,6 +72,14 @@ public class Dialogue : Interactable
         }
     }
 
+
+    [YarnCommand("ToggleCompanionFollow")]
+    public static void ToggleCompanionFollow(string s = "toggle")
+    {
+        Companion companion = GameObject.FindGameObjectWithTag("Companion").GetComponent<Companion>();
+        companion.ToggleFollowPlayer(s);
+    }
+
     /*
     [YarnCommand("ToggleMovement")]
     public static bool ToggleMovement(string newGameMode = "default")

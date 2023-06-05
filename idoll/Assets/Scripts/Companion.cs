@@ -9,6 +9,7 @@ public class Companion : MonoBehaviour
 
     [SerializeField] private float walk_time = 5.0f; // TODO - match moveSpeed with player
     private Vector2 destinationTile;
+    private Vector2 spawnLocation; // tile where the Companion is originally placed
     private bool currentlyMoving;
     private int faceDirection; // 0 - Down, 1 - Up, 2 - Left, 3 - Right
 
@@ -21,6 +22,23 @@ public class Companion : MonoBehaviour
 
     void Start()
     {
+        spawnLocation = this.transform.position; // Store the original location of the companion in this scene
+
+        // Finding the player GameObject
+        if (player == null)
+        {
+            try
+            {
+                player = GameObject.FindGameObjectWithTag("Player");
+            }
+            catch
+            {
+                Debug.Log("Companion could not find either 'Player' or 'PlayerTarget'!");
+            }
+        }
+
+        if (!GameManager.Instance.CompanionFollow) return; // Don't follow the player if CompanionFollow == false
+
         // Spawn location in the scene
         faceDirection = GameManager.Instance.playerSpawnLocation.z;
         this.transform.position = new Vector3Int(GameManager.Instance.playerSpawnLocation.x, GameManager.Instance.playerSpawnLocation.y);
@@ -47,23 +65,16 @@ public class Companion : MonoBehaviour
                 animator.SetFloat("yAxis", 0f);
                 break;
         }
-
-        // Finding the player GameObject
-        if (player == null)
-        {
-            try
-            {
-                player = GameObject.FindGameObjectWithTag("Player");
-            }
-            catch
-            {
-                Debug.Log("Companion could not find either 'Player' or 'PlayerTarget'!");
-            }
-        }
     }
 
     void Update()
     {
+        if (!GameManager.Instance.CompanionFollow) // Don't follow the player if CompanionFollow == false
+        {
+            this.transform.position = spawnLocation;
+            return;
+        }
+
         // Set the player's previous position as the destination
         destinationTile = player.GetComponent<PlayerMovement>().GetPrevPos();
 
@@ -180,6 +191,27 @@ public class Companion : MonoBehaviour
     public bool IsGhosted()
     {
         return is_ghosted;
+    }
+
+    public void ToggleFollowPlayer(string s = "toggle")
+    {
+        if (s == "off")
+        {
+            GameManager.Instance.CompanionFollow = false;
+        }
+        else if (s == "on")
+        {
+            GameManager.Instance.CompanionFollow = true;
+        }
+        else
+        {
+            GameManager.Instance.CompanionFollow = !GameManager.Instance.CompanionFollow;
+        }
+
+        if (GameManager.Instance.CompanionFollow) // Update position when following is switched on
+        {
+            this.transform.position = player.GetComponent<PlayerMovement>().GetPrevPos();
+        }
     }
 
     //private IEnumerator MoveHelper(Vector2 destination, float seconds)
