@@ -1,11 +1,13 @@
 ﻿title: Door1
 ---
+<<hideface Portrait>>
 The door is locked firmly shut.
 (Since this is just a tech demo, you're confined to these two scenes)
 ===
 
 title: Book7
 ---
+<<hideface Portrait>>
 Books generally have useful information!
 ...
 Well, most of the time.
@@ -15,17 +17,20 @@ There's a singular avocado on my shelf.
 
 title: Chair1
 ---
+<<hideface Portrait>>
 It's literally just a chair, what were you expecting?
 ===
 
 title: Window1
 ---
+<<hideface Portrait>>
 There's supposed to be a window on this wall, but it's missing.
 ... Probably because the artists didn't have time to draw it.
 ===
 
 title: Plant1
 ---
+<<hideface Portrait>>
 It's a mandrake!
 ...
 Well that would be cool, but it's actually just a typical shrubbery.
@@ -33,11 +38,13 @@ Well that would be cool, but it's actually just a typical shrubbery.
 
 title: Cabinet1
 ---
+<<hideface Portrait>>
 Unfortunately, you're way too nice to steal things from this drawer.
 ===
 
 title: Cabinet2
 ---
+<<hideface Portrait>>
 You're evil urges make you open this drawer.
 ...
 There's nothing inside to steal.
