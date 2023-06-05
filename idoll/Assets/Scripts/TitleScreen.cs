@@ -99,6 +99,8 @@ public class TitleScreen : MonoBehaviour
         HighlightMenuOption(0);
         fade = StartCoroutine(Fade());
         overlay.color = new Color(0f, 0f, 0f, 0f);
+        GameManager.Instance.SetGameMode("title");
+        GameManager.Instance.musicPlayer.SetTrack(0);
     }
 
     void Update()
@@ -182,7 +184,9 @@ public class TitleScreen : MonoBehaviour
     {
         for(; ;)
         {
-            yield return new WaitForSeconds(8f + Random.value * 5f);
+            yield return new WaitForSeconds(7.8f + Random.value * 5f);
+            GameManager.Instance.musicPlayer.PitchBend(0.04f, 0.5f);
+            yield return new WaitForSeconds(0.2f);
             for (float i = 0.04f; i <= 1; i += 0.05f)
             {
                 overlay.color = new Color(0f, 0f, 0f, i);

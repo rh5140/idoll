@@ -76,24 +76,22 @@ public class GameManager : MonoBehaviour
 
     #region InspectorVariables
 
-    [SerializeField]
-    private Vector3Int actSceneSubscene;
+    [SerializeField] private Vector3Int actSceneSubscene;
 
     // Stores the x/y position and the facing direction of the player when switching scenes
-    [SerializeField]
-    public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
+    [SerializeField] public Vector3Int playerSpawnLocation = new Vector3Int(0, 0, 0);
 
-    [SerializeField]
-    public MainMenu mainMenu;
+    [SerializeField] public MainMenu mainMenu;
 
-    [SerializeField]
-    public GameObject globalLight;
+    [SerializeField] public GameObject globalLight;
 
-    [SerializeField]
-    public TMP_Text locationText;
+    [SerializeField] public TMP_Text locationText;
 
-    [SerializeField]
-    public Image blackScreen;
+    [SerializeField] public Image blackScreen;
+
+    [SerializeField] public MusicPlayer musicPlayer;
+
+
     private bool isChangingScene;
 
     #endregion
@@ -204,8 +202,6 @@ public class GameManager : MonoBehaviour
                 GameMode = "chase";
                 break;
             case "title":
-                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
-                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
                 GameMode = "title";
                 break;
             default:
