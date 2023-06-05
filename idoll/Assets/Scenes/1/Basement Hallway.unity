@@ -24617,6 +24617,7 @@ GameObject:
   - component: {fileID: 6692818244176797231}
   - component: {fileID: 953454065221108331}
   - component: {fileID: 7629080307473344557}
+  - component: {fileID: 7629080307473344558}
   m_Layer: 0
   m_Name: Basement Hallway
   m_TagString: Untagged
@@ -24734,6 +24735,18 @@ MonoBehaviour:
   - {fileID: 7036720780310624207, guid: 0ce480f4c6adf084d84f82cc61b3e5e7, type: 3}
   - {fileID: 7036720780310624207, guid: fe6b2688ce59efc47afba1d3c7f2127a, type: 3}
   wallShadowRuleTile: {fileID: 11400000, guid: aa7192bddff94fd41a445a87a1499999, type: 2}
+--- !u!114 &7629080307473344558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7109029874278597581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e4540cee48ef648bf66f59c7ae8f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7987426343386424731
 MonoBehaviour:
   m_ObjectHideFlags: 0

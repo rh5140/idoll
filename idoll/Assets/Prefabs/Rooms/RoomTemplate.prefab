@@ -517,6 +517,7 @@ GameObject:
   - component: {fileID: 654725366776883777}
   - component: {fileID: 6398769067253904901}
   - component: {fileID: 4334811283739466819}
+  - component: {fileID: 1758101153299440195}
   m_Layer: 0
   m_Name: RoomTemplate
   m_TagString: Untagged
@@ -583,7 +584,18 @@ MonoBehaviour:
   - {fileID: 7036720780310624207, guid: 0ce480f4c6adf084d84f82cc61b3e5e7, type: 3}
   - {fileID: 7036720780310624207, guid: fe6b2688ce59efc47afba1d3c7f2127a, type: 3}
   wallShadowRuleTile: {fileID: 11400000, guid: aa7192bddff94fd41a445a87a1499999, type: 2}
-  objectsSpritesheet: []
+--- !u!114 &1758101153299440195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3990188145982388131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e4540cee48ef648bf66f59c7ae8f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4728958019502349187
 GameObject:
   m_ObjectHideFlags: 0
