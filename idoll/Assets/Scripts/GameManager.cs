@@ -144,12 +144,19 @@ public class GameManager : MonoBehaviour
    
     public void GetPlayerPosition()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector2Int playerPos = new Vector2Int((int) player.transform.position.x, (int) player.transform.position.y);
-        PlayerPositionX = playerPos[0];
-        PlayerPositionY = playerPos[1];
-        int playerFacing = player.GetComponent<PlayerMovement>().GetFaceDirection();
-        PlayerFacing = playerFacing;
+        try
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            Vector2Int playerPos = new Vector2Int((int)player.transform.position.x, (int)player.transform.position.y);
+            PlayerPositionX = playerPos[0];
+            PlayerPositionY = playerPos[1];
+            int playerFacing = player.GetComponent<PlayerMovement>().GetFaceDirection();
+            PlayerFacing = playerFacing;
+        }
+        catch
+        {
+            Debug.Log("Player position not found");
+        }
     }
 
     public void NextStoryAct()
@@ -195,6 +202,11 @@ public class GameManager : MonoBehaviour
                 GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = true;
                 GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = true;
                 GameMode = "chase";
+                break;
+            case "title":
+                GameObject.Find("Player").GetComponent<PlayerMovement>().enabled = false;
+                GameObject.Find("PlayerTarget").GetComponent<PlayerInteractor>().enabled = false;
+                GameMode = "title";
                 break;
             default:
                 Debug.Log("Invalid GameMode!");
@@ -258,7 +270,14 @@ public class GameManager : MonoBehaviour
     public void ChangeToScene(string sceneName, Vector2Int playerPos, bool fade = true)
     {
         if (isChangingScene) return;
-        playerSpawnLocation = new Vector3Int(playerPos.x, playerPos.y, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetFaceDirection());
+        try
+        {
+            playerSpawnLocation = new Vector3Int(playerPos.x, playerPos.y, GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().GetFaceDirection());
+        }
+        catch
+        {
+            playerSpawnLocation = new Vector3Int(playerPos.x, playerPos.y, 0);
+        }
         StartCoroutine(SceneChange(sceneName, playerPos, fade));
     }
     IEnumerator SceneChange(string sceneName, Vector2Int playerPos, bool fade)
