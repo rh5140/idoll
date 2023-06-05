@@ -14,23 +14,7 @@ title: Companion
 ---
 <<declare $friendship = 0 as number>>
 <<if (story_is(0,0,0))>>
-    Companion: I'll follow you to the manager's office.
-    -> Chat
-        Companion: I'm nervous for next week's interview...
-    -> Friendship
-        <<if $friendship >= 50>>
-            Companion: Aren't we such great friends?
-        <<else>>
-            Companion: ...
-        <<endif>>
-    -> Give gift
-        <<set $friendship = 100>>
-        Companion: Aww, you shouldn't have!
-        <<ToggleCompanionFollow "on">>
-    -> Insult
-        <<set $friendship = 0>>
-        Companion: Why would you say that...
-        <<ToggleCompanionFollow "off">>
+    <<jump Companion_0_0_0>>
 <<elseif (story_between(0,0,1, 2,2,2)) >>
     Companion: How dare you talk with me!
     Companion: I shall set our friendship level to zero!
@@ -38,4 +22,25 @@ title: Companion
 <<else>>
     Companion: I no longer have any dialogue.
 <<endif>>
+===
+
+title: Companion_0_0_0
+---
+Companion: I'll follow you to the manager's office.
+-> Chat
+    Companion: I'm nervous for next week's interview...
+-> Friendship
+    <<if $friendship >= 50>>
+        Companion: Aren't we such great friends?
+    <<else>>
+        Companion: ...
+    <<endif>>
+-> Give gift
+    <<set $friendship = 100>>
+    Companion: Aww, you shouldn't have!
+    <<ToggleCompanionFollow "on">>
+-> Insult
+    <<set $friendship = 0>>
+    Companion: Why would you say that...
+    <<ToggleCompanionFollow "off">>
 ===
