@@ -68,8 +68,13 @@ public class Interactable : MonoBehaviour
         GameManager.Instance.progressDict[sceneName][objectName] = true;
     }
 
+    protected virtual void Start()
+    {
+
+    }
+
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (reusable)
         {

@@ -8,7 +8,7 @@ public class Hider : Interactable
     public GameObject target;
 
 
-    void Start()
+    protected override void Start()
     {
         if (this.activated % 2 == 1) // %2 deals with uninteracting
         {

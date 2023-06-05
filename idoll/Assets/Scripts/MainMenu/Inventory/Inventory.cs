@@ -157,92 +157,76 @@ public class Inventory : MonoBehaviour
     // Returns true if items used successfully. Otherwise, return false.
     public bool UseItem(Item item, int numberToUse = 1, int itemStackIndex = 1) 
     {
-        // if (item.hasDurability)
-        // {
-        //     DurabilityItem durabilityItem = (DurabilityItem) item;
+        string itemName = item.name;
+        List<int> stackCounts = inventory[itemName];
+        int numStacks = stackCounts.Count;
+        int currentStack = stackCounts[numStacks - 1];
+        int totalOfItem = (numStacks - 1) * item.maxCount + currentStack;
 
-        //     if (!durabilityInventory.ContainsKey(durabilityItem)) 
-        //     {
-        //         return false;
-        //     }
+        Debug.Log("Total of " + itemName + " is " + totalOfItem);
 
-        //     List<int> durabilities = durabilityInventory[item];
-            
-        //     if (durabilities[itemStackIndex] >= numberToUse)
-        //     {
-        //         for (int i = 0; i < numberToUse; i++)
-        //         {
-        //             durabilityItem.Use();
-        //         }
-        //     }
+        if (!inventory.ContainsKey(itemName))
+        {
+            return false;
+        }
 
-        //     else 
-        //     {
-        //         return false;
-        //     }
+        if (totalOfItem < numberToUse)
+        {
+            return false;
+        }
 
-        //     durabilities[itemStackIndex] -= numberToUse;
-
-        //     if (durabilities[itemStackIndex] == 0)
-        //     {
-        //         RemoveItemStack(durabilityItem, itemStackIndex);
-        //     }
-        // }
-
-        //else {
-            string itemName = item.name;
-            List<int> stackCounts = inventory[itemName];
-            int numStacks = stackCounts.Count;
-            int currentStack = stackCounts[numStacks - 1];
-            int totalOfItem = (numStacks - 1) * item.maxCount + currentStack;
-
-            Debug.Log("Total of " + itemName + " is " + totalOfItem);
-
-            if (!inventory.ContainsKey(itemName))
+        else if (totalOfItem == numberToUse)
+        {
+                
+            for (int i=0; i<numberToUse; i++)
             {
-                return false;
-            }
-
-            if (totalOfItem < numberToUse)
-            {
-                return false;
-            }
-
-            else if (totalOfItem == numberToUse)
-            {
-                for (int i = 0; i < numStacks; i++)
+                if (!item.Use())
                 {
-                    RemoveItemStack(item);
+                    return false;
                 }
             }
 
-            else if (currentStack < numberToUse)
+            for (int i = 0; i < numStacks; i++)
             {
                 RemoveItemStack(item);
-
-                for (int i = 0; i < currentStack; i++)
-                {
-                    item.Use();
-                }
-
-                UseItem(item, numberToUse - currentStack);
             }
 
-            else 
+
+        }
+
+        else if (currentStack < numberToUse)
+        {
+                
+
+            for (int i = 0; i < currentStack; i++)
             {
-                stackCounts[numStacks - 1] -= numberToUse;
-
-                for (int i = 0; i < numberToUse; i++)
-                {
-                    item.Use();
-                }
-
-                if (stackCounts[numStacks - 1] == 0)
-                {
-                    RemoveItemStack(item);
+                if (!item.Use()){ 
+                    return false; 
                 }
             }
-        //}
+            RemoveItemStack(item);
+            UseItem(item, numberToUse - currentStack);
+        }
+
+        else 
+        {
+            for (int i = 0; i < numberToUse; i++)
+            {
+                if (!item.Use())
+                {
+                    return false;
+                }
+            }
+
+            stackCounts[numStacks - 1] -= numberToUse;
+
+                
+
+            if (stackCounts[numStacks - 1] == 0)
+            {
+                RemoveItemStack(item);
+            }
+        }
 
         UpdateUI();
 
