@@ -3,6 +3,7 @@
 Would you like to save your game?
 -> Yes
   <<SaveGame>>
+  Game saved! Since the main menu isn't fully set up yet, press 'P' to quick-load!
 -> No
 ===
 
