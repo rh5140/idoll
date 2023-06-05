@@ -126,15 +126,21 @@ public class TitleScreen : MonoBehaviour
             case 0: // Start
                 if (submitPressed)
                 {
-                    StopCoroutine(fade);
+                    if (fade != null) StopCoroutine(fade);
                     GameManager.Instance.SetStory(0, 0, 0);
+                    GameManager.Instance.musicPlayer.StopMusic();
                     GameManager.Instance.ChangeToScene("Poppy's Room", new Vector2Int(0, 0));
                 }
                 if (navVector.y > 0) HighlightMenuOption(3);
                 if (navVector.y < 0) HighlightMenuOption(1);
                 break;
             case 1: // Load
-                if (submitPressed) GameManager.Instance.LoadGame();
+                if (submitPressed)
+                {
+                    if (fade != null) StopCoroutine(fade);
+                    GameManager.Instance.musicPlayer.StopMusic();
+                    GameManager.Instance.LoadGame();
+                }
                 // TODO: modifiy for more save files
                 if (navVector.y > 0) HighlightMenuOption(0);
                 if (navVector.y < 0) HighlightMenuOption(2);
