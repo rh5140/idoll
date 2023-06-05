@@ -21,9 +21,10 @@ public class DurabilityItem : Item
         maxDurability = item.maxDurability;
     }
 
-    public override void Use(int i = 1)
+    public override bool Use(int i = 1)
     {
         Effect();
+        return true;
     }
 
     protected override void Effect()

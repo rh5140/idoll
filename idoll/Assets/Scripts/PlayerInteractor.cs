@@ -6,7 +6,7 @@ using UnityEngine.InputSystem; // New Unity input system!
 
 public class PlayerInteractor : MonoBehaviour
 {
-    private Interactable currentInteractable; // Only 1 interactable can be accessed at a time
+    public Interactable currentInteractable; // Only 1 interactable can be accessed at a time
 
     [Tooltip("False when your ability to interact with interactables is on a cooldown (Displayed for testing purposes)'")]
     [SerializeField]
@@ -40,7 +40,7 @@ public class PlayerInteractor : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Interactable obj = other.GetComponentInParent<Interactable>();
-        if (obj != null && obj.tag != "Activator")
+        if (obj != null && obj.tag != "Activator" && obj.enabled)
         {
             currentInteractable = obj;
         }

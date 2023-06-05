@@ -10,7 +10,7 @@ public class Dialogue : Interactable
     private static bool dialogue_is_active = false;
     [SerializeField] private bool autoInteractWhenSceneLoads = false;
 
-    private void Start() // Automatically link up with other game objects when loading the scene
+    protected override void Start() // Automatically link up with other game objects when loading the scene
     {
         try
         {
@@ -27,21 +27,10 @@ public class Dialogue : Interactable
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
         // Since the Update() in Interactable is being overriden, I copy-pasted this. There's definitely a better way to do this - Alexander
-        if (reusable)
-        {
-            if (timer > 0)
-            {
-                timer -= Time.deltaTime;
-                if (timer <= 0)
-                {
-                    timer = 0;
-                    useable = true;
-                }
-            }
-        }
+        base.Update();
 
         if (dialogue_is_active != dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)
         {
