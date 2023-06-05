@@ -110,6 +110,12 @@ public class Dialogue : Interactable
         GameManager.Instance.NextStorySubscene();
     }
 
+    [YarnCommand("SaveGame")]
+    public static void SaveFromDialogue()
+    {
+        GameManager.Instance.SaveGame();
+    }
+
     [YarnFunction("story_is")] // Returns true if the current Act/Scene/Subscene is exactly the same
     public static bool IsStory(int act, int scene, int sub)
     {

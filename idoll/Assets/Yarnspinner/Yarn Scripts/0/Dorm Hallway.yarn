@@ -1,4 +1,21 @@
 ﻿title: DoorReceptionRoom
 ---
-The door is locked.
+The door is locked. That's odd.
+===
+
+title: DH_DoorToOffices
+---
+*BANG*
+Seems like there's still something on the other side of the door.
+===
+
+title: DH_Box
+---
+It looks like Ms. Pumpkin was rummaging through the boxes again.
+It's probably best to avoid her when she's like this.
+===
+
+title: DH_Rose
+---
+This rose also has 5 petals.
 ===

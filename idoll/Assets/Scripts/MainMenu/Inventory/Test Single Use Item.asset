@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: test_single_use_item
   hasDurability: 0
-  maxCount: 20
-  sprite: {fileID: -747482490, guid: f11b89fef31e840468946a297e3967dd, type: 3}
+  maxCount: 1
+  sprite: {fileID: -1808481293, guid: f11b89fef31e840468946a297e3967dd, type: 3}
+  description: This blue eyeball feels a bit squishy.
