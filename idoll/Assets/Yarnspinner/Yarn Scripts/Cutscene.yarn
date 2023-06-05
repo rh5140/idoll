@@ -1,0 +1,89 @@
+title: Cutscene_0_0_1
+// In Poppy's Room, Loading into the game for the first time
+---
+<<hideface Portrait>>
+Near night time, protagonist is getting ready to go to sleep.
+<<showface Portrait Poppy1>>
+Poppy: *humming* Today was a great day! It's time for bed! For a great next day!
+<<hideface Portrait>>
+Suddenly, there are loud knocks at the door.
+<<showface Portrait Poppy1>>
+Poppy: I wonder who's at the door. Oh, maybe it's Pumpkin?
+<<NextSubscene>>
+===
+
+title: Cutscene_0_1_0
+// Poppy exits to the hallway and runs into Cecilia
+---
+<<TeleportSprite Companion 2 -2>>
+<<hideface Portrait>>
+An unfamiliar woman stands in the hallway, slightly out of breath.
+<<showface Portrait Companion1>>
+???: Oh, thank goodness, someone's here! 
+<<showface Portrait Poppy1>>
+Poppy: Huh? Who are you? What's wrong?
+<<showface Portrait Companion1>>
+???: Sorry to bother you so late... I was a bit lost on my way to the manager's office. 
+<<showface Portrait Poppy1>>
+Poppy: *thinking* This late? 
+<<showface Portrait Companion1>>
+???: I'm Cecilia, an old friend of the manager. I wanted to visit her on her birthday, but I got lost. There was a loud clattering noise in the hallway out there, so I got spooked!
+<<showface Portrait Poppy1>>
+Poppy: Oh, is it the manager's birthday? I had no idea! *beat* Wait, it's almost midnight! We might miss the Manager's birthday!
+<<showface Portrait Companion1>>
+Cecilia: Well, there's still about three hours before midnight. I can definitely make something happen.
+<<showface Portrait Poppy1>>
+Poppy: Then what are we waiting for? Let's go let the others know so we can throw her a surprise celebration!
+<<ToggleCompanionFollow "on">>
+<<NextScene>>
+===
+
+title: Cutscene_0_2_0
+// Poppy and Cecilia head down the hallway and find an eyeball
+---
+<<showface Portrait Companion1>>
+Cecilia: I appreciate the help. I haven't visited in years, so I was afraid I would get lost.
+<<showface Portrait Poppy1>>
+Poppy: Of course! I love stuff like this.
+<<hideface Portrait>>
+They pass by the hallway door, and Cecilia slows down. Poppy notices.
+<<showface Portrait Poppy1>>
+Poppy: What's wrong? Is there something up with that door?
+<<showface Portrait Companion1>>
+Cecilia: ...I'd rather not go that way.
+<<showface Portrait Poppy1>>
+Poppy: Don't be such a scaredy cat! It's probably just [Idol A] playing her pranks again.
+Poppy: Huh, what's that on the ground?
+Poppy: How dangerous! The janitor really isn't doing their job these days.
+<<hideface Portrait>>
+Poppy picks up an eyeball.
+<<showface Portrait Poppy1>>
+Poppy: ...
+Poppy: Oh, it's fake! (I think.) Look, I have a fake one too!
+<<hideface Portrait>>
+Poppy pops out her eyeball and puts the other one in.
+<<showface Portrait PoppyBlue>>
+Poppy: ...huh, something feels different
+<<showface Portrait Companion1>>
+Cecilia: Probably the germs. That is so incredibly unsanitary.
+<<showface Portrait PoppyBlue>>
+Poppy: Hehe, you're such a charmer ♥️
+<<hideface Portrait>>
+Poppy ignores Cecilia and reaches for the door.
+<<showface Portrait Companion1>>
+Cecilia: Wait, I'd really rather not go that way –
+<<showface Portrait PoppyBlue>>
+Poppy: What are you talking about? I've been this way tons of times!
+<<hideface Portrait>>
+Thuds/bangs come from the other side of door.
+<<showface Portrait PoppyBlue>>
+Poppy: Oh that's odd. I wonder if someone got locked out.
+Poppy tries the door. It's locked.
+<<showface Portrait Companion1>>
+Cecilia: Please!
+<<showface Portrait PoppyBlue>>
+Poppy: That's odd. I wonder why this door is locked, too.
+Poppy: ... I guess we can head downstairs to ask the janitor for the keys.
+Poppy: And we can ask the other to join us!
+<<NextAct>>
+===

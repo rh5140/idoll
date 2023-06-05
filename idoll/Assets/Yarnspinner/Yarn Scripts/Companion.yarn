@@ -1,24 +1,9 @@
-﻿title: Manager
----
-Manager: It might be a beautiful day for you, but for me, it's just another day of dealing with your endless energy and enthusiasm. 
-Manager: We can't just rush into things without a plan. We need to make sure we're releasing quality content that will resonate with your audience. 
-Manager: We can't let your fame and success go to your head. We need to stay focused on the music and the business side of things.
--> Sorry!
-    Manager: Just hurry and get ready.
--> So what?
-    Manager: Watch what you say.
--> I don't care!
-    Manager: Who do you think you're talking to?
-===
-title: Companion
+﻿title: Companion
 ---
 <<declare $friendship = 0 as number>>
 <<if (story_is(0,0,0))>>
     <<jump Companion_0_0_0>>
-<<elseif (story_between(0,0,1, 2,2,2)) >>
-    Cecilia: How dare you talk with me!
-    Cecilia: I shall set our friendship level to zero!
-    <<set $friendship = 0>>
+    //<<set $friendship = 0>>
 <<elseif (story_is(0,1,0))>>
     <<jump Companion_0_1_0>>
 <<elseif (story_is(0,2,0))>>
@@ -40,74 +25,59 @@ title: Companion
 <<endif>>
 ===
 
-title: Companion_0_0_0
----
-<<showface Portrait Companion1>>
-Cecilia: I'll follow you to the manager's office.
--> Chat
-    Cecilia: I'm nervous for next week's interview...
--> Friendship
-    <<showface Portrait Default>>
-    <<if $friendship >= 50>>
-        Cecilia: Aren't we such great friends?
-    <<else>>
-        Cecilia: ...
-    <<endif>>
--> Give gift
-    <<set $friendship = 100>>
-    Cecilia: Aww, you shouldn't have!
-    <<ToggleCompanionFollow "on">>
--> Insult
-    <<set $friendship = 0>>
-    Cecilia: Why would you say that...
-    <<ToggleCompanionFollow "off">>
-===
+// title: Companion_0_0_0
+// ---
+// <<showface Portrait Companion1>>
+// Cecilia: I'll follow you to the manager's office.
+// -> Chat
+//     Cecilia: I'm nervous for next week's interview...
+// -> Friendship
+//     <<showface Portrait Poppy1>>
+//     <<if $friendship >= 50>>
+//         Cecilia: Aren't we such great friends?
+//     <<else>>
+//         Cecilia: ...
+//     <<endif>>
+// -> Give gift
+//     <<set $friendship = 100>>
+//     Cecilia: Aww, you shouldn't have!
+//     <<ToggleCompanionFollow "on">>
+// -> Insult
+//     <<set $friendship = 0>>
+//     Cecilia: Why would you say that...
+//     <<ToggleCompanionFollow "off">>
+// ===
 
 // Act 0 Scene 1
-title: Companion_0_1_0
+title: Companion_0_2_0
 ---
-// Remove nameplate
-Near night time, protagonist is getting ready for her display-case bed.
-<<showface Portrait Default>>
-Poppy: *humming* Today was a great day! It's time for bed! For a great next day!
-// Remove nameplate
-Suddenly, there are loud knocks at the door.
-<<showface Portrait Default>>
-Poppy: I wonder who's at the door. Oh, maybe it's Pumpkin?
-// Remove nameplate
-Poppy walks over to answer the door. An unfamiliar woman stands there, slightly out of breath.
-<<showface Portrait Companion1>>
-???: Oh, thank goodness, someone's here! 
-<<showface Portrait Default>>
-Poppy: Huh? Who are you? What's wrong?
-<<showface Portrait Companion1>>
-???: Sorry to bother you so late... I was a bit lost on my way to the manager's office. 
-<<showface Portrait Default>>
-Poppy: *thinking* This late? 
-<<showface Portrait Companion1>>
-???: I'm Cecilia, an old friend of the manager. I wanted to visit her on her birthday, but I got lost. There was a loud clattering noise in the hallway out there, so I got spooked!
-<<showface Portrait Default>>
-Poppy: Oh, is it the manager's birthday? I had no idea! *beat* Wait, it's almost midnight! We might miss the Manager's birthday!
-<<showface Portrait Companion1>>
-Cecilia: Well, there's still about three hours before midnight. I can definitely make something happen.
-<<showface Portrait Default>>
-Poppy: Then what are we waiting for? Let's go let the others know so we can throw her a surprise celebration!
+<<declare $talkTimes = 0 as number>>
+<<if $talkTimes == 0>>
+    <<showface Portrait Companion1>>
+    Cecilia: I'm glad I found you, even though it's so late.
+    <<showface Portrait Poppy1>>
+    Poppy: Yup! There's no way I can turn down a birthday request!
+    <<set $talkTimes to 1>>
+<<else>>
+    <<showface Portrait Companion1>>
+    Cecilia: Let's get going!
+<<endif>>
 ===
 
 // Act 0 Scene 2
-title: Companion_0_2_0
+//title: Companion_0_2_0
 ---
 <<showface Portrait Companion1>>
 Cecilia: I appreciate the help. I haven't visited in years, so I was afraid I would get lost.
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Of course! I love stuff like this.
-// Remove nameplate
+<<hideface Portrait>>
 They pass by the hallway door, and Cecilia slows down. Poppy notices.
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: What's wrong? Is there something up with that door?
 <<showface Portrait Companion1>>
 Cecilia: ...I'd rather not go that way.
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Don't be such a scaredy cat! It's probably just [Idol A] playing her pranks again.
 Poppy: Huh, what's that on the ground?
 Poppy: How dangerous! The janitor really isn't doing their job these days.
@@ -118,21 +88,21 @@ Poppy pops out her eyeball and puts the other one in.
 Poppy: ...huh, something feels different
 <<showface Portrait Companion1>>
 Cecilia: Probably the germs. That is so incredibly unsanitary.
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Hehe, you're such a charmer ♥️
 Poppy ignores Cecilia and reaches for the door.
 <<showface Portrait Companion1>>
 Cecilia: Wait, I'd really rather not go that way –
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: What are you talking about? I've been this way tons of times!
-// Remove nameplate
+<<hideface Portrait>>
 Thuds/bangs come from the other side of door.
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Oh that's odd. I wonder if someone got locked out.
 Poppy tries the door. It's locked.
 <<showface Portrait Companion1>>
 Cecilia: Please!
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: That's odd. I wonder why this door is locked, too.
 Poppy: ... I guess we can head downstairs to ask the janitor for the keys.
 Poppy: And we can ask the other to join us!
@@ -144,28 +114,28 @@ title: Companion_1_1_1
 // On the stairs
 <<showface Portrait Companion1>>
 Cecilia: Do you normally help people out like this?
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Hmm, not exactly. But you caught me in a good mood, I think!
 <<showface Portrait Companion1>>
 Cecilia: I'm grateful, then. I haven't met many people that offer help so readily.
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Then, I hope you meet more in the future!
 
 // In the living room
 -> About Candy Floss
     <<showface Portrait Companion1>>
     Cecilia:  Is she always so... abrasive?
-    <<showface Portrait Default>>
+    <<showface Portrait Poppy1>>
     Poppy: You get used to it; she's got low blood sugar most of the time. A quick fix will perk her right up!
 -> About Pumpkin Pie
     <<showface Portrait Companion1>>
     Cecilia: Um.
-    <<showface Portrait Default>>
+    <<showface Portrait Poppy1>>
     Poppy: No saving that one, don't ask.
 -> About Dango
     <<showface Portrait Companion1>>
     Cecilia: She's pretty devoted to her fans, huh?
-    <<showface Portrait Default>>
+    <<showface Portrait Poppy1>>
     Poppy: Maybe... but I think she just likes using the cute filters. Don't tell her I told you that, though!
 
 ===
@@ -173,11 +143,11 @@ Poppy: Then, I hope you meet more in the future!
 // Act 1 Scene 2 - (Searching for janitor/riddle 1)
 title: Companion_1_2_0
 ---
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: So! We are a little bit locked in, and there are cleaning dolls everywhere and no Jannie anywhere.
 <<showface Portrait Companion1>>
 Cecilia: Perhaps we can try asking them for clues?
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Oh, making friends! I'm pretty good at that. Nice idea!
 <<showface Portrait Companion1>>
 Cecilia: I do have my moments, don't I?
@@ -186,28 +156,28 @@ Cecilia: I do have my moments, don't I?
 // Act 1 Scene 3  (Introduce the Janitor! (gives you a task to clean the practice rooms))
 title: Companion_1_3_0
 ---
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Now what?
 <<showface Portrait Companion1>>
 Cecilia: I guess we can only do as they say. Pumpkin or practice room? Trick or treat?
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Those both sound like tricks...
 
 // IF TALKED TO PUMPKIN ?? ?HOW CHECK
 // After talking to Pumpkin (refer to above dialogue that mentions ChocoStrawberry)
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: I was wondering where ChocoStrawberry was!
 <<showface Portrait Companion1>>
 Cecilia: Do you think she's cleaned up a little?
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Definitely not! She's too intense getting practice in to waste time cleaning up after Pumpkin.
 <<showface Portrait Companion1>>
 Cecilia: I guess we're putting in the elbow grease...
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Grease? I guess I should oil my joints better if you've mentioned it.
 <<showface Portrait Companion1>>
 Cecilia: What? No, not that—
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: I'm sorry for looking ashy...
 ===
 
@@ -215,11 +185,11 @@ Poppy: I'm sorry for looking ashy...
 title: Companion_1_4_0
 ---
 // AFTER CLEANING DOLL STUFF
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Where did it even come from?!
 <<showface Portrait Companion1>>
 Cecilia: I'm not sure, but it makes me feel like we're being watched...
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Jannie... Jannie would know! Let's go.
 ===
 
@@ -227,7 +197,7 @@ Poppy: Jannie... Jannie would know! Let's go.
 title: Companion_1_5_0
 ---
 // AFTER CLEANING DOLL STUFF
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: AGH! Again! Where did they go?
 Cecilia tries the other doors in the room.
 <<showface Portrait Companion1>>
@@ -237,14 +207,14 @@ Cecilia: I think this one is open. Don't panic, we'll find them.
 // Act 1 Scene 6 - NOT YET IMPLEMENTED?
 title: Companion_1_6_0
 ---
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: Wait, it's almost midnight! We might miss the Manager's birthday!  
 <<showface Portrait Companion1>>
 Cecilia: Well, the Manager's birthday is actually tomorrow!  
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy: So you came a day early  
 <<showface Portrait Companion1>>
 Cecilia: We like throwing each other surprises, so we often do this  
-<<showface Portrait Default>>
+<<showface Portrait Poppy1>>
 Poppy:  How devoted! 
 ===

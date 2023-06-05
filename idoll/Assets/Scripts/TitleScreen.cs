@@ -127,9 +127,9 @@ public class TitleScreen : MonoBehaviour
                 if (submitPressed)
                 {
                     if (fade != null) StopCoroutine(fade);
-                    GameManager.Instance.SetStory(0, 0, 0);
+                    GameManager.Instance.SetStory(0, 0, 1);
                     GameManager.Instance.musicPlayer.StopMusic();
-                    GameManager.Instance.ChangeToScene("Poppy's Room", new Vector2Int(0, 0));
+                    GameManager.Instance.ChangeToScene("Poppy's Room", new Vector2Int(1, 0));
                 }
                 if (navVector.y > 0) HighlightMenuOption(3);
                 if (navVector.y < 0) HighlightMenuOption(1);

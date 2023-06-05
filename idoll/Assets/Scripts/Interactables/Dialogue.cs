@@ -23,7 +23,7 @@ public class Dialogue : Interactable
 
         if (autoInteractWhenSceneLoads)
         {
-            OnInteract();
+            interact();
         }
     }
 
@@ -74,6 +74,13 @@ public class Dialogue : Interactable
         companion.ToggleFollowPlayer(s);
     }
 
+    [YarnCommand("TeleportSprite")]
+    public static void TeleportSprite(string gameObjectName, int x, int y)
+    {
+        GameObject gobj = GameObject.Find(gameObjectName);
+        gobj.transform.localPosition = new Vector3(x, y);
+    }
+
     [YarnCommand("NextAct")]
     public static void NextAct()
     {
@@ -90,6 +97,12 @@ public class Dialogue : Interactable
     public static void NextSubscene()
     {
         GameManager.Instance.NextStorySubscene();
+    }
+
+    [YarnCommand("SaveGame")]
+    public static void SaveFromDialogue()
+    {
+        GameManager.Instance.SaveGame();
     }
 
     [YarnFunction("story_is")] // Returns true if the current Act/Scene/Subscene is exactly the same
@@ -117,7 +130,6 @@ public class Dialogue : Interactable
 
         return true;
     }
-
 
     /*
     [YarnCommand("ToggleMovement")]

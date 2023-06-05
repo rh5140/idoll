@@ -71,7 +71,7 @@ public class Companion : MonoBehaviour
     {
         if (!GameManager.Instance.CompanionFollow) // Don't follow the player if CompanionFollow == false
         {
-            this.transform.position = spawnLocation;
+            //this.transform.position = spawnLocation;
             return;
         }
 

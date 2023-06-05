@@ -1,0 +1,52 @@
+﻿title: Camera
+---
+Would you like to save your game?
+-> Yes
+  <<SaveGame>>
+-> No
+===
+
+title: Door
+---
+The door is locked.
+===
+
+title: Shelf
+---
+There is nothing on the shelf.
+===
+
+title: Table
+---
+There is nothing on the table.
+===
+
+title: Bin
+---
+The trash can has nothing of interest.
+===
+
+title: Plant
+---
+The potted plant looks like it is made of plastic.
+===
+
+title: Drawer
+---
+The drawer is empty.
+===
+
+title: Axolotl
+---
+What a fancy plushie!
+===
+
+title: Doll
+---
+What an interesting doll.
+===
+
+title: Couch
+---
+The couch looks like it is made out of plastic
+===
