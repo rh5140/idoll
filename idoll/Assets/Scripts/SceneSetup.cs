@@ -33,12 +33,13 @@ public class SceneSetup : MonoBehaviour
             int length = foundInteractables.Length;
 
             // for each interactable
-            // dictionary.add (prob also check if already added just in case)
             for (int i = 0; i < length; i++)
             {
                 string objName = foundInteractables[i].name;
-                bool objBool = foundInteractables[i].activated > 0; 
-                sceneDict.Add(objName, objBool);
+                bool objBool = foundInteractables[i].activated > 0;
+                // dictionary.add (prob also check if already added just in case)
+                if (!sceneDict.ContainsKey(objName))
+                    sceneDict.Add(objName, objBool);
             }
             GameManager.Instance.progressDict.Add(sceneName, sceneDict);
         }

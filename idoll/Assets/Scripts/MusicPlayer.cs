@@ -18,23 +18,7 @@ public class MusicPlayer : MonoBehaviour
         currentTrackNum = i;
         source.clip = tracks[i];
         source.Play();
-
-        if (fadeMusic)
-        {
-            source.volume = 0.1f;
-            if (fadeIn != null)
-            {
-                StopCoroutine(fadeIn);
-            }
-            fadeIn = StartCoroutine(FadeInMusic(source, 2f, 1f));
-        }
-    }
-
-    public void SetTrack(AudioClip i, bool fadeMusic = true)
-    {
-        source.clip = i;
-        source.Play();
-
+        Debug.Log("MUSIC: Now Playing " + tracks[i].name);
         if (fadeMusic)
         {
             source.volume = 0.1f;
@@ -53,6 +37,7 @@ public class MusicPlayer : MonoBehaviour
 
     public void StopMusic()
     {
+        Debug.Log("MUSIC: Stopping music");
         source.clip = null;
         currentTrackNum = -1;
     }

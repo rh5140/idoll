@@ -2970,7 +2970,7 @@ MonoBehaviour:
   useable: 1
   reusable: 0
   activated: 0
-  enableInAct: {x: 0, y: 1, z: 0}
+  enableInAct: {x: 0, y: 0, z: 0}
   disableAfterAct: {x: 0, y: 1, z: 0}
   timer: 0
   autoInteractWhenSceneLoads: 1
