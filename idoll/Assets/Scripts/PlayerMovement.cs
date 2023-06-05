@@ -161,6 +161,10 @@ public class PlayerMovement : MonoBehaviour
 
             if (broom_game)
             {
+                if (Turn_Time > 0)
+                    return;
+
+
                 UnityEngine.Vector2 myVect = new UnityEngine.Vector2(xAxis, 0);
                 bool gotCollision = CollisionHandler.checkMovable(myVect, 1.25f, transform.Find("BroomObj").transform.position); //;.position
                 if (!gotCollision)
@@ -229,6 +233,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (broom_game)
             {
+                if (Turn_Time > 0)
+                    return;
                 UnityEngine.Vector2 myVect = new UnityEngine.Vector2(0, yAxis);
                 bool gotCollision = CollisionHandler.checkMovable(myVect, 1.25f, transform.Find("BroomObj").transform.position); //transform.position);
                 if (!gotCollision)

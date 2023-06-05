@@ -66,7 +66,7 @@ public class PlayerCollision : MonoBehaviour
             // ABSOLUTELY PERFECT CODE TO check to see if sprites are visible (TODO: probably needs to be made better later)
             if ((hit[numColliders].collider.gameObject).tag == "Movable")
             {
-                if (CheckCollision(dirVect, 1.5f, (hit[numColliders].collider.gameObject)) || !PlrMovement.broom_game)
+                if (CheckCollision(dirVect, 1.5f, (hit[numColliders].collider.gameObject)) || !PlrMovement.broom_game || !(hit[numColliders].collider.gameObject).GetComponent<ObjectMovement>().game_active)
                     return true;
                 return false;
             }
