@@ -49,8 +49,9 @@ public class PlayerCollision : MonoBehaviour
 
     public bool CheckCollision(UnityEngine.Vector2 dirVect, float dist, GameObject center = null) // Check if there is any collision using raycast in specified direction and distance.
     {
-
         RaycastHit2D[] hit;
+        bool hasCollided = false;
+
         if (center != null)
         {
             center.layer = LayerMask.NameToLayer("Ignore Raycast");
@@ -83,20 +84,31 @@ public class PlayerCollision : MonoBehaviour
             }
             catch { }
 
-            if (s != null || t != null)
+            if (s != null && s.gameObject.tag == "Activator")
             {
-                if (s == null && t.enabled)
+                s.GetComponentInParent<Interactable>().interact();
+            }
+
+            else if (s != null && s.gameObject.tag == "Companion")
+            {
+                if (s.gameObject.GetComponent<Companion>().IsGhosted() == false)
                 {
-                    //Debug.Log("Collided");
-                    return (hit[numColliders].collider != null);
+                    hasCollided = true; // Collision if companion is not ghosted!
                 }
-                if (t == null && s.enabled)
+            }
+
+            else if (s != null || t != null)
+            {
+                if ((s == null && t.enabled) || (t == null && s.enabled))
                 {
-                    return (hit[numColliders].collider != null);
+                    if (hit[numColliders].collider != null)
+                    {
+                        hasCollided = true;
+                    }
                 }
             }
         }
-        return false;
+        return hasCollided;
     }
 
     public bool checkMovable(UnityEngine.Vector2 dirVect, float dist, UnityEngine.Vector2 centerPos, int special_move = -1, int old_dir = -1) // 0 - Down, 1 - Up, 2 - Left, 3 - Right
