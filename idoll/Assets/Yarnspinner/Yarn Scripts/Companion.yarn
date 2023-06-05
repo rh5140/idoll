@@ -150,23 +150,21 @@ Cecilia: I'm grateful, then. I haven't met many people that offer help so readil
 Poppy: Then, I hope you meet more in the future!
 
 // In the living room
-About Candy Floss
-<<showface Portrait Companion1>>
-Cecilia:  Is she always so... abrasive?
-<<showface Portrait Default>>
-Poppy: You get used to it; she's got low blood sugar most of the time. A quick fix will perk her right up!
-
-About Pumpkin Pie
-<<showface Portrait Companion1>>
-Cecilia: Um.
-<<showface Portrait Default>>
-Poppy: No saving that one, don't ask.
-
-About Dango.
-<<showface Portrait Companion1>>
-Cecilia: She's pretty devoted to her fans, huh?
-<<showface Portrait Default>>
-Poppy: Maybe... but I think she just likes using the cute filters. Don't tell her I told you that, though!
+-> About Candy Floss
+    <<showface Portrait Companion1>>
+    Cecilia:  Is she always so... abrasive?
+    <<showface Portrait Default>>
+    Poppy: You get used to it; she's got low blood sugar most of the time. A quick fix will perk her right up!
+-> About Pumpkin Pie
+    <<showface Portrait Companion1>>
+    Cecilia: Um.
+    <<showface Portrait Default>>
+    Poppy: No saving that one, don't ask.
+-> About Dango
+    <<showface Portrait Companion1>>
+    Cecilia: She's pretty devoted to her fans, huh?
+    <<showface Portrait Default>>
+    Poppy: Maybe... but I think she just likes using the cute filters. Don't tell her I told you that, though!
 
 ===
 

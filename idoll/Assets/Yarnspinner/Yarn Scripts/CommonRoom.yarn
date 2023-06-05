@@ -1,0 +1,45 @@
+﻿title: CandyFloss
+---
+<<if (story_is(1,1,1))>>
+    Poppy: Hey CF! Have you seen Jannie?
+    CandyFloss: *sniffs* No, they're probably holed up in their bird's nest of a room again.
+    Poppy:  So... which room?
+    CandyFloss: You think I know? I'm not about to go find out.
+    Poppy: Oh well, thanks anyways!
+
+    // AFTER CHECKING STORAGE ROOM FDFIODFOPD
+    Poppy: Do you have a key for the blue storage room door?
+<<elseif (story_is(1,1,2))>>
+    // IF CANDY FLOSS IN INVENTORY
+    CandyFloss: I smell something sweet!
+    Poppy: Oh, just some candy floss. Want some?
+    CandyFloss: It's close enough to cheat day... give it here!
+
+    // AFTER GIVING CANDY FLOSS
+    Poppy: So, about that key to the blue storage?
+    CandyFloss: Yeah, yeah, here you go. 
+    Cecilia: It was that easy????
+<<endif>>
+===
+
+title: PumpkinPie
+---
+<<if (story_is(1,1,1))>>
+    Poppy: Pumpkin! Do you know where Jannie is?
+    PumpkinPie: *does not notice yet* ehuehuehuehuehue another limited edition card
+    Poppy: PUMPKIN! Did you mess with the storage room boxes again?
+    PumpkinPie: ...Noooooo?
+    Poppy: I'm not gonna get anything from her when she's like this.
+    ------
+    PumpkinPie: ...Ah! I forgot to put the boxes back! Maybe ChocoStrawberry's still there? She can do it!
+<<endif>>
+===
+
+title: Dango
+---
+<<if (story_is(1,1,1))>>
+    Poppy: Dango, have you seen Jannie today?
+    Dango: No. Get outta my selfie.
+    Poppy: GAH sorry.
+<<endif>>
+===
