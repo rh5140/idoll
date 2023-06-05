@@ -7,40 +7,44 @@ using Yarn.Unity;
 public class CharacterPortrait : MonoBehaviour
 {
 
-    [YarnCommand("updateface")]
-    void UpdateCharacter(string name)
-    {
-        ShowFace();
-        Image image = GetComponent<Image>();
-        if (image != null)
-        {
-            Sprite img = Resources.Load<Sprite>("Portraits/"+name);
-            if (img == null)
-            {
-                img = Resources.Load<Sprite>("Portraits/Default");
-            }
-
-            image.sprite = img;
-        }
-    }
 
     [YarnCommand("hideface")]
-    void HideFace()
+    public void HideFace()
     {
         Image image = GetComponent<Image>();
         if (image != null)
         {
             image.enabled = false;
         }
+
+        GameObject box = gameObject.transform.parent.Find("Background_Character").gameObject;
+        if (box != null)
+        {
+            box.SetActive(false);
+        }
     }
 
     [YarnCommand("showface")]
-    void ShowFace()
+    public void ShowFace(string name = "")
     {
         Image image = GetComponent<Image>();
         if (image != null)
         {
             image.enabled = true;
+            Sprite img = Resources.Load<Sprite>("Portraits/" + name);
+            if (img == null)
+            {
+                Debug.Log("ReferenceError : " + name + " does not exist in Portraits");
+                image.enabled = false;
+            }
+
+            image.sprite = img;
+        }
+
+        GameObject box = gameObject.transform.parent.Find("Background_Character").gameObject;
+        if (box != null)
+        {
+            box.SetActive(true);
         }
     }
 

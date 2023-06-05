@@ -26,12 +26,12 @@ title: Companion
 
 title: Companion_0_0_0
 ---
+<<showface Portrait face>>
 Companion: I'll follow you to the manager's office.
 -> Chat
-    <<updateface Portrait face>>
     Companion: I'm nervous for next week's interview...
 -> Friendship
-    <<updateface Portrait Default>>
+    <<showface Portrait Default>>
     <<if $friendship >= 50>>
         Companion: Aren't we such great friends?
     <<else>>
