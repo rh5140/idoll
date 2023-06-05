@@ -1715,8 +1715,9 @@ GameObject:
   - component: {fileID: 654725367813394258}
   - component: {fileID: 6398769068651123478}
   - component: {fileID: 4334811282713442640}
+  - component: {fileID: 6398769068651123479}
   m_Layer: 0
-  m_Name: RoomTemplate
+  m_Name: SE Closet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4416,6 +4417,18 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &6398769068651123479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3990188144729854640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e4540cee48ef648bf66f59c7ae8f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1839735485 &6467814221435456409
 Tilemap:
   m_ObjectHideFlags: 0

@@ -105,7 +105,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        locationText.text = System.Text.RegularExpressions.Regex.Replace(SceneManager.GetActiveScene().name, "([a-z])([A-Z])", "$1 $2"); /* https://stackoverflow.com/questions/272633/add-spaces-before-capital-letters */
+        CurrentScene = SceneManager.GetActiveScene().name;
+        locationText.text = System.Text.RegularExpressions.Regex.Replace(CurrentScene, "([a-z])([A-Z])", "$1 $2"); /* https://stackoverflow.com/questions/272633/add-spaces-before-capital-letters */
         blackScreen.gameObject.SetActive(true);
         blackScreen.color = new Color(255, 255, 255, 0);
         globalLight.SetActive(true);

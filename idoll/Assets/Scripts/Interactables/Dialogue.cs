@@ -23,6 +23,20 @@ public class Dialogue : Interactable
 
     private void Update()
     {
+        // Since the Update() in Interactable is being overriden, I copy-pasted this. There's definitely a better way to do this - Alexander
+        if (reusable)
+        {
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    timer = 0;
+                    useable = true;
+                }
+            }
+        }
+
         if (dialogue_is_active != dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)
         {
             if (dialogue_is_active == false) // If dialogue is being enabled
