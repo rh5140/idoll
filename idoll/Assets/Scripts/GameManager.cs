@@ -154,13 +154,13 @@ public class GameManager : MonoBehaviour
 
     public void NextStoryAct()
     {
-        StoryState += new Vector3Int(1, 0, 0);
+        StoryState = new Vector3Int(StoryState.x + 1, 0, 0);
         actSceneSubscene = StoryState;
         // Update act/scene logic!
     }
     public void NextStoryScene()
     {
-        StoryState += new Vector3Int(0, 1, 0);
+        StoryState = new Vector3Int(StoryState.x, StoryState.y + 1, 0);
         actSceneSubscene = StoryState;
         // Update act/scene logic!
     }

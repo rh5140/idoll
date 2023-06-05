@@ -18,6 +18,12 @@ public class Eyeballs : MonoBehaviour
     private Inputs inputs = null;
     private float input;
 
+    private void Awake()
+    {
+        inputs = new Inputs();
+        input = GameManager.Instance.CurrentEye;
+    }
+
     #region InputSystem
 
     private void OnEnable()
@@ -48,10 +54,7 @@ public class Eyeballs : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        inputs = new Inputs();
-        input = GameManager.Instance.CurrentEye;
-        
+    {   
         if (sprite = GetComponent<SpriteRenderer>()) {
             isSprite = true;
         }

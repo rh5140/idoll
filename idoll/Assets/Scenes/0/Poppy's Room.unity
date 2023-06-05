@@ -2216,6 +2216,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Companion
       objectReference: {fileID: 0}
+    - target: {fileID: 7149100175387253704, guid: 41fdeb0e6c778b5408084712c4825db3, type: 3}
+      propertyPath: disableAfterAct.x
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7149100175387253705, guid: 41fdeb0e6c778b5408084712c4825db3, type: 3}
       propertyPath: m_RootOrder
       value: 4

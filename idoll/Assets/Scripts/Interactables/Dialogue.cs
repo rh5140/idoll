@@ -72,13 +72,57 @@ public class Dialogue : Interactable
         }
     }
 
-
     [YarnCommand("ToggleCompanionFollow")]
     public static void ToggleCompanionFollow(string s = "toggle")
     {
         Companion companion = GameObject.FindGameObjectWithTag("Companion").GetComponent<Companion>();
         companion.ToggleFollowPlayer(s);
     }
+
+    [YarnCommand("NextAct")]
+    public static void NextAct()
+    {
+        GameManager.Instance.NextStoryAct();
+    }
+
+    [YarnCommand("NextScene")]
+    public static void NextScene()
+    {
+        GameManager.Instance.NextStoryScene();
+    }
+
+    [YarnCommand("NextSubscene")]
+    public static void NextSubscene()
+    {
+        GameManager.Instance.NextStorySubscene();
+    }
+
+    [YarnFunction("story_is")] // Returns true if the current Act/Scene/Subscene is exactly the same
+    public static bool IsStory(int act, int scene, int sub)
+    {
+        return GameManager.Instance.StoryState == new Vector3Int(act, scene, sub);
+    }
+
+    [YarnFunction("story_between")] // Returns true if the current Act/Scene/Subscene is between a range
+    public static bool BetweenStory(int act1, int scene1, int sub1, int act2, int scene2, int sub2)
+    {
+        Vector3Int enableVector = GameManager.Instance.StoryState - new Vector3Int(act1, scene1, sub1);
+        Vector3Int disableVector = new Vector3Int(act2, scene2, sub2) - GameManager.Instance.StoryState;
+
+        if (enableVector.x < 0 ||
+           (enableVector.x == 0 && enableVector.y < 0) ||
+           (enableVector.x == 0 && enableVector.y == 0 && enableVector.z < 0))
+            return false;
+
+        if (disableVector != Vector3Int.zero &&
+            disableVector.x < 0 ||
+           (disableVector.x == 0 && disableVector.y < 0) ||
+           (disableVector.x == 0 && disableVector.y == 0 && disableVector.z < 0))
+            return false;
+
+        return true;
+    }
+
 
     /*
     [YarnCommand("ToggleMovement")]
