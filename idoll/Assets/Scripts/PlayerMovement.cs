@@ -172,11 +172,11 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log(gotCollision);
                 //if (CollisionHandler.checkMovable(new UnityEngine.Vector2(xAxis, 0), 1.5f, transform.position))
                 // return;
+                int newFaceDir = xAxis == 1 ? 3 : 2;
 
                 // if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(-xAxis, 0), 0.5f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.2f)) // Check if we can move in the specified direction
-                if (faceDirection != 2 && faceDirection != 3 && gotCollision)
+                if (faceDirection != newFaceDir && gotCollision)
                 {
-                    int newFaceDir = xAxis == 1 ? 3 : 2;
                     if (faceDirection != newFaceDir)
                     {
                         Turn_Time = MAX_TURN_TIME;
@@ -188,7 +188,6 @@ public class PlayerMovement : MonoBehaviour
 
                 if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(-xAxis, 0), 0.1f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(xAxis, 0), 0.1f)) // Check if we can move in the specified direction
                 {
-                    int newFaceDir = xAxis == 1 ? 3 : 2;
                     if (faceDirection != newFaceDir)
                     {
                         Turn_Time = MAX_TURN_TIME;
@@ -202,12 +201,12 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 int newFaceDir = xAxis == 1 ? 3 : 2;
-                if (faceDirection != newFaceDir)
-                {
-                    Turn_Time = MAX_TURN_TIME;
-                    faceDirection = newFaceDir;
+              //  if (faceDirection != newFaceDir)
+              //  {
+             ////       Turn_Time = MAX_TURN_TIME;
+             //       faceDirection = newFaceDir;
                 //    return;
-                }
+              //  }
                 faceDirection = newFaceDir;
             }
            // faceDirection = xAxis == 1 ? 3 : 2;
@@ -244,9 +243,10 @@ public class PlayerMovement : MonoBehaviour
 
                 // if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, -yAxis), 0.5f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.5f)) // Check if we can move in the specified direction
                 // faceDirection = yAxis == 1 ? 1 : 0;
-                if (faceDirection != 1 && faceDirection != 0 && gotCollision)
+                int newFaceDir = yAxis == 1 ? 1 : 0;
+
+                if (faceDirection != newFaceDir && gotCollision)
                 {
-                    int newFaceDir = yAxis == 1 ? 1 : 0;
                     if (faceDirection != newFaceDir)
                     {
                         Turn_Time = MAX_TURN_TIME;
@@ -259,7 +259,6 @@ public class PlayerMovement : MonoBehaviour
 
                 if ((!CollisionHandler.GetCollision() || !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, -yAxis), 0.1f)) && !CollisionHandler.CheckCollision(new UnityEngine.Vector2(0, yAxis), 0.1f)) // Check if we can move in the specified direction
                 {
-                    int newFaceDir = yAxis == 1 ? 1 : 0;
                     if (faceDirection != newFaceDir)
                     {
                         Turn_Time = MAX_TURN_TIME;
@@ -272,12 +271,12 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 int newFaceDir = yAxis == 1 ? 1 : 0;
-                if (faceDirection != newFaceDir)
-                {
-                    Turn_Time = MAX_TURN_TIME;
-                    faceDirection = newFaceDir;
+                //if (faceDirection != newFaceDir)
+                //{
+                   // Turn_Time = MAX_TURN_TIME;
+                  //  faceDirection = newFaceDir;
                  //   return;
-                }
+               // }
                 faceDirection = newFaceDir;
             }
 

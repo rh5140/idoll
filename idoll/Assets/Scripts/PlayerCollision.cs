@@ -99,7 +99,7 @@ public class PlayerCollision : MonoBehaviour
         return false;
     }
 
-    public bool checkMovable(UnityEngine.Vector2 dirVect, float dist, UnityEngine.Vector2 centerPos, int special_move = -1, int old_dir = -1)
+    public bool checkMovable(UnityEngine.Vector2 dirVect, float dist, UnityEngine.Vector2 centerPos, int special_move = -1, int old_dir = -1) // 0 - Down, 1 - Up, 2 - Left, 3 - Right
     {
  
             RaycastHit2D[] hit = Physics2D.RaycastAll(centerPos, dirVect.normalized, 1.25f); // RaycastAll to check for stacked colliders
@@ -139,29 +139,31 @@ public class PlayerCollision : MonoBehaviour
                             {
                                 if (old_dir == 1)
                                     move_vector = new UnityEngine.Vector2(0f, -1f);
-                                else
-                                    move_vector = new UnityEngine.Vector2(0f, 1f);
+                            else if (old_dir != 3)
+                                move_vector = new UnityEngine.Vector2(0f, 1f);
                             }
                             else if (special_move == 3)
                             {
                                 if (old_dir == 1)
                                     move_vector = new UnityEngine.Vector2(0f, -1f);
-                                else
+                                else if (old_dir != 2)
                                     move_vector = new UnityEngine.Vector2(0f, 1f);
                             }
                             else if (special_move == 1)
                             {
                                 if (old_dir == 2)
                                     move_vector = new UnityEngine.Vector2((-1f) + (2 * special_move), 0f);
-                                else
+                         
+                                else if (old_dir != 0) 
                                     move_vector = new UnityEngine.Vector2((1f) - (2 * special_move), 0f);
-                            }
-                            else
+
+                        }
+                        else
                             {
                                 if (old_dir == 2)
                                     move_vector = new UnityEngine.Vector2((1f) - (2 * special_move), 0f);
-                                else
-                                    move_vector = new UnityEngine.Vector2((-1f) + (2 * special_move), 0f);
+                            else if (old_dir != 1)
+                                move_vector = new UnityEngine.Vector2((-1f) + (2 * special_move), 0f);
                             }
 
                         }
