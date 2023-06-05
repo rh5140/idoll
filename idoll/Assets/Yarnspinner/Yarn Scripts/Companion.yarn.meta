@@ -11,4 +11,46 @@ ScriptedImporter:
   LastImportHadImplicitStringIDs: 1
   LastImportHadAnyStrings: 1
   isSuccessfullyParsed: 1
-  parseErrorMessages: []
+  parseErrorMessages:
+  - '65:0: Error: The node ''Companion_0_1_0:'' contains illegal characters in its
+    title.
+
+    title: Companion_0_1_0:
+
+'
+  - '96:0: Error: The node ''Companion_0_2_0:'' contains illegal characters in its
+    title.
+
+    title: Companion_0_2_0:
+
+'
+  - '140:0: Error: The node ''Companion_1_1_1:'' contains illegal characters in its
+    title.
+
+    title: Companion_1_1_1:
+
+'
+  - '174:0: Error: The node ''Companion_1_2_0:'' contains illegal characters in its
+    title.
+
+    title: Companion_1_2_0:
+
+'
+  - '187:0: Error: The node ''Companion_1_3_0:'' contains illegal characters in its
+    title.
+
+    title: Companion_1_3_0:
+
+'
+  - '215:0: Error: The node ''Companion_1_4_0:'' contains illegal characters in its
+    title.
+
+    title: Companion_1_4_0:
+
+'
+  - '227:0: Error: The node ''Companion_1_5_0:'' contains illegal characters in its
+    title.
+
+    title: Companion_1_5_0:
+
+'

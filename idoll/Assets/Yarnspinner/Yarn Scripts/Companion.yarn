@@ -62,7 +62,7 @@ Cecilia: I'll follow you to the manager's office.
 ===
 
 // Act 0 Scene 1
-title: Companion_0_1_0:
+title: Companion_0_1_0
 ---
 // Remove nameplate
 Near night time, protagonist is getting ready for her display-case bed.
@@ -93,7 +93,7 @@ Poppy: Then what are we waiting for? Let's go let the others know so we can thro
 ===
 
 // Act 0 Scene 2
-title: Companion_0_2_0:
+title: Companion_0_2_0
 ---
 <<showface Portrait Companion1>>
 Cecilia: I appreciate the help. I haven't visited in years, so I was afraid I would get lost.
@@ -137,7 +137,7 @@ Poppy: And we can ask the other to join us!
 ===
 
 // Act 1 Scene 1 Subscene 1
-title: Companion_1_1_1:
+title: Companion_1_1_1
 ---
 // On the stairs
 <<showface Portrait Companion1>>
@@ -171,7 +171,7 @@ Poppy: Maybe... but I think she just likes using the cute filters. Don't tell he
 ===
 
 // Act 1 Scene 2 - (Searching for janitor/riddle 1)
-title: Companion_1_2_0:
+title: Companion_1_2_0
 ---
 <<showface Portrait Default>>
 Poppy: So! We are a little bit locked in, and there are cleaning dolls everywhere and no Jannie anywhere.
@@ -184,7 +184,7 @@ Cecilia: I do have my moments, don't I?
 ===
 
 // Act 1 Scene 3  (Introduce the Janitor! (gives you a task to clean the practice rooms))
-title: Companion_1_3_0:
+title: Companion_1_3_0
 ---
 <<showface Portrait Default>>
 Poppy: Now what?
@@ -212,7 +212,7 @@ Poppy: I'm sorry for looking ashy...
 ===
 
 // Act 1 Scene 4 - (Practice rooms (minigame 1)/last idol(l) ChocoStrawberry [CS])
-title: Companion_1_4_0:
+title: Companion_1_4_0
 ---
 // AFTER CLEANING DOLL STUFF
 <<showface Portrait Default>>
@@ -224,7 +224,7 @@ Poppy: Jannie... Jannie would know! Let's go.
 ===
 
 // Act 1 Scene 5 - (return to janitor to check for a way down the elevator shaft)
-title: Companion_1_5_0:
+title: Companion_1_5_0
 ---
 // AFTER CLEANING DOLL STUFF
 <<showface Portrait Default>>
