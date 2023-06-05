@@ -1,0 +1,19 @@
+﻿title: ChocoStrawberry
+---
+<<if (scene_is(1,4,0))>>
+    Poppy: ChocoStrawberry! Are you okay?
+    ChocoStrawberry: *groaning sounds*
+    Poppy: Wait, don't move, there's glass around you. Let me clean up!
+    Poppy cleans up around ChocoStrawberry.
+    Poppy: All done! Let's get you up-
+    A Cleaning Doll barges in stage left. It turns in a circle, assessing the room.
+    Poppy: ?
+    Cleaning Doll: You said "All done!" You are not "All done!"
+    The Cleaning Doll veers back and slams into ChocoStrawberry, hurling her down the elevator shaft.
+    Cleaning Doll: This is "All done!"
+    The Cleaning Doll disappears as quickly as it came.
+    Poppy: No...!
+    Poppy: We have to get her out!
+    Cecilia: Perhaps the janitor knows?
+<<endif>>
+===

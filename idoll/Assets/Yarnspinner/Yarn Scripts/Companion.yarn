@@ -33,6 +33,8 @@ title: Companion
     <<jump Companion_1_4_0>>
 <<elseif (story_is(1,5,0))>>
     <<jump Companion_1_5_0>>
+<<elseif (story_is(1,6,0))>>
+    <<jump Companion_1_6_0>>
 <<else>>
     Cecilia: I no longer have any dialogue.
 <<endif>>
@@ -226,9 +228,23 @@ title: Companion_1_5_0
 ---
 // AFTER CLEANING DOLL STUFF
 <<showface Portrait Default>>
-Poppy: Where did it even come from?!
+Poppy: AGH! Again! Where did they go?
+Cecilia tries the other doors in the room.
 <<showface Portrait Companion1>>
-Cecilia: I'm not sure, but it makes me feel like we're being watched...
+Cecilia: I think this one is open. Don't panic, we'll find them.
+===
+
+// Act 1 Scene 6 - NOT YET IMPLEMENTED?
+title: Companion_1_6_0
+---
 <<showface Portrait Default>>
-Poppy: Jannie... Jannie would know! Let's go.
+Poppy: Wait, it's almost midnight! We might miss the Manager's birthday!  
+<<showface Portrait Companion1>>
+Cecilia: Well, the Manager's birthday is actually tomorrow!  
+<<showface Portrait Default>>
+Poppy: So you came a day early  
+<<showface Portrait Companion1>>
+Cecilia: We like throwing each other surprises, so we often do this  
+<<showface Portrait Default>>
+Poppy:  How devoted! 
 ===

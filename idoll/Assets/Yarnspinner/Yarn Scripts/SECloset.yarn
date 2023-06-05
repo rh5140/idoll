@@ -1,0 +1,15 @@
+﻿title: Janitor
+---
+<<if (story_is(1,2,1))>>
+    Poppy: Jannie! That took forever. Why're you hiding out here?
+    Jannie: Pumpkin keeps digging through boxes like a trash panda. I need some R&R from you all.
+    Poppy: You're still on duty-
+    Jannie: ...I'm always on duty, I live here.
+    Poppy:  So can you help us open a door upstairs?
+    Jannie: ...
+    Poppy: Please?? Or maybe you can just give us the master keys and we'll figure it out?
+    Jannie: Over my dead and prone body. Maybe if you help me get the practice rooms cleaned up, I'll think about it. 
+    Poppy: Which ones?
+    Jannie: *sourly* Ask Pumpkin. Or maybe just walk through them. All of them.
+<<endif>>
+===
