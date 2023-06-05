@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5.01}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 49, y: -65}
-  m_SizeDelta: {x: 138.0919, y: 51.474}
+  m_AnchoredPosition: {x: 77, y: -7}
+  m_SizeDelta: {x: 250, y: 51.474}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &849274173703914594
 CanvasRenderer:
@@ -66,7 +66,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WIP
+  m_text: 'WIP
+
+
+    Press z/Enter to return to title'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b4e6b27e4ed182e48b9dd6cdde91bde4, type: 2}
   m_sharedMaterial: {fileID: 7202306382822768885, guid: b4e6b27e4ed182e48b9dd6cdde91bde4, type: 2}

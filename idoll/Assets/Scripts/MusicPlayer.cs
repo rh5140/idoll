@@ -30,6 +30,22 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    public void SetTrack(AudioClip i, bool fadeMusic = true)
+    {
+        source.clip = i;
+        source.Play();
+
+        if (fadeMusic)
+        {
+            source.volume = 0.1f;
+            if (fadeIn != null)
+            {
+                StopCoroutine(fadeIn);
+            }
+            fadeIn = StartCoroutine(FadeInMusic(source, 2f, 1f));
+        }
+    }
+
     public int GetTrackNum()
     {
         return currentTrackNum;

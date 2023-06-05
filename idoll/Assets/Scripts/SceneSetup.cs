@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneSetup : MonoBehaviour
 {
+    [SerializeField] int sceneMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,5 +45,15 @@ public class SceneSetup : MonoBehaviour
 
         // Set GameMode to "gameplay"
         GameManager.Instance.SetGameMode("gameplay");
+
+        // Set the music for the scene
+        // TODO - loewr priority so that other things can override scene music\
+
+        GameManager.Instance.musicPlayer.StopMusic();
+        if (sceneMusic > 0)
+        {
+            // Note, music list starts at 1, not 0
+            GameManager.Instance.musicPlayer.SetTrack(sceneMusic-1);
+        }
     }
 }

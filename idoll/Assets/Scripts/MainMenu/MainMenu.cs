@@ -111,7 +111,6 @@ public class MainMenu : MonoBehaviour
     {
         if (inputBlocked) return;
         if (submitPressed == false && cancelPressed == false && navVector == Vector2.zero) return;
-        
         StartCoroutine(MenuInputDelay());
         
         if (GameManager.Instance.GameMode == "menu")
@@ -119,8 +118,7 @@ public class MainMenu : MonoBehaviour
 
             if (!inTab && cancelPressed) { GameManager.Instance.ToggleMenu(); }
             if (!inTab && submitPressed) { inTab = true; }
-            if (inTab && cancelPressed) { inTab = false; }
-
+            if (inTab && cancelPressed) { inTab = false; };
             switch (curTab)
             {
                 case 0: // Profile
@@ -143,13 +141,23 @@ public class MainMenu : MonoBehaviour
                         if (navVector.x < -0.5) { OnInventoryClick(); }
                         if (navVector.x > 0.5) { OnProfileClick(); }
                     }
+                    else
+                    {
+                        if (submitPressed) // Load title screen
+                        {
+                            inTab = false;
+                            GameManager.Instance.ToggleMenu();
+                            GameManager.Instance.ChangeToScene("Title", new Vector2Int(0, 0));
+                        }
+                    }
                     break;
                 default:
                     Debug.Log("Current menu tab is invalid");
                     break;
             }
         }
-        else if (GameManager.Instance.GameMode == "gameplay" && cancelPressed)
+        else if (GameManager.Instance.GameMode == "gameplay" && cancelPressed ||
+                 GameManager.Instance.GameMode == "" && cancelPressed)
         {
             GameManager.Instance.ToggleMenu();
         }

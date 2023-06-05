@@ -76,6 +76,9 @@ public class GameManager : MonoBehaviour
 
     #region InspectorVariables
 
+    // For debug purposes
+    [SerializeField] public string currentGameMode;
+
     [SerializeField] private Vector3Int actSceneSubscene;
 
     // Stores the x/y position and the facing direction of the player when switching scenes
@@ -90,6 +93,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Image blackScreen;
 
     [SerializeField] public MusicPlayer musicPlayer;
+
 
 
     private bool isChangingScene;
@@ -111,6 +115,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        currentGameMode = GameMode;
+
         if (Input.GetKeyDown("o"))
         {
             SaveGame();
@@ -289,7 +295,15 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
         CurrentScene = sceneName;
-        locationText.text = System.Text.RegularExpressions.Regex.Replace(CurrentScene, "([a-z])([A-Z])", "$1 $2"); /* https://stackoverflow.com/questions/272633/add-spaces-before-capital-letters */
+        if (sceneName == "Title")
+        {
+            locationText.text = "";
+        }
+        else
+        {
+            locationText.text = System.Text.RegularExpressions.Regex.Replace(CurrentScene, "([a-z])([A-Z])", "$1 $2"); /* https://stackoverflow.com/questions/272633/add-spaces-before-capital-letters */
+        }
+
 
         if (fade) { yield return StartCoroutine(ToggleFadeToBlack(false)); }
 

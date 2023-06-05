@@ -6611,7 +6611,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 3
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -6644,16 +6644,16 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 15
     m_Data: {fileID: 1757563656, guid: 2fdf440a2b1346a4a8c3339d07bbf89a, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1134860653, guid: 81e57fced25afb94eace31b9819ae568, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 95
     m_Data: {fileID: 538431032, guid: febead5cf31d76e4ca42018838a8a46c, type: 3}
   - m_RefCount: 32
     m_Data: {fileID: 742915827, guid: febead5cf31d76e4ca42018838a8a46c, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 1134860653, guid: 81e57fced25afb94eace31b9819ae568, type: 3}
   - m_RefCount: 12
     m_Data: {fileID: 1365547582, guid: 2fdf440a2b1346a4a8c3339d07bbf89a, type: 3}
   - m_RefCount: 21
@@ -7082,6 +7082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e4540cee48ef648bf66f59c7ae8f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneMusic: 2
 --- !u!1839735485 &6467814222082194245
 Tilemap:
   m_ObjectHideFlags: 0

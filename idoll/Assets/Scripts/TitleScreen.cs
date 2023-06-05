@@ -100,7 +100,7 @@ public class TitleScreen : MonoBehaviour
         fade = StartCoroutine(Fade());
         overlay.color = new Color(0f, 0f, 0f, 0f);
         GameManager.Instance.SetGameMode("title");
-        GameManager.Instance.musicPlayer.SetTrack(0);
+        GameManager.Instance.musicPlayer.SetTrack(1);
     }
 
     void Update()
