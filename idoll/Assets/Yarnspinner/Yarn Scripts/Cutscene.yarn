@@ -9,7 +9,6 @@ Poppy: *humming* Today was a great day! It's time for bed! For a great next day!
 Suddenly, there are loud knocks at the door.
 <<showface Portrait Poppy1>>
 Poppy: I wonder who's at the door. Oh, maybe it's Pumpkin?
-<<NextSubscene>>
 ===
 
 title: Cutscene_0_1_0

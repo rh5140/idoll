@@ -100,7 +100,7 @@ public class TitleScreen : MonoBehaviour
         fade = StartCoroutine(Fade());
         overlay.color = new Color(0f, 0f, 0f, 0f);
         GameManager.Instance.SetGameMode("title");
-        GameManager.Instance.musicPlayer.SetTrack(1);
+        GameManager.Instance.musicPlayer.SetTrack(0);
     }
 
     void Update()
@@ -145,8 +145,14 @@ public class TitleScreen : MonoBehaviour
                 if (navVector.y > 0) HighlightMenuOption(0);
                 if (navVector.y < 0) HighlightMenuOption(2);
                 break;
-            case 2: // Credits
-                if (submitPressed) Debug.Log("No credits yet, check itch.io");
+            case 2: // Credits - well actually, Broom for the showcase
+                if (submitPressed)
+                {
+                    Debug.Log("No credits yet, check itch.io");
+                    GameManager.Instance.SetStory(1, 4, 0);
+                    GameManager.Instance.musicPlayer.StopMusic();
+                    GameManager.Instance.ChangeToScene("Practice Room", new Vector2Int(0, 0));
+                }
                 if (navVector.y > 0) HighlightMenuOption(1);
                 if (navVector.y < 0) HighlightMenuOption(3);
                 break;
