@@ -24,11 +24,32 @@ EditorBuildSettings:
     path: Assets/Scenes/1/Common Room.unity
     guid: ef210e2cdca485b46b6fc12873a78c60
   - enabled: 1
+    path: Assets/Scenes/1/Snack Room.unity
+    guid: c8166c8fcbaedbf45afad1f0d44569a0
+  - enabled: 1
     path: Assets/Scenes/1/Basement Hallway.unity
     guid: 86b130b161a71094484fe96885a0a246
   - enabled: 1
     path: Assets/Scenes/1/Practice Rooms.unity
     guid: 977e158b89d9302468522bbf995be4d8
+  - enabled: 1
+    path: Assets/Scenes/1/Central Storage.unity
+    guid: 37f9e78e03a717c4a9de822f21d72fb2
+  - enabled: 1
+    path: Assets/Scenes/1/East Closet.unity
+    guid: 309620ad11a012d489d364042b92382b
+  - enabled: 1
+    path: Assets/Scenes/1/NE Closet.unity
+    guid: 713bcd3b39754844b9ec2c3e92aa1b2f
+  - enabled: 1
+    path: Assets/Scenes/1/NW Closet.unity
+    guid: 5f81a8a4f81cfbe428b6cbdf0063a35c
+  - enabled: 1
+    path: Assets/Scenes/1/SE Closet.unity
+    guid: 7dba2aaab2afeba42b3ddc9ad1d38655
+  - enabled: 1
+    path: Assets/Scenes/1/SW Closet.unity
+    guid: 6aa56a6966ae4f843adf21b79761ba12
   - enabled: 0
     path: Assets/Scenes/DressingRoom.unity
     guid: 63df89e8b1b126b44a43197d5ae0796a

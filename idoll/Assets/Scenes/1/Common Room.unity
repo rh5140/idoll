@@ -197,6 +197,84 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3244572997102448302, guid: 13c29459944c2264c9577af226681f75, type: 3}
   m_PrefabInstance: {fileID: 59463884}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &144857052
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1581327964}
+    m_Modifications:
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576767426515144419, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: targetScene
+      value: Snack Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576767426515144419, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: spawnLocation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5576767426515144419, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: spawnLocation.y
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811630635444822523, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_Name
+      value: DoorToSnackRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8745829662969739030, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 928404813, guid: cda07c19d2c1ddc47a0ad94daf0513e7, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+--- !u!4 &144857053 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1690048320668864442, guid: 24660653761677943acf00fc2c83a04a, type: 3}
+  m_PrefabInstance: {fileID: 144857052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &203328654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -841,6 +919,7 @@ Transform:
   m_Children:
   - {fileID: 418031891}
   - {fileID: 59463885}
+  - {fileID: 144857053}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5719,6 +5798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e4540cee48ef648bf66f59c7ae8f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneMusic: 0
 --- !u!1839735485 &6467814220910198858
 Tilemap:
   m_ObjectHideFlags: 0

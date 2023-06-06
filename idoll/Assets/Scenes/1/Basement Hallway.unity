@@ -276,6 +276,7 @@ MonoBehaviour:
   enableInAct: {x: 0, y: 0, z: 0}
   disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
+  autoInteractWhenSceneLoads: 0
 --- !u!1001 &135518071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -641,6 +642,7 @@ MonoBehaviour:
   enableInAct: {x: 0, y: 0, z: 0}
   disableAfterAct: {x: 0, y: 0, z: 0}
   timer: 0
+  autoInteractWhenSceneLoads: 0
 --- !u!1001 &1313625300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1840,7 +1842,7 @@ GameObject:
   - component: {fileID: 1959583482}
   - component: {fileID: 1959583481}
   m_Layer: 0
-  m_Name: Door2
+  m_Name: DoorToPracticeRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24500,27 +24502,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6630580023217033172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9009549628902727884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22d1b45c7c9f7a441ae8662a94c7b644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactDelay: 0.5
-  useable: 1
-  reusable: 1
-  activated: 0
-  enableInAct: {x: 0, y: 0, z: 0}
-  disableAfterAct: {x: 0, y: 0, z: 0}
-  timer: 0
-  targetScene: Practice Rooms
-  spawnLocation: {x: 0, y: 0}
 --- !u!4 &6692818244176797231
 Transform:
   m_ObjectHideFlags: 0
@@ -24747,6 +24728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e4540cee48ef648bf66f59c7ae8f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneMusic: 0
 --- !u!114 &7987426343386424731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24872,17 +24854,37 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 438086070286290573}
-  - component: {fileID: 6630580023217033172}
   - component: {fileID: 7511802651099674145}
   - component: {fileID: 6159591336269042063}
   - component: {fileID: 4832623467378935743}
+  - component: {fileID: 9009549628902727885}
   m_Layer: 0
-  m_Name: Door3
+  m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9009549628902727885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9009549628902727884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f669d5b21b24a247abcc288f193578c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDelay: 0.5
+  useable: 1
+  reusable: 1
+  activated: 0
+  enableInAct: {x: 0, y: 0, z: 0}
+  disableAfterAct: {x: 0, y: 0, z: 0}
+  timer: 0
+  autoInteractWhenSceneLoads: 0
 --- !u!61 &9108581552047114062
 BoxCollider2D:
   m_ObjectHideFlags: 0
