@@ -30,6 +30,7 @@ public class Dialogue : Interactable
     protected override void Update()
     {
         // Since the Update() in Interactable is being overriden, I copy-pasted this. There's definitely a better way to do this - Alexander
+        // Edit: thanks Evan for the better way to do this
         base.Update();
 
         if (dialogue_is_active != dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)

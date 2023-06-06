@@ -151,7 +151,7 @@ public class TitleScreen : MonoBehaviour
                     Debug.Log("No credits yet, check itch.io");
                     GameManager.Instance.SetStory(1, 4, 0);
                     GameManager.Instance.musicPlayer.StopMusic();
-                    GameManager.Instance.ChangeToScene("Practice Room", new Vector2Int(0, 0));
+                    GameManager.Instance.ChangeToScene("Practice Rooms", new Vector2Int(0, 0));
                 }
                 if (navVector.y > 0) HighlightMenuOption(1);
                 if (navVector.y < 0) HighlightMenuOption(3);

@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e4a3c3c59029c44b7b9a5ac1c7a419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentInteractable: {fileID: 0}
   canInteract: 1
 --- !u!58 &3186095460436640580
 CircleCollider2D:
@@ -525,6 +526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8996293925438707621}
   - component: {fileID: 3491292865145557250}
+  - component: {fileID: 8996220942312515925}
   m_Layer: 2
   m_Name: BroomObj
   m_TagString: Untagged
@@ -588,7 +590,7 @@ SpriteRenderer:
   m_SortingLayerID: -1032424169
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1631437958, guid: c4b69deac796cf94b8594907e11e0cd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -599,3 +601,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8996220942312515925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979216751893022310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3dc5a6ae9e9fe4a9cd45614de43482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBroomSprite: {fileID: 3491292865145557250}
+  broomSprites:
+  - {fileID: -1631437958, guid: c4b69deac796cf94b8594907e11e0cd2, type: 3}
+  - {fileID: 2068257362, guid: c4b69deac796cf94b8594907e11e0cd2, type: 3}
+  - {fileID: -578877108, guid: c4b69deac796cf94b8594907e11e0cd2, type: 3}
+  - {fileID: -381925686, guid: c4b69deac796cf94b8594907e11e0cd2, type: 3}
