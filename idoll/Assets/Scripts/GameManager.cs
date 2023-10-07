@@ -117,16 +117,6 @@ public class GameManager : MonoBehaviour
     {
         currentGameMode = GameMode;
 
-        if (Input.GetKeyDown("o"))
-        {
-            SaveGame();
-        }
-
-        if (Input.GetKeyDown("p"))
-        {
-            LoadGame();
-        }
-
         // Jump to scene using the Unity Inspector
         if (actSceneSubscene != StoryState) // If the player manually changes the scene
         {
@@ -134,17 +124,6 @@ public class GameManager : MonoBehaviour
             // Update act/scene logic!
         }
     }
-
-    //private IEnumerator ToggleInventory()
-    //{
-    //    if (!inventoryCooldown)
-    //    {
-    //        inventoryCooldown = true;
-    //        inventory.gameObject.transform.parent.gameObject.SetActive(!inventory.gameObject.transform.parent.gameObject.activeSelf);
-    //        yield return new WaitForSeconds(0.3f); // Prevent multi-presses
-    //        inventoryCooldown = false;
-    //    }
-    //}
    
     public void GetPlayerPosition()
     {

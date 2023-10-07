@@ -14,8 +14,8 @@ public class MainMenu : MonoBehaviour
     Coroutine slideTransition;
 
     private Vector2 navVector = Vector2.zero;
-    bool cancelPressed = false;
     bool submitPressed = false;
+    bool cancelPressed = false;
     private int curTab = 0; // 0 = profile, 1 = inventory, 2 = settings
     private bool inTab = false; // selecting between tabs or navigating within a tab
     private float inputDelay = 0.05f;
@@ -34,26 +34,26 @@ public class MainMenu : MonoBehaviour
         private void OnEnable()
     {
         input.Enable();
-        input.UI.Submit.performed += OnSubmitPerformed;
-        input.UI.Submit.canceled += OnSubmitCanceled;
-        input.UI.Cancel.performed += OnCancelPerformed;
-        input.UI.Cancel.canceled += OnCancelCanceled;
-        input.UI.Navigate.performed += OnNavigatePerformed;
-        input.UI.Navigate.canceled += OnNavigateCanceled;
+        input.Player.Primary.performed += OnPrimaryPerformed;
+        input.Player.Primary.canceled += OnSubmitCanceled;
+        input.Player.Secondary.performed += OnSecondaryPerformed;
+        input.Player.Secondary.canceled += OnCancelCanceled;
+        input.Player.Navigate.performed += OnNavigatePerformed;
+        input.Player.Navigate.canceled += OnNavigateCanceled;
     }
 
     private void OnDisable()
     {
         input.Disable();
-        input.UI.Submit.performed -= OnSubmitPerformed;
-        input.UI.Submit.canceled -= OnSubmitCanceled;
-        input.UI.Cancel.performed -= OnCancelPerformed;
-        input.UI.Cancel.canceled -= OnCancelCanceled;
-        input.UI.Navigate.performed -= OnNavigatePerformed;
-        input.UI.Navigate.canceled -= OnNavigateCanceled;
+        input.Player.Primary.performed -= OnPrimaryPerformed;
+        input.Player.Primary.canceled -= OnSubmitCanceled;
+        input.Player.Secondary.performed -= OnSecondaryPerformed;
+        input.Player.Secondary.canceled -= OnCancelCanceled;
+        input.Player.Navigate.performed -= OnNavigatePerformed;
+        input.Player.Navigate.canceled -= OnNavigateCanceled;
     }
 
-    private void OnSubmitPerformed(InputAction.CallbackContext value)
+    private void OnPrimaryPerformed(InputAction.CallbackContext value)
     {
         if (inputBlocked) return;
         submitPressed = true;
@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour
         submitPressed = false;
     }
 
-    private void OnCancelPerformed(InputAction.CallbackContext value)
+    private void OnSecondaryPerformed(InputAction.CallbackContext value)
     {
         if (inputBlocked) return;
         cancelPressed = true;

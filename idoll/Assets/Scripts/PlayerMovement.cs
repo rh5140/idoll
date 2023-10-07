@@ -54,18 +54,22 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         input.Enable();
-        input.Player.Movement.performed += OnMovementPerformed;
-        input.Player.Movement.canceled += OnMovementCancelled;
+        input.Player.Navigate.performed += OnNavigatePerformed;
+        input.Player.Navigate.canceled += OnNavigateCancelled;
+        input.Player.QSave.performed += OnQSavePerformed;
+        input.Player.QLoad.performed += OnQLoadPerformed;
     }
 
     private void OnDisable()
     {
         input.Disable();
-        input.Player.Movement.performed -= OnMovementPerformed;
-        input.Player.Movement.canceled -= OnMovementCancelled;
+        input.Player.Navigate.performed -= OnNavigatePerformed;
+        input.Player.Navigate.canceled -= OnNavigateCancelled;
+        input.Player.QSave.performed -= OnQSavePerformed;
+        input.Player.QLoad.performed -= OnQLoadPerformed;
     }
 
-    private void OnMovementPerformed(InputAction.CallbackContext value)
+    private void OnNavigatePerformed(InputAction.CallbackContext value)
     {
         moveVector = value.ReadValue<UnityEngine.Vector2>();
         if (moveVector.x != 0f)
@@ -78,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnMovementCancelled(InputAction.CallbackContext value)
+    private void OnNavigateCancelled(InputAction.CallbackContext value)
     {
         moveVector = UnityEngine.Vector2.zero;
     }
@@ -87,6 +91,16 @@ public class PlayerMovement : MonoBehaviour
     {
         return moveVector;
     }
+private void OnQSavePerformed(InputAction.CallbackContext value)
+    {
+        GameManager.Instance.SaveGame();
+    }
+
+    private void OnQLoadPerformed(InputAction.CallbackContext value)
+    {
+        GameManager.Instance.LoadGame();
+    }
+
     #endregion
 
     public void SetBroomGame(bool status)
