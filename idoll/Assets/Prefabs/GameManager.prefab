@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c74bdf7ed9c9a4d9b65ca9b0641af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentGameMode: 
   actSceneSubscene: {x: 0, y: 0, z: 0}
   playerSpawnLocation: {x: 0, y: 0, z: 0}
   mainMenu: {fileID: 5566372379340627578}
@@ -57,6 +58,8 @@ MonoBehaviour:
   locationText: {fileID: 6908947949265540152}
   blackScreen: {fileID: 4902051443523156621}
   musicPlayer: {fileID: 5370019589431069131}
+  scenePrefabs:
+  - {fileID: 7149100175387253701, guid: 41fdeb0e6c778b5408084712c4825db3, type: 3}
 --- !u!82 &1900208259
 AudioSource:
   m_ObjectHideFlags: 0

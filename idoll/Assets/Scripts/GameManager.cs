@@ -104,6 +104,9 @@ public class GameManager : MonoBehaviour
     // scene-specific dictionary: key = object name, value = bool
     // nested dictionary might have weird things going on be sure to check it works
     public Dictionary<string, Dictionary<string, bool>> progressDict = new Dictionary<string, Dictionary<string, bool>>();
+    
+    // SceneSetup (and other scripts) can load prefabs from this list, without accessing Resources
+    public List<GameObject> scenePrefabs;
 
     private void Start()
     {

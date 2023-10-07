@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -42,6 +43,17 @@ public class SceneSetup : MonoBehaviour
                     sceneDict.Add(objName, objBool);
             }
             GameManager.Instance.progressDict.Add(sceneName, sceneDict);
+        }
+
+        // Spawn Companion if necessary (doesn't already exist in scene & following player)
+        if (GameManager.Instance.CompanionFollow == true)
+        {
+            if (GameObject.FindGameObjectWithTag("Companion") == null)
+            {
+                Debug.Log("Spawning a Companion into the scene");
+                GameObject c = Instantiate(GameManager.Instance.scenePrefabs.Find(x => x.name == "Companion"));
+                c.transform.position = new Vector3(GameManager.Instance.PlayerPositionX, GameManager.Instance.PlayerPositionY, GameManager.Instance.PlayerFacing);
+            }
         }
 
         // Set GameMode to "gameplay"
