@@ -30,14 +30,14 @@ public class Eyeballs : MonoBehaviour
     {
         inputs.Enable();
         inputs.Player.Eyeballs.performed += OnMovementPerformed;
-        inputs.Player.Eyeballs.canceled += OnMovementCancelled;
+        inputs.Player.Eyeballs.canceled += OnMovementCanceled;
     }
 
     private void OnDisable()
     {
         inputs.Disable();
         inputs.Player.Eyeballs.performed -= OnMovementPerformed;
-        inputs.Player.Eyeballs.canceled -= OnMovementCancelled;
+        inputs.Player.Eyeballs.canceled -= OnMovementCanceled;
     }
 
     private void OnMovementPerformed(InputAction.CallbackContext value)
@@ -45,7 +45,7 @@ public class Eyeballs : MonoBehaviour
         input = value.ReadValue<float>();
     }
 
-    private void OnMovementCancelled(InputAction.CallbackContext value)
+    private void OnMovementCanceled(InputAction.CallbackContext value)
     {
         input = 0;
     }

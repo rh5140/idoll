@@ -29,9 +29,7 @@ public class Dialogue : Interactable
 
     protected override void Update()
     {
-        // Since the Update() in Interactable is being overriden, I copy-pasted this. There's definitely a better way to do this - Alexander
-        // Edit: thanks Evan for the better way to do this
-        base.Update();
+        base.Update(); // Interactables.cs update function
 
         if (dialogue_is_active != dialogueSystem.GetComponent<DialogueRunner>().Dialogue.IsActive)
         {
@@ -131,36 +129,4 @@ public class Dialogue : Interactable
 
         return true;
     }
-
-    /*
-    [YarnCommand("ToggleMovement")]
-    public static bool ToggleMovement(string newGameMode = "default")
-    {
-        if (newGameMode == "default")
-        {
-            dialogue_is_active = !dialogue_is_active;
-            if (dialogue_is_active)
-            {
-                GameManager.Instance.SetGameMode("dialogue");
-            }
-            else
-            {
-                GameManager.Instance.SetGameMode("gameplay");
-            }
-        }
-        else
-        {
-            GameManager.Instance.SetGameMode(newGameMode);
-            if (GameManager.Instance.GameMode == "dialogue")
-            {
-                dialogue_is_active = true;
-            }
-            else
-            {
-                dialogue_is_active = false;
-            }
-        }
-        return dialogue_is_active;
-    }
-    */
 }

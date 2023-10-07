@@ -29,5 +29,8 @@ public class GameData
         position[0] = GameManager.Instance.PlayerPositionX;
         position[1] = GameManager.Instance.PlayerPositionY;
         direction = GameManager.Instance.PlayerFacing;
+
+        // Data accessible from settings menu
+        
     }
 }

@@ -46,6 +46,10 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
+        if (playerMovement.isDashing)
+            animator.speed = 1 * playerMovement.DASH_MULTIPLIER;
+        else
+            animator.speed = 1;
         SpriteAnimation();
     }
 }

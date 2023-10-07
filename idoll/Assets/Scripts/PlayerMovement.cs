@@ -13,7 +13,9 @@ public class PlayerMovement : MonoBehaviour
     private UnityEngine.Vector2 moveVector = UnityEngine.Vector2.zero;
 
     private bool playerAnchored = false;
-    private float DEFAULT_SPEED = 5.0f; // TODO: Move to separate settings class
+    private float DEFAULT_SPEED = 4.0f; // TODO: Move to separate settings class
+    public float DASH_MULTIPLIER = 1.5f;
+    public bool isDashing = false;
     private float Turn_Time = 0.1f;
     private float MAX_TURN_TIME = 0.1f;
 
@@ -55,18 +57,22 @@ public class PlayerMovement : MonoBehaviour
     {
         input.Enable();
         input.Player.Navigate.performed += OnNavigatePerformed;
-        input.Player.Navigate.canceled += OnNavigateCancelled;
+        input.Player.Navigate.canceled += OnNavigateCanceled;
         input.Player.QSave.performed += OnQSavePerformed;
         input.Player.QLoad.performed += OnQLoadPerformed;
+        input.Player.Dash.performed += OnDashPerformed;
+        input.Player.Dash.canceled += OnDashCanceled;
     }
 
     private void OnDisable()
     {
         input.Disable();
         input.Player.Navigate.performed -= OnNavigatePerformed;
-        input.Player.Navigate.canceled -= OnNavigateCancelled;
+        input.Player.Navigate.canceled -= OnNavigateCanceled;
         input.Player.QSave.performed -= OnQSavePerformed;
         input.Player.QLoad.performed -= OnQLoadPerformed;
+        input.Player.Dash.performed -= OnDashPerformed;
+        input.Player.Dash.canceled -= OnDashCanceled;
     }
 
     private void OnNavigatePerformed(InputAction.CallbackContext value)
@@ -82,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnNavigateCancelled(InputAction.CallbackContext value)
+    private void OnNavigateCanceled(InputAction.CallbackContext value)
     {
         moveVector = UnityEngine.Vector2.zero;
     }
@@ -91,7 +97,8 @@ public class PlayerMovement : MonoBehaviour
     {
         return moveVector;
     }
-private void OnQSavePerformed(InputAction.CallbackContext value)
+
+    private void OnQSavePerformed(InputAction.CallbackContext value)
     {
         GameManager.Instance.SaveGame();
     }
@@ -99,6 +106,16 @@ private void OnQSavePerformed(InputAction.CallbackContext value)
     private void OnQLoadPerformed(InputAction.CallbackContext value)
     {
         GameManager.Instance.LoadGame();
+    }
+
+    private void OnDashPerformed(InputAction.CallbackContext value)
+    {
+        isDashing = true;
+    }
+
+    private void OnDashCanceled(InputAction.CallbackContext value)
+    {
+        isDashing = false;
     }
 
     #endregion
@@ -323,6 +340,11 @@ private void OnQSavePerformed(InputAction.CallbackContext value)
             if (!broom_game) { SetBroomGame(true); }
             else { SetBroomGame(false); }
         }
+
+        if (isDashing)
+            speed = DEFAULT_SPEED * DASH_MULTIPLIER;
+        else
+            speed = DEFAULT_SPEED;
 
         if (Turn_Time > 0)
             Turn_Time -= Time.deltaTime;

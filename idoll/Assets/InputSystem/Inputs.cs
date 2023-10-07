@@ -55,6 +55,15 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""4afd95d0-3722-4c3a-8b44-8b6c5ea6f38d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Eyeballs"",
                     ""type"": ""Value"",
                     ""id"": ""67d3a945-1bff-44b2-a1a2-b6a4fe4d3d6e"",
@@ -522,6 +531,28 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                     ""action"": ""QLoad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5dbe1dcd-e079-4151-bd50-7569603c42e2"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8f2caa6-d7a2-45c1-b389-288c1ef776e3"",
+                    ""path"": ""<Keyboard>/ctrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -533,6 +564,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         m_Player_Navigate = m_Player.FindAction("Navigate", throwIfNotFound: true);
         m_Player_Primary = m_Player.FindAction("Primary", throwIfNotFound: true);
         m_Player_Secondary = m_Player.FindAction("Secondary", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Eyeballs = m_Player.FindAction("Eyeballs", throwIfNotFound: true);
         m_Player_QSave = m_Player.FindAction("QSave", throwIfNotFound: true);
         m_Player_QLoad = m_Player.FindAction("QLoad", throwIfNotFound: true);
@@ -598,6 +630,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Navigate;
     private readonly InputAction m_Player_Primary;
     private readonly InputAction m_Player_Secondary;
+    private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Eyeballs;
     private readonly InputAction m_Player_QSave;
     private readonly InputAction m_Player_QLoad;
@@ -608,6 +641,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         public InputAction @Navigate => m_Wrapper.m_Player_Navigate;
         public InputAction @Primary => m_Wrapper.m_Player_Primary;
         public InputAction @Secondary => m_Wrapper.m_Player_Secondary;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Eyeballs => m_Wrapper.m_Player_Eyeballs;
         public InputAction @QSave => m_Wrapper.m_Player_QSave;
         public InputAction @QLoad => m_Wrapper.m_Player_QLoad;
@@ -629,6 +663,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Secondary.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondary;
                 @Secondary.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondary;
                 @Secondary.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondary;
+                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
                 @Eyeballs.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEyeballs;
                 @Eyeballs.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEyeballs;
                 @Eyeballs.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEyeballs;
@@ -651,6 +688,9 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
                 @Secondary.started += instance.OnSecondary;
                 @Secondary.performed += instance.OnSecondary;
                 @Secondary.canceled += instance.OnSecondary;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
                 @Eyeballs.started += instance.OnEyeballs;
                 @Eyeballs.performed += instance.OnEyeballs;
                 @Eyeballs.canceled += instance.OnEyeballs;
@@ -669,6 +709,7 @@ public partial class @Inputs : IInputActionCollection2, IDisposable
         void OnNavigate(InputAction.CallbackContext context);
         void OnPrimary(InputAction.CallbackContext context);
         void OnSecondary(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
         void OnEyeballs(InputAction.CallbackContext context);
         void OnQSave(InputAction.CallbackContext context);
         void OnQLoad(InputAction.CallbackContext context);
