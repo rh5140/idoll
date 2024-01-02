@@ -22,6 +22,13 @@ public class TilemapManager : MonoBehaviour
     [SerializeField]
     private TileBase wallShadowRuleTile;
 
+    // // Floor Dust Rule Tiles
+    // [SerializeField]
+    // private TileBase floorDustRuleTile;
+
+    // [SerializeField]
+    // private bool isFloorDusty = true;
+
     // Objects Sprite For Tliemap
     //[SerializeField]
     //private List<Sprite> objectsSpritesheet;
@@ -73,7 +80,7 @@ public class TilemapManager : MonoBehaviour
                         light = Instantiate(lightPrefabs[lightNumber]);
                         light.transform.position = pos;
                         // Reposition tilemap for differently-sized light tilemaps
-                        light.transform.position = light.transform.position / (1f/ lightTilemap.transform.localScale.x) - new Vector3(lightTilemap.transform.localPosition.x / 2f, lightTilemap.transform.localPosition.y / 2f);
+                        light.transform.position = light.transform.position / (1f/ lightTilemap.transform.localScale.x) - new Vector3(lightTilemap.transform.localPosition.x / 2f + (3f/16), lightTilemap.transform.localPosition.y / 2f + (3f/16));
                         break;
                     }
                 }
@@ -111,11 +118,25 @@ public class TilemapManager : MonoBehaviour
         tr.sortingOrder = 10; // Render shadows on top of all of the background/floor tiles
         wallShadows.transform.localPosition = new Vector2(0f, 0f);
 
+        // // Create FloorDust Tilemap
+        // var floorDust = new GameObject("FloorDust");
+        // var tm_fd = floorDust.AddComponent<Tilemap>();
+        // var tr_fd = floorDust.AddComponent<TilemapRenderer>();
+        
+        // floorDust.transform.SetParent(GameObject.FindGameObjectWithTag("CurrentRoom").transform);
+        // tr_fd.sortingLayerName = "Background";
+        // tr_fd.sortingOrder = 9; // Render dust just beneath the shadows
+        // floorDust.transform.localPosition = new Vector2(0f, 0f);
+
         foreach (Vector3Int pos in floorTilemap.cellBounds.allPositionsWithin)
         {
             if (floorTilemap.HasTile(pos))
             {
                 tm.SetTile(pos, wallShadowRuleTile);
+                // if (isFloorDusty)
+                // {
+                //     tm_fd.SetTile(pos, floorDustRuleTile);
+                // }
             }
         }    
     }
